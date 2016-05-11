@@ -1,0 +1,41 @@
+{
+  "name": "lesson",
+  "plural": "lessons",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "dateLesson": {
+      "type": "date",
+      "required": true
+    },
+    "duration": {
+      "type": "date",
+      "required": true
+    },
+    "startLesson": {
+      "type": "date",
+      "required": true
+    },
+    "accepted": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "totalPrice": {
+      "type": "number",
+      "required": true,
+      "default": "0.0"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

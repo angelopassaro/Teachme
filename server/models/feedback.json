@@ -1,0 +1,23 @@
+{
+  "name": "feedback",
+  "plural": "feedbacks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "capacity_to_explain": {
+      "type": "number",
+      "required": true
+    },
+    "preparation": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,6 +1,11 @@
 {
   "db": {
+    "host": "localhost",
+    "database": "tutordb",
+    "username": "stefano",
+    "password": "prova",
     "name": "db",
-    "connector": "memory"
+    "connector": "mongodb",
+    "debug": true
   }
 }

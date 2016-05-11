@@ -31,5 +31,37 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "student": {
+    "dataSource": "db",
+    "public": true
+  },
+  "passpartout": {
+    "dataSource": "db",
+    "public": false
+  },
+  "lesson": {
+    "dataSource": "db",
+    "public": true
+  },
+  "university": {
+    "dataSource": "db",
+    "public": true
+  },
+  "note": {
+    "dataSource": "db",
+    "public": true
+  },
+  "course": {
+    "dataSource": "db",
+    "public": true
+  },
+  "teacher": {
+    "dataSource": "db",
+    "public": true
+  },
+  "feedback": {
+    "dataSource": "db",
+    "public": true
   }
 }
