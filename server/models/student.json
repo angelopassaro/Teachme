@@ -1,6 +1,6 @@
 {
   "name": "student",
-  "plural": "users",
+  "plural": "students",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -15,10 +15,6 @@
       "type": "string",
       "required": true
     },
-    "id": {
-      "type": "number",
-      "required": true
-    },
     "lastName": {
       "type": "string",
       "required": true
@@ -29,7 +25,8 @@
     },
     "password": {
       "type": "string",
-      "required": true
+      "required": true,
+      "encrypted": true
     }
   },
   "validations": [],

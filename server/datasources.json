@@ -1,10 +1,9 @@
 {
   "db": {
-    "host": "localhost",
-    "database": "tutordb",
-    "username": "stefano",
-    "password": "prova",
-    "name": "db",
+    "url": "mongodb://admin:q1w2e3r4t5y6@ds036069.mlab.com:36069/teachme",
+    "database": "teachme",
+    "username": "admin",
+    "password": "q1w2e3r4t5y6",
     "connector": "mongodb",
     "debug": true
   }
