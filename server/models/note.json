@@ -13,7 +13,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "share": {
+      "type": "hasOne",
+      "model": "student",
+      "foreignKey": ""
+    },
+    "refersTo": {
+      "type": "hasOne",
+      "model": "course",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

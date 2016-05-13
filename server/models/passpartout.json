@@ -12,7 +12,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "Own": {
+      "type": "hasOne",
+      "model": "student",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

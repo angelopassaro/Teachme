@@ -63,5 +63,9 @@
   "feedback": {
     "dataSource": "db",
     "public": true
+  },
+  "through_teach": {
+    "dataSource": "db",
+    "public": false
   }
 }

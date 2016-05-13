@@ -13,7 +13,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "attend": {
+      "type": "hasMany",
+      "model": "student",
+      "foreignKey": ""
+    },
+    "offers": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

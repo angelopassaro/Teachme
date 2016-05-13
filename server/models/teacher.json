@@ -17,7 +17,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "isTought": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

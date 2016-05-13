@@ -17,7 +17,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "receive": {
+      "type": "hasOne",
+      "model": "student",
+      "foreignKey": ""
+    },
+    "relativeTo": {
+      "type": "hasOne",
+      "model": "course",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

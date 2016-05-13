@@ -4,6 +4,7 @@
     "database": "teachme",
     "username": "admin",
     "password": "q1w2e3r4t5y6",
+    "name": "db",
     "connector": "mongodb",
     "debug": true
   }

@@ -13,7 +13,28 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "offers": {
+      "type": "hasMany",
+      "model": "university",
+      "foreignKey": ""
+    },
+    "refersTo": {
+      "type": "hasMany",
+      "model": "note",
+      "foreignKey": ""
+    },
+    "isTought": {
+      "type": "hasOne",
+      "model": "teacher",
+      "foreignKey": ""
+    },
+    "relativeTo": {
+      "type": "hasMany",
+      "model": "feedback",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

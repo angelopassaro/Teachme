@@ -30,7 +30,38 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "Own": {
+      "type": "hasOne",
+      "model": "passpartout",
+      "foreignKey": ""
+    },
+    "attend": {
+      "type": "hasOne",
+      "model": "university",
+      "foreignKey": ""
+    },
+    "prenote": {
+      "type": "hasMany",
+      "model": "lesson",
+      "foreignKey": ""
+    },
+    "tought_by": {
+      "type": "hasMany",
+      "model": "lesson",
+      "foreignKey": ""
+    },
+    "share": {
+      "type": "hasMany",
+      "model": "note",
+      "foreignKey": ""
+    },
+    "receive": {
+      "type": "hasMany",
+      "model": "feedback",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
