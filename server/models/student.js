@@ -10,37 +10,22 @@ module.exports = function(Student) {
     next();
   })
 
-/* (validate)Impossibile controllare la password (vengono cifrate in base a una chiave)
-  (checkPassword)Non viene inserito il responde nel body(response body)
-  (validate) Aggiungere controllo se non esiste l'utente
-  (validate,checkPassword) Riscivere decentemente*/
-function validate(mail, psswd) {
-  Student.find({where: {email: mail}}, function (error, us){    //search user by email
-    console.log(us[0].password);                                         // debug
-    if(error){
-      console.log("error" + error);
-      return ;
-    }            //add manage error
-    if(us[0].password == psswd){
-      console.log(us[0].password + "mia " +psswd);
-      return true;
-    }
-    console.log(us[0].password + " false mia " +psswd);
-    return false;
-    });
-}
-
+/* Impossibile controllare la password (vengono cifrate in base a una chiave) ("fixed")
+  (Non viene inserito il responde nel body(response body)(fixed)
+  Aggiungere controllo se non esiste l'utente*/
 Student.checkPassword = function(psswd, mail, cb){
-  cb(null, validate(mail,CryptoJS.AES.encrypt(psswd, 'Message')));
+  Student.findOne({where: {email: mail}}, function (error, us){    //search user by email
+    console.log(us.password);                                         // DEBUG
+    //console.log(error);                                             //DEBUG
+    if(error){      //error undefined  
+      console.log("error" + error);                                   //DEBUG
+      return cb(error);
+    }
+    var bytes  = CryptoJS.AES.decrypt(us.password.toString(), 'Message');
+    var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+    (plaintext === psswd) ? cb(null,true) : cb(null,false);
+    });
   }
-
-
-
-
-
-
-
-
 
 
   Student.remoteMethod(
