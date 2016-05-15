@@ -27,6 +27,10 @@
       "type": "string",
       "required": true,
       "encrypted": true
+    },
+    "isTutor": {
+      "type": "boolean",
+      "required": true
     }
   },
   "validations": [],
