@@ -19,14 +19,12 @@
   "validations": [],
   "relations": {
     "receive": {
-      "type": "hasOne",
-      "model": "student",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "student"
     },
     "relativeTo": {
-      "type": "hasOne",
-      "model": "course",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "course"
     }
   },
   "acls": [],

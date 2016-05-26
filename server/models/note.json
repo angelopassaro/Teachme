@@ -15,14 +15,12 @@
   "validations": [],
   "relations": {
     "share": {
-      "type": "hasOne",
-      "model": "student",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "student"
     },
     "refersTo": {
-      "type": "hasOne",
-      "model": "course",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "course"
     }
   },
   "acls": [],

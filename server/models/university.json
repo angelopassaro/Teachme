@@ -15,14 +15,12 @@
   "validations": [],
   "relations": {
     "attend": {
-      "type": "hasMany",
-      "model": "student",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "student"
     },
     "offers": {
-      "type": "hasMany",
-      "model": "course",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "course"
     }
   },
   "acls": [],

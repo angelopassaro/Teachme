@@ -33,14 +33,12 @@
   "validations": [],
   "relations": {
     "prenote": {
-      "type": "hasOne",
-      "model": "student",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "student"
     },
     "tought_by": {
-      "type": "hasOne",
-      "model": "student",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "student"
     }
   },
   "acls": [],

@@ -19,9 +19,8 @@
   "validations": [],
   "relations": {
     "isTought": {
-      "type": "hasMany",
-      "model": "course",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "course"
     }
   },
   "acls": [],

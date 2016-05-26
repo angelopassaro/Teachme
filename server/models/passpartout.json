@@ -13,10 +13,9 @@
   },
   "validations": [],
   "relations": {
-    "Own": {
-      "type": "hasOne",
-      "model": "student",
-      "foreignKey": ""
+    "own": {
+      "type": "embedsOne",
+      "model": "student"
     }
   },
   "acls": [],

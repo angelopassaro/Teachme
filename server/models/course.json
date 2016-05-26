@@ -15,24 +15,20 @@
   "validations": [],
   "relations": {
     "offers": {
-      "type": "hasMany",
-      "model": "university",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "university"
     },
     "refersTo": {
-      "type": "hasMany",
-      "model": "note",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "note"
     },
     "isTought": {
-      "type": "hasOne",
-      "model": "teacher",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "teacher"
     },
     "relativeTo": {
-      "type": "hasMany",
-      "model": "feedback",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "feedback"
     }
   },
   "acls": [],

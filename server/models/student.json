@@ -1,8 +1,8 @@
 {
   "name": "student",
   "plural": "students",
-  "base": "PersistedModel",
-  "idInjection": true,
+  "base": "User",
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
@@ -13,7 +13,8 @@
     },
     "email": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     },
     "lastName": {
       "type": "string",
@@ -23,47 +24,37 @@
       "type": "date",
       "required": true
     },
-    "password": {
-      "type": "string",
-      "required": true,
-      "encrypted": true
-    },
     "isTutor": {
       "type": "boolean",
-      "required": true
+      "required": true,
+      "default": false
     }
   },
   "validations": [],
   "relations": {
-    "Own": {
-      "type": "hasOne",
-      "model": "passpartout",
-      "foreignKey": ""
+    "own": {
+      "type": "embedsOne",
+      "model": "passpartout"
     },
     "attend": {
-      "type": "hasOne",
-      "model": "university",
-      "foreignKey": ""
+      "type": "embedsOne",
+      "model": "university"
     },
     "prenote": {
-      "type": "hasMany",
-      "model": "lesson",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "lesson"
     },
     "tought_by": {
-      "type": "hasMany",
-      "model": "lesson",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "lesson"
     },
     "share": {
-      "type": "hasMany",
-      "model": "note",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "note"
     },
     "receive": {
-      "type": "hasMany",
-      "model": "feedback",
-      "foreignKey": ""
+      "type": "embedsMany",
+      "model": "feedback"
     }
   },
   "acls": [],
