@@ -2,22 +2,22 @@
   "name": "university",
   "plural": "universities",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     }
   },
   "validations": [],
   "relations": {
     "attend": {
       "type": "hasMany",
-      "model": "student",
-      "options": {"validate": false}
+      "model": "student"
     },
     "offers": {
       "type": "hasMany",
