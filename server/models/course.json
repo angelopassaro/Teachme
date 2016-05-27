@@ -15,19 +15,19 @@
   "validations": [],
   "relations": {
     "offers": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "university"
     },
     "refersTo": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "note"
     },
     "isTought": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "teacher"
     },
     "relativeTo": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "feedback"
     }
   },

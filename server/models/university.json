@@ -15,11 +15,12 @@
   "validations": [],
   "relations": {
     "attend": {
-      "type": "embedsMany",
-      "model": "student"
+      "type": "hasMany",
+      "model": "student",
+      "options": {"validate": false}
     },
     "offers": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "course"
     }
   },

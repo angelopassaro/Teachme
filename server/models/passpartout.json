@@ -14,7 +14,7 @@
   "validations": [],
   "relations": {
     "own": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "student"
     }
   },

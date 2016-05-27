@@ -15,11 +15,11 @@
   "validations": [],
   "relations": {
     "share": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "student"
     },
     "refersTo": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "course"
     }
   },

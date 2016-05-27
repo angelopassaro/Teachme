@@ -33,11 +33,11 @@
   "validations": [],
   "relations": {
     "prenote": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "student"
     },
     "tought_by": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "student"
     }
   },

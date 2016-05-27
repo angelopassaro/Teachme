@@ -19,11 +19,11 @@
   "validations": [],
   "relations": {
     "receive": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "student"
     },
     "relativeTo": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "course"
     }
   },

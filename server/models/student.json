@@ -29,27 +29,27 @@
   "validations": [],
   "relations": {
     "own": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "passpartout"
     },
     "attend": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "university"
     },
     "prenote": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "lesson"
     },
     "tought_by": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "lesson"
     },
     "share": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "note"
     },
     "receive": {
-      "type": "embedsMany",
+      "type": "hasMany",
       "model": "feedback"
     }
   },
