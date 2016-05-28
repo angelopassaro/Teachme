@@ -20,6 +20,12 @@
       "type": "date",
       "required": true
     },
+    "contact":{
+      "type": [
+    "object"
+  ],
+      "required": true
+    },
     "isTutor": {
       "type": "boolean",
       "required": true,
@@ -51,6 +57,10 @@
     "receive": {
       "type": "hasMany",
       "model": "feedback"
+    },
+    "teachTo": {
+      "type": "hasMany",
+      "model": "course"
     }
   },
   "acls": [],

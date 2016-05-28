@@ -1,3 +1,5 @@
+
+//added contact on student
 //added
 var loopback = require('loopback');
 // changed password hidden in user.json(node_module/loopback/common)

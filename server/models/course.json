@@ -2,14 +2,15 @@
   "name": "course",
   "plural": "courses",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     }
   },
   "validations": [],
@@ -29,6 +30,10 @@
     "relativeTo": {
       "type": "hasMany",
       "model": "feedback"
+    },
+    "teachTo": {
+      "type": "hasMany",
+      "model": "student"
     }
   },
   "acls": [],
