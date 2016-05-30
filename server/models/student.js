@@ -5,6 +5,7 @@ var loopback = require('loopback');
 // changed password hidden in user.json(node_module/loopback/common)
 module.exports = function(Student) {
 
+
 /*
 //added
   function getCurrentUserId() {
@@ -18,12 +19,18 @@ module.exports = function(Student) {
   Student.example = function(cb){
     var userId = getCurrentUserId();
     if(!userId){
-      // Code if valid access token not found
+      console.log("ERROR");
+      cb();
     }else{
-
+        console.log(userId);
     }
   }
-
-  //add remote method  example
+  
+  Student.remoteMethod(
+    'example',
+    {
+    returns : {arg: "userId", type: "array"}
+    }
+  )
 */
 }

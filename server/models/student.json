@@ -12,6 +12,10 @@
       "required": true,
       "id": true
     },
+    "name": {
+      "type": "string",
+      "required": true
+    },
     "lastName": {
       "type": "string",
       "required": true
@@ -34,35 +38,11 @@
   },
   "validations": [],
   "relations": {
-    "own": {
-      "type": "hasOne",
-      "model": "passpartout"
-    },
-    "attend": {
-      "type": "hasOne",
-      "model": "university"
-    },
-    "prenote": {
+     "receive": {
       "type": "hasMany",
-      "model": "lesson"
-    },
-    "tought_by": {
-      "type": "hasMany",
-      "model": "lesson"
-    },
-    "share": {
-      "type": "hasMany",
-      "model": "note"
-    },
-    "receive": {
-      "type": "hasMany",
-      "model": "feedback"
-    },
-    "teachTo": {
-      "type": "hasMany",
-      "model": "course"
-    }
-  },
+      "model": "feedback",
+      "foreignKey": ""
+    }},
   "acls": [],
   "methods": {}
 }

@@ -17,11 +17,13 @@
   "relations": {
     "attend": {
       "type": "hasMany",
-      "model": "student"
+      "model": "student",
+      "foreignKey": ""
     },
-    "offers": {
+     "offers": {
       "type": "hasMany",
-      "model": "course"
+      "model": "course",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -15,27 +15,12 @@
   },
   "validations": [],
   "relations": {
-    "offers": {
+    "toughtBy":{
       "type": "hasMany",
-      "model": "university"
-    },
-    "refersTo": {
-      "type": "hasMany",
-      "model": "note"
-    },
-    "isTought": {
-      "type": "hasOne",
-      "model": "teacher"
-    },
-    "relativeTo": {
-      "type": "hasMany",
-      "model": "feedback"
-    },
-    "teachTo": {
-      "type": "hasMany",
-      "model": "student"
+      "model": "teacher",
+      "foreignKey": ""
     }
-  },
+    },
   "acls": [],
   "methods": {}
 }

@@ -13,11 +13,11 @@
   },
   "validations": [],
   "relations": {
-    "own": {
-      "type": "hasOne",
-      "model": "student"
-    }
-  },
+     "own": {
+      "type": "belongsTo",
+      "model": "student",
+      "foreignKey": ""
+    }},
   "acls": [],
   "methods": {}
 }

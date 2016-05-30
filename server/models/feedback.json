@@ -2,13 +2,18 @@
   "name": "feedback",
   "plural": "feedbacks",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "capacity_to_explain": {
       "type": "number",
+      "required": true
+    },
+    "id":{
+      "id": true,
+      "type": "string",
       "required": true
     },
     "preparation": {
@@ -18,14 +23,17 @@
   },
   "validations": [],
   "relations": {
-    "receive": {
-      "type": "hasOne",
-      "model": "student"
+     "send": {
+      "type": "belongsTo",
+      "model": "student",
+      "foreignKey": ""
     },
-    "relativeTo": {
-      "type": "hasOne",
-      "model": "course"
+     "relativeTo": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": ""
     }
+    
   },
   "acls": [],
   "methods": {}

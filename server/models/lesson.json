@@ -31,16 +31,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "prenote": {
-      "type": "hasOne",
-      "model": "student"
-    },
-    "tought_by": {
-      "type": "hasOne",
-      "model": "student"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

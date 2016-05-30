@@ -38,7 +38,7 @@
   },
   "passpartout": {
     "dataSource": "db",
-    "public": false
+    "public": true
   },
   "lesson": {
     "dataSource": "db",
