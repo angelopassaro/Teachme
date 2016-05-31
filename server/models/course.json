@@ -16,9 +16,13 @@
   "validations": [],
   "relations": {
     "toughtBy":{
-      "type": "hasMany",
+      "type": "embedsMany",
       "model": "teacher",
-      "foreignKey": ""
+      "foreignKey": "",
+      "options": {
+          "validate": true,
+          "forceId": false
+        }
       },
        "manage": {
       "type": "hasMany",

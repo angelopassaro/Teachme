@@ -21,9 +21,13 @@
       "foreignKey": ""
     },
      "offers": {
-      "type": "hasMany",
+      "type": "embedsMany",
       "model": "course",
-      "foreignKey": ""
+      "foreignKey": "",
+      "options": {
+          "validate": true,
+          "forceId": false
+        }
     }
   },
   "acls": [],

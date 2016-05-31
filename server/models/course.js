@@ -13,7 +13,7 @@ findTutor
 
 find course and take all tutors
 check on studet for passpartout
-*/
+
   Course.findTutor = function(university,course,student,cb){
     Course.find(wherefind({ where: { and: [
       { universityId: university },
@@ -43,4 +43,5 @@ check on studet for passpartout
       returns: {arg: '', type: 'string'}
     }
   );
+  */
 }
