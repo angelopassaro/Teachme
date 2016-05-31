@@ -19,6 +19,12 @@
       "type": "hasMany",
       "model": "teacher",
       "foreignKey": ""
+      },
+       "manage": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": "",
+      "through": "price"
     }
     },
   "acls": [],

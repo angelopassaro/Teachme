@@ -1,0 +1,26 @@
+{
+  "name": "price",
+  "plural": "prices",
+  "base": "PersistedModel",
+  "properties": {
+    "rate":{
+        "type": "number",
+        "required": true
+    }
+    },
+  "validations": [],
+  "relations": {
+    "teach":{
+    "type": "belongsTo",
+    "model":"course",
+    "foreignKey": ""
+    },
+    "manage" :{
+    "type": "belongsTo",
+    "model":"student",
+    "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

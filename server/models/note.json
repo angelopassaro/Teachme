@@ -2,7 +2,7 @@
   "name": "note",
   "plural": "notes",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
@@ -10,10 +10,20 @@
     "data": {
       "type": "string",
       "required": true
+    },
+    "title": {
+      "type": "string",
+      "require": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "relativeTo": {
+      "type": "belongsTo",
+      "model": "course",
+      "foreignKey": ""
+        }
+    },
   "acls": [],
   "methods": {}
 }

@@ -38,11 +38,28 @@
   },
   "validations": [],
   "relations": {
+     "teach": {
+      "type": "hasMany",
+      "model": "course",
+      "foreignKey": "",
+      "through": "price"
+    },
+    "require": {
+      "type": "hasMany",
+      "model": "lesson",
+      "foreignKey": ""
+    },
      "receive": {
       "type": "hasMany",
       "model": "feedback",
       "foreignKey": ""
-    }},
+    },
+    "share": {
+      "type": "hasMany",
+      "model": "note",
+      "foreignKey": ""
+      }
+    },
   "acls": [],
   "methods": {}
 }

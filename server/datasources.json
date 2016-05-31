@@ -1,9 +1,9 @@
 {
   "db": {
-    "url": "mongodb://admin:q1w2e3r4t5y6@ds036069.mlab.com:36069/teachme",
-    "database": "teachme",
-    "username": "admin",
-    "password": "q1w2e3r4t5y6",
+    "url": "mongodb://niko:ferdinando@ds019123.mlab.com:19123/teachdb",
+    "database": "teachdb",
+    "username": "niko",
+    "password": "ferdinando",
     "name": "db",
     "connector": "mongodb",
     "debug": true
