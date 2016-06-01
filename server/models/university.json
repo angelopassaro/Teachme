@@ -23,7 +23,7 @@
      "offers": {
       "type": "embedsMany",
       "model": "course",
-      "foreignKey": "",
+      "property": "courseId",
       "options": {
           "validate": true,
           "forceId": false
