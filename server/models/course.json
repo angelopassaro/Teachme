@@ -2,37 +2,34 @@
   "name": "course",
   "plural": "courses",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
     "name": {
       "type": "string",
-      "required": true,
-      "id": true
+      "required": true
     }
   },
   "validations": [],
   "relations": {
     "toughtBy":{
-      "type": "embedsMany",
+      "type": "hasAndBelongsToMany",
       "model": "teacher",
-      "property": "teachers",
-      "default": false,
+      "foreignKey":"",
       "options": {
           "validate": true,
           "forceId": false
         }
       },
-       "manage": {
+      "manage": {
       "type": "hasMany",
       "model": "course",
       "foreignKey": "",
       "through": "price"
     }
     },
-  "hidden": ["teachers"],
   "acls": [],
   "methods": {}
 }
