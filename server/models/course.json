@@ -27,7 +27,7 @@
       "type": "hasMany",
       "model": "course",
       "foreignKey": "",
-      "through": "price"
+      "through": "lesson"
     }
     },
   "acls": [],

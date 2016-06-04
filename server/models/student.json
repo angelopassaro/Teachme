@@ -39,18 +39,18 @@
   "validations": [],
   "relations": {
      "teach": {
-      "type": "hasMany",
+      "type": "hasAndBelongsToMany",
       "model": "course",
       "foreignKey": "",
-      "through": "price"
+      "through": "lesson"
     },
     "require": {
-      "type": "hasMany",
+      "type": "hasAndBelongsToMany",
       "model": "lesson",
       "foreignKey": ""
     },
      "receive": {
-      "type": "hasMany",
+      "type": "hasAndBelongsToMany",
       "model": "feedback",
       "foreignKey": ""
     },

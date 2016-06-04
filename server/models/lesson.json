@@ -31,13 +31,7 @@
     }
   },
   "validations": [],
-  "relations": {
-     "make": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

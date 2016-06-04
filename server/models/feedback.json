@@ -28,7 +28,7 @@
       "model": "course",
       "foreignKey": ""
     }
-    
+
   },
   "acls": [],
   "methods": {}
