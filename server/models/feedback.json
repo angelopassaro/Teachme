@@ -18,11 +18,6 @@
   },
   "validations": [],
   "relations": {
-     "send": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    },
      "relativeTo": {
       "type": "belongsTo",
       "model": "course",

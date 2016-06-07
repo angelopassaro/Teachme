@@ -61,5 +61,8 @@
       }
     },
   "acls": [],
+  "scopes": {
+    "tutors": {"where": {"isTutor": true}}
+    },
   "methods": {}
 }
