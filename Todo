@@ -14,6 +14,5 @@ passpartout belongsTo(in passpartout)viene creato usando le sue API ma bisogna d
 Student definire un hook(before-save) per associarlo a un università esistente.
 
 
-
-controllare feed e note
+Aggiungere controlli email e lunghezza caratteri stringhe.
 

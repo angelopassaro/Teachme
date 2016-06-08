@@ -49,11 +49,6 @@
       "model": "lesson",
       "foreignKey": ""
     },
-     "receive": {
-      "type": "hasAndBelongsToMany",
-      "model": "feedback",
-      "foreignKey": ""
-    },
     "share": {
       "type": "hasMany",
       "model": "note",
