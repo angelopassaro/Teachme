@@ -237,12 +237,6 @@ footer {
   height: 100%;
 }
 
-#nav-logo img{
-  display: none;
-  width: 50px;
-  height: 50px;
-}
-
 #platform-info {
 	width: 380px;
 	float: left;
@@ -281,15 +275,7 @@ header, footer, body {
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 675px){
-  #features div.wrapper {
-    display: block;
-  }
-  
-  #features ul{
-    display: inline-block;
-    margin: 0 auto;
-  }
+@media only screen and (max-width: 674px){
   
   #features ul li{
     clear: both;
@@ -298,10 +284,35 @@ header, footer, body {
   #main-title {
     width: 200px;
   }
+ 
+ #features ul{
+   column-count: 1;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+   margin: 0 auto;
+   display: inline-block;
+ }
   
   #platform-info, #company-links, #contact-info{
     width: 100%;
     clear: both;
     text-align: center;
   }
+}
+
+@media only screen and (min-width: 675px) and (max-width: 1280px){
+  #features ul{
+    column-count: 2;
+   -webkit-column-count: 2;
+   -moz-column-count: 2;
+   margin: 0 auto;
+   display: inline-block;
+  }
+  
+   #features ul li{
+    clear: both;
+  }
+}
+
+@media only screen and (max-width: 875px){
 }
