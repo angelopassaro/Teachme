@@ -276,15 +276,15 @@ header, footer, body {
 }
 
 @media only screen and (max-width: 674px){
-  
+
   #features ul li{
     clear: both;
   }
-  
+
   #main-title {
     width: 200px;
   }
- 
+
  #features ul{
    column-count: 1;
   -webkit-column-count: 1;
@@ -292,7 +292,7 @@ header, footer, body {
    margin: 0 auto;
    display: inline-block;
  }
-  
+
   #platform-info, #company-links, #contact-info{
     width: 100%;
     clear: both;
@@ -308,7 +308,7 @@ header, footer, body {
    margin: 0 auto;
    display: inline-block;
   }
-  
+
    #features ul li{
     clear: both;
   }

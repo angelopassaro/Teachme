@@ -63,9 +63,5 @@
   "feedback": {
     "dataSource": "db",
     "public": true
-  },
-  "price": {
-    "dataSource": "db",
-    "public": true
   }
 }
