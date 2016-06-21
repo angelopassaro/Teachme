@@ -103,8 +103,10 @@ header h1 {
 }
 
 header img {
-  float: left;
-  margin: 32px 32px;
+  /*float: left;*/
+  margin-left: 32px;
+  display: inline-block;
+  vertical-align: bottom;
 }
 
 header nav {
@@ -131,8 +133,8 @@ header nav ul li a {
     height: 580px;
     padding-top: 1px;
     background: url('../images/main.gif') no-repeat center;
-    background-size: 100%;
     background-color: #0091b4;
+    background-size: contain;
 }
 
 #main-image h2{
@@ -271,20 +273,26 @@ footer {
 }
 
 header, footer, body {
-  max-width: 1366px;
+ /* max-width: 1366px;*/
   margin: 0 auto;
 }
 
-@media only screen and (max-width: 674px){
+#menu-icon {
+	display: hidden;
+	background: url('../images/nav.png') no-repeat center;
+  width: 40px;
+  height: 40px;
+  margin-top: 32px;
+}
 
+
+
+@media only screen and (max-width: 674px){
+  
   #features ul li{
     clear: both;
   }
-
-  #main-title {
-    width: 200px;
-  }
-
+ 
  #features ul{
    column-count: 1;
   -webkit-column-count: 1;
@@ -292,7 +300,7 @@ header, footer, body {
    margin: 0 auto;
    display: inline-block;
  }
-
+  
   #platform-info, #company-links, #contact-info{
     width: 100%;
     clear: both;
@@ -308,11 +316,45 @@ header, footer, body {
    margin: 0 auto;
    display: inline-block;
   }
-
+  
    #features ul li{
     clear: both;
   }
 }
 
 @media only screen and (max-width: 875px){
+  #menu-icon {
+		display:inline-block;
+    vertical-align: bottom;
+	}
+
+	nav ul, nav:active ul { 
+		display: none;
+		position: absolute;
+		padding: 20px;
+		background: #0091b4;
+		border: 5px solid #444;
+		right: 20px;
+		top: 60px;
+		width: 50%;
+		border-radius: 4px 0 4px 4px;
+	}
+
+	nav li {
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+	}
+
+	nav:hover ul {
+		display: block;
+	}
+  
+}
+
+@media only screen and (max-width: 465px){
+  #main-title{
+    width: 300px;
+  }
 }
