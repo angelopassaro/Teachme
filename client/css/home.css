@@ -133,8 +133,8 @@ header nav ul li a {
 #features ul {
   margin: 80px 0;
   list-style: none;
-	padding-left: 0;
-	text-indent: 0;
+	/*padding-left: 0;
+	text-indent: 0;*/
 }
 
 #features ul li {
@@ -226,7 +226,7 @@ footer {
 #platform-info {
 	width: 380px;
 	float: left;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 
 #platform-info p {
@@ -298,6 +298,8 @@ footer {
    column-count: 1;
   -webkit-column-count: 1;
   -moz-column-count: 1;
+	padding-left: 0;
+	text-indent: 0;
 }
   
   #platform-info, #company-links, #contact-info{
@@ -320,6 +322,11 @@ footer {
    #features ul li{
     clear: both;
   }
+	
+	#platform-info, #company-links, #contact-info{
+		width: 33%;
+		vertical-align: top;
+	}
 }
 
 @media only screen and (max-width: 810px){
@@ -353,5 +360,13 @@ footer {
 
 	nav:hover ul {
 		display: block;
+	}
+}
+
+@media only screen and (min-width: 1281px){
+	#features ul li{
+		width: 25%;
+		display: inline-block;
+		margin: 0;
 	}
 }
