@@ -13,15 +13,12 @@ passpartout hasOne(in student)viene creato usando le API di student. +1
 passpartout belongsTo(in passpartout)viene creato usando le sue API ma bisogna definire un hook(before-save) per associarlo a uno student esistente.
 
 Student definire un hook(before-save) per associarlo a un università esistente.
-Aggiungere Feedback generico per calcolo 
+Aggiungere Feedback generico per calcolo
 
-Aggiungere controlli email e lunghezza caratteri stringhe.
+Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)
 
 /*Front END*/
 Aggiungere pagine contact e about
 Aggiungere CSS responsive. (Fatto)
 Correggere nav con bottone per mobile e table e aggiustare size titolo
-
-
-
-
+Contatti registrazione

@@ -26,8 +26,8 @@
     },
     "contact":{
       "type": [
-    "object"
-  ],
+        "object"
+      ],
       "required": true
     },
     "isTutor": {
@@ -38,7 +38,7 @@
   },
   "validations": [],
   "relations": {
-     "teach": {
+    "teach": {
       "type": "hasAndBelongsToMany",
       "model": "course",
       "foreignKey": "",
@@ -53,11 +53,11 @@
       "type": "hasMany",
       "model": "note",
       "foreignKey": ""
-      }
-    },
+    }
+  },
   "acls": [],
   "scopes": {
     "tutors": {"where": {"isTutor": true}}
-    },
+  },
   "methods": {}
 }
