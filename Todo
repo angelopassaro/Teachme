@@ -8,6 +8,7 @@ Relazione teache in student sostituita con lesson al posti di price.
 Todo:
 /*BACK END*/
 Delete cascade (https://github.com/strongloop/loopback-datasource-juggler/issues/88).
+https://github.com/strongloop/loopback/issues/1229     query multi model
 
 passpartout hasOne(in student)viene creato usando le API di student. +1
 passpartout belongsTo(in passpartout)viene creato usando le sue API ma bisogna definire un hook(before-save) per associarlo a uno student esistente.

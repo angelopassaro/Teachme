@@ -13,24 +13,37 @@ module.exports = function(Student) {
       x = ctx.instance.email.replace(/.*@/, " ");
       x = x.split('.');
       console.log(" dominio",x[1]);                             //DEBUG
-  })
-    } else {
-      console.log('document is updated');                 //DEBUG
-      if (ctx.instance) {
-        console.log('save() called');                         //DEBUG
-        console.log('ctx.instance', ctx.instance);    //DEBUG
-      } else if (ctx.data && ctx.currentInstance) {
-        console.log('prototype.updateAttributes() called');   //DEBUG
-        console.log('ctx.currentInstance', ctx.instance);   //DEBUG
-        console.log('ctx.data', ctx.data);    //DEBUG
-      } else if (ctx.data) {
-        console.log('updateAll() or upsert() called');    //DEBUG
-        console.log('ctx.data', ctx.data);    //DEBUG
-      }
-    }
 
-    next();
-  });
+
+      Student.app.models.University.find({
+            "where" : {"tag": x[1]}
+         }, function(err, university) {
+           if (!(university === undefined || university.length == 0))
+              ctx.instance.universityId = x[1];
+            else{
+               //TODO university non vuoto salvo altrimenti annulla la richiesta
+              console.log("vuoto");   //DEBUG
+            }
+
+         });
+
+  } else {
+    console.log('document is updated');                 //DEBUG
+    if (ctx.instance) {
+      console.log('save() called');                         //DEBUG
+      console.log('ctx.instance', ctx.instance);    //DEBUG
+    } else if (ctx.data && ctx.currentInstance) {
+      console.log('prototype.updateAttributes() called');   //DEBUG
+      console.log('ctx.currentInstance', ctx.instance);   //DEBUG
+      console.log('ctx.data', ctx.data);    //DEBUG
+    } else if (ctx.data) {
+      console.log('updateAll() or upsert() called');    //DEBUG
+      console.log('ctx.data', ctx.data);    //DEBUG
+    }
+  }
+
+  next();
+});
 }
 /*
 //added

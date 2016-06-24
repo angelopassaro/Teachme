@@ -49,6 +49,11 @@
       "model": "lesson",
       "foreignKey": ""
     },
+    "university": {
+      "type": "belongsTo",
+      "model": "university",
+      "foreignKey": ""
+    },
     "share": {
       "type": "hasMany",
       "model": "note",
