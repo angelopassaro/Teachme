@@ -9,12 +9,12 @@
   "properties": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "id": true
     },
       "tag":{
         "type" : "string",
-        "required" : true,
-        "id":true
+        "required" : true
     }
   },
   "validations": [],

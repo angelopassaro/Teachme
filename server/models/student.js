@@ -4,47 +4,32 @@
 //var loopback = require('loopback');
 // changed password hidden in user.json(node_module/loopback/common)
 module.exports = function(Student) {
-
-  Student.observe('before save', function(ctx, next){
-    if (ctx.isNewInstance) {
-      console.log('document is new');                             //DEBUG
-      console.log('save(), create(), or upsert() called');  //DEBUG
-      console.log('ctx.instance', ctx.instance.email);     //DEBUG
-      x = ctx.instance.email.replace(/.*@/, " ");
-      x = x.split('.');
-      console.log(" dominio",x[1]);                             //DEBUG
+    Student.validatesPresenceOf('universityId',
+    {message: 'Email non valida o università non disponibile'});
 
 
-      Student.app.models.University.find({
-            "where" : {"tag": x[1]}
-         }, function(err, university) {
-           if (!(university === undefined || university.length == 0))
-              ctx.instance.universityId = x[1];
-            else{
-               //TODO university non vuoto salvo altrimenti annulla la richiesta
-              console.log("vuoto");   //DEBUG
-            }
+    Student.observe('before save', function(ctx, next){
+        if (ctx.isNewInstance) {
+            var domain = checkDomain(ctx.instance.email);
+            Student.app.models.University.findOne({where : {tag : domain}}, function(err, university) {
+                if (university){
+                    ctx.instance.universityId = university.name;
+                    next();
+                }else
+                    next();
+            });
+        }
+    });
 
-         });
-
-  } else {
-    console.log('document is updated');                 //DEBUG
-    if (ctx.instance) {
-      console.log('save() called');                         //DEBUG
-      console.log('ctx.instance', ctx.instance);    //DEBUG
-    } else if (ctx.data && ctx.currentInstance) {
-      console.log('prototype.updateAttributes() called');   //DEBUG
-      console.log('ctx.currentInstance', ctx.instance);   //DEBUG
-      console.log('ctx.data', ctx.data);    //DEBUG
-    } else if (ctx.data) {
-      console.log('updateAll() or upsert() called');    //DEBUG
-      console.log('ctx.data', ctx.data);    //DEBUG
+    //Find the university domain (conviene partire dal''ultimo punto)
+    function checkDomain( email){
+        var x = email.replace(/.*@/, " ");
+        x = x.split('.');
+        console.log("DEBUG    dominio",x[1]);                                                                                         //DEBUG
+        return x[1];
     }
-  }
-
-  next();
-});
 }
+
 /*
 //added
 function getCurrentUserId() {
@@ -71,4 +56,5 @@ Student.remoteMethod(
 returns : {arg: "userId", type: "array"}
 }
 )
+
 */
