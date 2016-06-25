@@ -10,16 +10,30 @@ module.exports = function(Student) {
 
     Student.observe('before save', function(ctx, next){
         if (ctx.isNewInstance) {
+            addContact(ctx,ctx.instance.email);
             var domain = checkDomain(ctx.instance.email);
-            Student.app.models.University.findOne({where : {tag : domain}}, function(err, university) {
+            Student.app.models.University.findOne({
+                where : {tag : domain}
+            }, function(err, university) {
                 if (university){
                     ctx.instance.universityId = university.name;
                     next();
                 }else
-                    next();
+                next();
             });
         }
     });
+
+
+
+//add dinamically  a contact  or default the email  at creation -> scriverla meglio
+function addContact(ctx, data, type="Default email"){
+    var jsondata = {};
+    jsondata[type] = data ;
+    ctx.instance.contact.push(jsondata);
+
+}
+
 
     //Find the university domain (conviene partire dal''ultimo punto)
     function checkDomain( email){
