@@ -8,11 +8,15 @@ angular.module('app', ['ui.router', 'lbServices'])
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl'
                 })
-            .state('login', {
-                url: '/login',
-                templateUrl: 'views/login.html'
+            .state('signup', {
+                url: '/signup',
+                templateUrl: 'views/signup.html'
+                })
+            .state('signin', {
+                url: '/signin',
+                templateUrl: 'views/signin.html'
                 });
-           /* $urlRouterProvider.otherwise('/');*/
+           $urlRouterProvider.otherwise('/');
         }])
     .run(['$rootScope', '$state', '$stateParams',function($rootScope, $state, $stateParams){
         $rootScope.$state = $state;
