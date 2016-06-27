@@ -1,7 +1,7 @@
 {
   "name": "passpartout",
   "base": "PersistedModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
@@ -12,12 +12,7 @@
     }
   },
   "validations": [],
-  "relations": {
-     "own": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    }},
+  "relations": {},
   "acls": [],
   "methods": {}
 }
