@@ -44,6 +44,7 @@ input:not([type="checkbox"]){
 }
 
 input[type="submit"]{
+  margin-top: 5px;
   vertical-align: top;
   height: 60px;
   padding: 0;
@@ -80,5 +81,10 @@ input:focus{
   label{
     vertical-align: middle;
     display: inline-block;
+    width: 100%;
+  }
+  
+   form{
+    display: block;
   }
 }
