@@ -72,6 +72,32 @@ input:focus{
   border: 1px solid #21bd5a;
 }
 
+label, input[type="checkbox"]{
+  vertical-align: middle;
+}
+
+span {
+  color: #444;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+select {
+  outline: none;
+  -webkit-appearance: none;
+  margin-top: 5px;
+  transition: border-color 0.2s;
+  border: 1px solid #21bd5a;
+  border-radius: 5px;
+  background: #fff;
+  color: #555;
+  line-height: normal;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+
 @media only screen and (max-width: 400px){
   p, input[type="submit"]{
     display: block;
@@ -82,6 +108,10 @@ input:focus{
     vertical-align: middle;
     display: inline-block;
     width: 100%;
+  }
+  
+  span{
+    display: block;
   }
   
    form{

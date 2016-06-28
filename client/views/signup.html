@@ -1,33 +1,39 @@
 <link type="text/css" rel="stylesheet" href="../css/signup.css"/>
 <div class="wrapper">
   <h1>Sign Up</h1>
-  <form>
+  <form ng-submit="registration()">
     <p>
       <label for="username">Username:</label>
-       <input type="text" id="username" required="required" placeholder="Insert Username"/>
+       <input type="text" id="username" required="required" placeholder="Insert Username" ng-model="formInfo.username"/>
     </p>
     <p>
-      <label for="user-firstname">Name:</label>
-      <input type="text" id="user-firstname" required="required" placeholder="Your Name"/>
+      <label for="userfirstname">Name:</label>
+      <input type="text" id="userfirstname" required="required" placeholder="Your Name" ng-model="formInfo.name"/>
     </p>
     <p>
-      <label for="user-surname">Surname:</label>
-      <input type="text" id="user-surname" required="required" placeholder="Your Surname"/>
+      <label for="usersurname">Surname:</label>
+      <input type="text" id="usersurname" required="required" placeholder="Your Surname" ng-model="formInfo.lastName"/>
     </p>
     <p>
-      <label for="user-mail">E-Mail:</label>
-      <input type="email" id="user-mail" required="required" placeholder="Your E-Mail"/>
+      <label for="usermail">E-Mail:</label>
+      <input type="email" id="usermail" required="required" placeholder="Your E-Mail" ng-model="formInfo.email"/>
     </p>
     <p>
-      <label for="user-passwd">Password:</label>
-      <input type="password" id="user-passwd" required="required" placeholder="Insert Password"/>
+      <label for="userpasswd">Password:</label>
+      <input type="password" id="userpasswd" required="required" placeholder="Insert Password" ng-model="formInfo.password"/>
     </p>
     <p>
-      <label for="user-cfpasswd">Repeat Password:</label>
-      <input type="password" id="user-cfpasswd" required="required" placeholder="Repeat Password"/>
+      <label for="usercfpasswd">Repeat Password:</label>
+      <input type="password" id="usercfpasswd" required="required" placeholder="Repeat Password"/>
     </p>
     <p>
-      <label for="user-type"><input type="checkbox" id="user-type" value="Student"/>Tutor?</label>
+      <label for="usersurname">Birthday:</label>
+      <span>Year:<select id="years" ng-model="formInfo.year" ng-init="formInfo.year = years[0]" ng-change="createDays()" ng-options="year for year in years"></select></span>
+      <span>Month:<select id="months" ng-model="formInfo.month" ng-change="createDays()" ng-init="formInfo.month = months[0]" ng-options="month for month in months"></select></span>
+      <span>Day:<select id="days" ng-model="formInfo.day" ng-init="formInfo.day = days[0]" ng-options="day for day in days"></select></span>
+    </p>
+    <p>
+      <label for="usertype"><input type="checkbox" id="usertype" ng-model="formInfo.isTutor" ng-true-value="true"/>Tutor?</label>
       <input type="submit" id="sub-data" value="Get Started!"/>
     </p>
   </form>

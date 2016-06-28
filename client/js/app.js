@@ -10,11 +10,13 @@ angular.module('app', ['ui.router', 'lbServices'])
                 })
             .state('signup', {
                 url: '/signup',
-                templateUrl: 'views/signup.html'
+                templateUrl: 'views/signup.html',
+                controller: 'SignUpCtrl'
                 })
             .state('signin', {
                 url: '/signin',
-                templateUrl: 'views/signin.html'
+                templateUrl: 'views/signin.html',
+                controller: 'SignInCtrl'
                 });
            $urlRouterProvider.otherwise('/');
         }])
