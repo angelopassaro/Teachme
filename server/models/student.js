@@ -29,12 +29,15 @@ module.exports = function(Student) {
     Student.observe('before delete', function (ctx, next) {
         Student.app.models.Passpartout.findOne({
             where:{studentId : ctx.where.email}
-        },function(err,passpartout){
-            Student.app.models.Passpartout.destroyById(passpartout.id , function () {
-                console.log("Deleted passpartout");                                                                                       //DEBUG
-        })
+        }, function(err,passpartout) {
+            if(passpartout){
+                Student.app.models.Passpartout.destroyById(passpartout.id , function () {
+                console.log("Deleted passpartout");                           //DEBUG
+                next();
+        });
+            }else
+                next();
     });
-    next();
   });
 
 
