@@ -4,4 +4,9 @@ angular.module('app')
             $state.go(state);
             console.log("Routed Successfully!");
         };
+        
+        $scope.showMenu = function(){
+            var elem = document.getElementById('menu');
+            elem.style.display = (elem.style.display === 'none') ? 'block' : 'none';
+        };
 }]);
