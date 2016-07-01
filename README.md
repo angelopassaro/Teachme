@@ -32,3 +32,5 @@ Platform for tutoring.
 * Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)(validatesPresence)
 * student.json passpartout persistent ? (se si bisogna cancellare ogni volta il pass dal documento  (inutile salvare ))
 * student post passpartout sovrascrive il vecchio pass inserire funzione in before save per aggioarnare la data
+* student passpartout come inviare la data di scadenza? (!important) (criptare richiesta?)(nascondere nel response passpartout)
+* embedds bug per mongo idInjection https://github.com/strongloop/loopback/issues/2302
