@@ -26,11 +26,9 @@ Platform for tutoring.
 ###Back End
 * Provare Convalida e-Mail
 * Provare password dimenticata (api reset?)
-* passpartout hasOne(in student)viene creato usando le API di student. +1
-* passpartout belongsTo(in passpartout)viene creato usando le sue API ma bisogna definire un hook(before-save) per associarlo a uno student esistente.
 * Aggiungere Feedback generico per calcolo
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
 * provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
 * Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)(validatesPresence)
-
-
+* student.json passpartout persistent ? (se si bisogna cancellare ogni volta il pass dal documento  (inutile salvare ))
+* student post passpartout sovrascrive il vecchio pass inserire funzione in before save per aggioarnare la data

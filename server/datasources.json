@@ -6,6 +6,11 @@
     "password": "ferdinando",
     "name": "db",
     "connector": "mongodb",
-    "debug": true
+    "debug": true,
+    "server": {
+     "auto_reconnect": true,
+     "reconnectTries": 100,
+     "reconnectInterval": 1000
+   }
   }
 }

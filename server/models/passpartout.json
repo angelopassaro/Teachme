@@ -1,5 +1,6 @@
 {
   "name": "passpartout",
+  "plural": "passpartouts",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

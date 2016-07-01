@@ -21,24 +21,29 @@ module.exports = function(Student) {
                 }else
                 next();
             });
+        }else {
+            console.log(ctx.data.mypasspartout);                                                                                             //DEBUG
+            next();
         }
     });
 
 
-//scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for??
-    Student.observe('before delete', function (ctx, next) {
-        Student.app.models.Passpartout.findOne({
-            where:{studentId : ctx.where.email}
-        }, function(err,passpartout) {
-            if(passpartout){
-                Student.app.models.Passpartout.destroyById(passpartout.id , function () {
-                console.log("Deleted passpartout");                           //DEBUG
-                next();
-        });
-            }else
-                next();
-    });
-  });
+    //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
+    // delete all token
+    //http://stackoverflow.com/questions/28607543/how-to-access-the-modal-instances-that-will-be-deleted-in-the-before-delete
+  //   Student.observe('before delete', function (ctx, next) {
+  //       Student.app.models.Passpartout.findOne({
+  //           where:{studentId : ctx.where.email}
+  //       }, function(err,passpartout) {
+  //           if(passpartout){
+  //               Student.app.models.Passpartout.destroyById(passpartout.id , function () {
+  //               console.log("Deleted passpartout");                                                                                       //DEBUG
+  //               next();
+  //       });
+  //           }else
+  //               next();
+  //   });
+  // });
 
 
     //add dinamically  a contact  or default the email  at creation -> scriverla meglio
@@ -54,7 +59,7 @@ module.exports = function(Student) {
     function checkDomain(email){
         var x = email.replace(/.*@/, " ");
         x = x.split('.');
-        console.log("DEBUG    dominio",x[1]);                                                                                         //DEBUG
+        console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
         return x[1];
     }
 }

@@ -38,6 +38,16 @@
     },
     "validations": [],
     "relations": {
+        "passpartout":{
+                "type": "embedsOne",
+                "model": "passpartout",
+                "property": "mypasspartout",
+                "options": {
+                "validate": true,
+                "forceId": true,
+                "persistent": true
+             }
+         },
         "teach": {
             "type": "hasAndBelongsToMany",
             "model": "course",
@@ -58,11 +68,6 @@
             "type": "hasMany",
             "model": "note",
             "foreignKey": ""
-    },
-    "passpartout":{
-        "type": "hasOne",
-        "model": "passpartout",
-        "foreignKey":""
     }
 },
     "acls": [],

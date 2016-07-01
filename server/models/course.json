@@ -17,18 +17,14 @@
     "toughtBy":{
       "type": "hasAndBelongsToMany",
       "model": "teacher",
-      "foreignKey":"",
-      "options": {
-          "validate": true,
-          "forceId": false
-        }
+      "foreignKey":""
       },
       "manage": {
       "type": "hasMany",
       "model": "course",
       "foreignKey": "",
       "through": "lesson"
-    }
+  }
     },
   "acls": [],
   "methods": {}
