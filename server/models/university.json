@@ -9,12 +9,12 @@
   "properties": {
     "name": {
       "type": "string",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     },
-      "tag":{
-        "type" : "string",
-        "required" : true
+    "tag": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -24,14 +24,14 @@
       "model": "student",
       "foreignKey": ""
     },
-     "offers": {
-       "type": "hasAndBelongsToMany",
-       "model": "course",
-       "foreignKey":"",
-       "options": {
-           "validate": true,
-           "forceId": false
-         }
+    "offers": {
+      "type": "hasAndBelongsToMany",
+      "model": "course",
+      "foreignKey": "",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
     }
   },
   "acls": [],

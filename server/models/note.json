@@ -22,8 +22,8 @@
       "type": "belongsTo",
       "model": "course",
       "foreignKey": ""
-        }
-    },
+    }
+  },
   "acls": [],
   "methods": {}
 }

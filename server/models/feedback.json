@@ -15,24 +15,24 @@
       "type": "number",
       "required": true
     },
-    "text":{
-      "type":"string",
-      "required":true
+    "text": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-     "relativeTo": {
+    "relativeTo": {
       "type": "belongsTo",
       "model": "course",
       "foreignKey": ""
     },
-    "sendTo":{
+    "sendTo": {
       "type": "belongsTo",
       "model": "student",
       "foreignKey": ""
     },
-    "sendFrom":{
+    "sendFrom": {
       "type": "belongsTo",
       "model": "student",
       "foreignKey": ""

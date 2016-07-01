@@ -14,18 +14,18 @@
   },
   "validations": [],
   "relations": {
-    "toughtBy":{
+    "toughtBy": {
       "type": "hasAndBelongsToMany",
       "model": "teacher",
-      "foreignKey":""
-      },
-      "manage": {
+      "foreignKey": ""
+    },
+    "manage": {
       "type": "hasMany",
       "model": "course",
       "foreignKey": "",
       "through": "lesson"
-  }
-    },
+    }
+  },
   "acls": [],
   "methods": {}
 }

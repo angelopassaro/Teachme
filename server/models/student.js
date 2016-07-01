@@ -8,6 +8,8 @@ module.exports = function(Student) {
     {message: 'Invalid Email or university not available'});
 
 
+
+//https://greenin.space/notes-on-loopback-operation-hooks/
     Student.observe('before save', function(ctx, next){
         if (ctx.isNewInstance) {
             var domain = checkDomain(ctx.instance.email);
@@ -22,10 +24,12 @@ module.exports = function(Student) {
                 next();
             });
         }else {
-            ctx.currentInstance.mypasspartout.expiredDate=sumData(ctx.currentInstance.
-                mypasspartout.expiredDate, ctx.data.mypasspartout.expiredDate);
-                //console.log(ctx.data.mypasspartout);
-                //console.log(ctx.currentInstance.mypasspartout.expiredDate);                                                                                          //DEBUG
+            //console.log("CTX DATA ",ctx.data);                                                                                        //DEBUG
+            //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
+            //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
+            if(ctx.data)
+                if(ctx.data.mypasspartout)
+                    updatePasspartout(ctx);
                 next();
             }
         });
@@ -48,20 +52,28 @@ module.exports = function(Student) {
         //   });
         // });
 
-        function sumData(oldDate, newDate){
-            //console.log(oldDate ,"  ", newDate);                                                                                                    //DEBUG
-            var data = Date();
-            console.log(newDate.getFullYear(), oldDate.getFullYear());
-            if(oldDate.getFullYear < newDate.getFullYear()){
-            data.setFullYear( )+(newDate.getFullYear()-oldDate.getFullYear());
-            console.log(newDate.getFullYear(), oldDate.getFullYear());
-        }
-            if(oldDate.getUTCMonth()+1 < newDate.getUTCMonth()+1)
-            data.setFullUTCMonth( )+(newDate.getUTCMonth()-oldDate.getUTCMonth());
-            if(oldDate.getUTCDate()+1 < newDate.getUTCDate())
-            data.setFullUTCDate( )+(newDate.getUTCDate()-oldDate.getUTCDate());
-            //console.log(data);
-            return data;
+// finire
+        function updatePasspartout(ctx){
+            Student.findOne({
+                "where" : { username : ctx.currentInstance.username}
+            }, function(err,student){
+                if(student.mypasspartout != undefined){
+                var data = Date();
+                var newDate = ctx.data.mypasspartout.expiredDate;
+                var  oldDate = student.mypasspartout.expiredDate;
+                if(oldDate.getFullYear < newDate.getFullYear()){
+                      newDate.setFullYear(newDate.getFullYear() +
+                            (newDate.getFullYear() - oldDate.getFullYear()));
+                        }
+                 if(oldDate.getUTCMonth() + 1 < newDate.getUTCMonth() + 1)
+                      newDate.setUTCMonth((newDate.getUTCMonth() +
+                            (getUTCMonth() - oldDate.getUTCMonth())));
+                 if(oldDate.getUTCDate() < newDate.getUTCDate())
+                      newDate.setUTCDate((newDate.getUTCDate() +
+                            (newDate.getUTCDate()-oldDate.getUTCDate())));
+                     console.log(newDate);
+                  }
+            });
         }
 
         //add dinamically  a contact  or default the email  at creation -> scriverla meglio

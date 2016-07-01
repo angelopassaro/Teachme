@@ -1,16 +1,20 @@
 {
-  "db": {
-    "url": "mongodb://niko:ferdinando@ds019123.mlab.com:19123/teachdb",
-    "database": "teachdb",
-    "username": "niko",
-    "password": "ferdinando",
-    "name": "db",
-    "connector": "mongodb",
-    "debug": true,
+    "db": {
+        "url": "mongodb://niko:ferdinando@ds019123.mlab.com:19123/teachdb",
+        "database": "teachdb",
+        "username": "niko",
+        "password": "ferdinando",
+        "name": "db",
+        "connector": "mongodb",
+        "debug": true
+    },
     "server": {
-     "auto_reconnect": true,
-     "reconnectTries": 100,
-     "reconnectInterval": 1000
-   }
-  }
+        "auto_reconnect": true,
+        "reconnectTries": 100,
+        "reconnectInterval": 1000
+    },
+    "transient": {
+        "name": "transient",
+        "connector": "transient"
+    }
 }

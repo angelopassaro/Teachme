@@ -3,13 +3,6 @@
   "plural": "students",
   "base": "User",
   "idInjection": false,
-  "scopes": {
-    "tutors": {
-      "where": {
-        "isTutor": true
-      }
-    }
-  },
   "options": {
     "validateUpsert": true
   },
@@ -74,6 +67,13 @@
       "type": "hasMany",
       "model": "note",
       "foreignKey": ""
+    }
+  },
+  "scopes": {
+    "tutors": {
+      "where": {
+        "isTutor": true
+      }
     }
   },
   "acls": [],

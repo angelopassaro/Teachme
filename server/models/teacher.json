@@ -18,6 +18,6 @@
   },
   "validations": [],
   "relations": {},
-   "acls": [],
-   "methods": []
- }
+  "acls": [],
+  "methods": {}
+}
