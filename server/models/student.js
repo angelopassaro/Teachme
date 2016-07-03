@@ -1,11 +1,43 @@
-
-//added contact on student
 //added
 //var loopback = require('loopback');
 // changed password hidden in user.json(node_module/loopback/common)
+
+var config = require('../../server/config.json');
+var path = require('path');
+
+
 module.exports = function(Student) {
     Student.validatesPresenceOf('universityId',
     {message: 'Invalid Email or university not available'});
+
+
+    Student.afterRemote('create', function(context, user, next) {
+    console.log('> user.afterRemote triggered');
+
+    var options = {
+      type: 'email',
+      to: user.email,
+      from: 'tutor4you6@gmail.com',
+      subject: 'Thanks for registering.',
+      template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+      redirect: '/verified',
+      user: user
+    };
+
+    user.verify(options, function(err, response) {
+      if (err) return next(err);
+
+      console.log('> verification email sent:', response);
+
+      context.res.render('response', {
+        title: 'Signed up successfully',
+        content: 'Please check your email and click on the verification link ' +
+            'before logging in.',
+        redirectTo: '/',
+        redirectToLinkText: 'Log in'
+      });
+    });
+});
 
 
 
@@ -102,7 +134,6 @@ module.exports = function(Student) {
     var userId = accessToken && accessToken.userId;
     return userId;
 }
-
 //added
 Student.example = function(cb){
 var userId = getCurrentUserId();
@@ -113,12 +144,10 @@ cb();
 console.log(userId);
 }
 }
-
 Student.remoteMethod(
 'example',
 {
 returns : {arg: "userId", type: "array"}
 }
 )
-
 */

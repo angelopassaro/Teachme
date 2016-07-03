@@ -24,6 +24,7 @@ Platform for tutoring.
 * add directives for sercurity form
 
 ###Back End
+* cancellare loopback/common/example - > controllare directory
 * Provare Convalida e-Mail
 * Provare password dimenticata (api reset?)
 * Aggiungere Feedback generico per calcolo
@@ -33,3 +34,4 @@ Platform for tutoring.
 * student post passpartout sovrascrive il vecchio pass inserire funzione in before save per aggioarnare la data
 * student passpartout come inviare la data di scadenza? (!important) (criptare richiesta?)(nascondere nel response passpartout)
 * embedds bug per mongo idInjection https://github.com/strongloop/loopback/issues/2302 (in attesa di soluzione)
+* embedds bug per hook https://github.com/strongloop/loopback-datasource-juggler/issues/480
