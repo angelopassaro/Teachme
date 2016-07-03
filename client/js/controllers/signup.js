@@ -25,15 +25,15 @@ angular.module('app')
          $scope.formInfo.birthday = birth;
          $scope.formInfo.contact = [];
          console.log(birth);
-         /*Student.create($scope.formInfo)
+         Student.create($scope.formInfo)
             .$promise
             .then(function(student){
-               console.log(student);
-            });*/
+               //console.log(student);
+            });
       };
-      
+
     }]);
-  
+
   function range(start, finish){
     var tmp = new Array(finish - start);
     for(var i=start; i<=finish; i++){
