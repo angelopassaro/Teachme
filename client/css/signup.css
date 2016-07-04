@@ -7,20 +7,12 @@ form {
   width: 100%;
 }
 
-p{
-  display: table-row;
+input[type="submit"]{
+  width: 50%;
 }
 
-input:not([type="checkbox"]){
-  outline: none;
-  display: table-cell;
-  width: 60%;
-	margin-top: 4px;
-	padding: 10px 5px 10px 32px;	
-	border: 1px solid rgb(178, 178, 178);
-	box-sizing : content-box;
-	border-radius: 3px;
-	box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+p{
+  display: table-row;
 }
 
 select {
@@ -36,13 +28,14 @@ input:focus{
   border: 1px solid #21bd5a;
 }
 
-label, input[type="checkbox"]{
+label[for="usertype"], input[type="checkbox"]{
   vertical-align: middle;
 }
 
 .mark {
   color: #21bd5a;
   font-size: 20px;
+  font-family: inherit;
 }
 
 @media only screen and (max-width: 754px){
