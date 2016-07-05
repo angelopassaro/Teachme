@@ -33,7 +33,7 @@ module.exports = function(Student) {
         title: 'Signed up successfully',
         content: 'Please check your email and click on the verification link ' +
             'before logging in.',
-        redirectTo: '/',
+        redirectTo: '/',  //controllare
         redirectToLinkText: 'Log in'
       });
     });
@@ -90,7 +90,6 @@ module.exports = function(Student) {
                 "where" : { username : ctx.currentInstance.username}
             }, function(err,student){
                 if(student.mypasspartout != undefined){
-                var data = Date();
                 var newDate = ctx.data.mypasspartout.expiredDate;
                 var  oldDate = student.mypasspartout.expiredDate;
                 if(oldDate.getFullYear < newDate.getFullYear()){
