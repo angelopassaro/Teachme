@@ -18,8 +18,8 @@ module.exports = function(Student) {
       type: 'email',
       to: user.email,
       from: 'tutor4you6@gmail.com',
-      subject: 'Thanks for registering.',
       template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+      text: 'Welcome in tutor4you! \r\n Please verify your email by opening this link in a web browser: \r\n {href}',
       redirect: '/verified',
       user: user
     };
