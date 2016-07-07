@@ -6,10 +6,10 @@ body{
   background: #f2f2f2;
 }
 
-img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+#logo{
+  background: url('../images/ico2.png') no-repeat center;
+  height: 92px;
+  background-size: contain;
 }
 
 form {
@@ -45,20 +45,16 @@ fieldset{
   border-radius: 3px;
 }
 
-input {
-  width: 100%;
+input[type="text"], input[type="password"]{
+  width: 70%;
 }
 
 input:focus{
   border-color: #21bd5a;
 }
 
-@media only screen and (max-width: 481px){
+@media only screen and (max-width: 600px){
   form{
-    width: 100%;
-  }
-  
-  img {
     width: 100%;
   }
 }
