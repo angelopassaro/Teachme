@@ -10,6 +10,40 @@ form {
 input[type="submit"]{
   width: 50%;
 }
+input[type="radio"]{
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  display: none;
+}
+
+.usertype{
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+  border: 1px solid black;
+  background-color: white;
+  display: inline-block;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.usertype input + label{
+  float: left;
+  width: 50%;
+  line-height: 32px;
+  color: #444;
+  text-align: center;
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+
+input[type=radio]:checked + label{
+  font-weight: 500;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+  background: #21bd5a;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
 
 p{
   display: table-row;
@@ -17,18 +51,18 @@ p{
 
 select {
   width: 20%;
-}
-
-label {
-  display: table-cell;
-  margin-top: 4px;
+   box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
 }
 
 input:focus{
   border: 1px solid #21bd5a;
 }
 
-label[for="usertype"], input[type="checkbox"]{
+.usertype {
+  width: 50%;
+}
+
+.usertype, input[type="radio"]{
   vertical-align: middle;
 }
 
@@ -38,15 +72,25 @@ label[for="usertype"], input[type="checkbox"]{
   font-family: inherit;
 }
 
+.pr {
+  display: table-cell;
+}
+
 @media only screen and (max-width: 754px){
+  
   p{
     display: block;
   }
   
-  label{
-    vertical-align: middle;
+  .userbirth{
     display: inline-block;
+  }
+  
+  .userbirth label{
+    vertical-align: middle;
+    display: block;
     width: 100%;
+    text-align: right;
   }
   
    form{
@@ -59,13 +103,8 @@ label[for="usertype"], input[type="checkbox"]{
     display: inline;
   }
   
-  p label ~ span {
-    width: 90%;
-    display: block;
-  }
-  
   select {
-  width: 50%;
+    width: 50%;
   }
 
 }

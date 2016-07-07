@@ -2,53 +2,52 @@
 <div class="wrapper">
   <h1>Sign Up</h1>
   <form ng-submit="registration()">
+    <div class="usertype">
+      <input type="radio" id="stype" ng-model="formInfo.isTutor" value="false"/>
+      <label for="stype">Student</label>
+      <input type="radio" id="ttype" ng-model="formInfo.isTutor" value="true"/>
+      <label for="ttype">Tutor</label>
+      </div>
     <p>
-      <label for="username">Username:</label>
        <input type="text" id="username" placeholder="Insert Username"  required ng-model="formInfo.username"/>
        <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="userfirstname">Name:</label>
       <input type="text" id="userfirstname" required placeholder="Your Name" ng-model="formInfo.name"/>
       <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="usersurname">Surname:</label>
       <input type="text" id="usersurname" placeholder="Your Surname" required ng-model="formInfo.lastName"/>
       <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="usermail">E-Mail:</label>
       <input type="email" id="usermail" placeholder="Your E-Mail" required ng-model="formInfo.email"/>
       <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="userpasswd">Password:</label>
       <input type="password" id="userpasswd" placeholder="Insert Password" required ng-model="formInfo.password"/>
       <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="usercfpasswd">Repeat Password:</label>
       <input type="password" id="usercfpasswd" placeholder="Repeat Password" required/>
       <span class="mark">&#x2714</span>
     </p>
     <p>
-      <label for="usersurname">Birthday:</label>
-      <span>Year:<select id="years" ng-model="formInfo.year" ng-init="formInfo.year = years[0]" ng-change="createDays()" ng-options="year for year in years">
+      <div class="userbirth">
+      <label>Year:<select id="years" ng-model="formInfo.year" ng-init="formInfo.year = years[0]" ng-change="createDays()" ng-options="year for year in years">
+      </select>
+      </label>
+      <label>Month:
+      <select id="months" ng-model="formInfo.month" ng-change="createDays()" ng-init="formInfo.month = months[0]" ng-options="month for month in months">
         </select>
-      </span>
-      <span>Month:<select id="months" ng-model="formInfo.month" ng-change="createDays()" ng-init="formInfo.month = months[0]" ng-options="month for month in months">
+      </label>
+      <label>Day:
+      <select id="days" ng-model="formInfo.day" ng-init="formInfo.day = days[0]" ng-options="day for day in days">
         </select>
-      </span>
-      <span>Day:<select id="days" ng-model="formInfo.day" ng-init="formInfo.day = days[0]" ng-options="day for day in days">
-        </select>
-      </span>
+      </label>
+      </div>
     </p>
-    <p>
-      <label for="usertype"><input type="checkbox" id="usertype" ng-model="formInfo.isTutor" ng-true-value="true"/>Tutor</label>
       <input type="submit" id="sub-data" value="Get Started!"/>
-      <div class="slider"></div>
-    </p>
   </form>
 </div>
           

@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+body{
+  background: #f2f2f2;
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 form {
   width: 50%;
   height: 50%;
@@ -14,8 +24,9 @@ form {
   display: block;
 }
 
-p {
-  font-size: 25px;
+p{
+  font-size: 20px;
+  font-weight: 300;
   color: #444;
 }
 
@@ -25,9 +36,29 @@ a:hover{
 }
 
 input[type="submit"]{
-  width: 100%;
+  width: 50%;
+}
+
+fieldset{
+  border-color: gray;
+  background: white;
+  border-radius: 3px;
 }
 
 input {
   width: 100%;
+}
+
+input:focus{
+  border-color: #21bd5a;
+}
+
+@media only screen and (max-width: 481px){
+  form{
+    width: 100%;
+  }
+  
+  img {
+    width: 100%;
+  }
 }
