@@ -12,14 +12,14 @@ module.exports = function(Student) {
 
 
     Student.afterRemote('create', function(context, user, next) {
-    console.log('> user.afterRemote triggered');
+    console.log('> user.afterRemote triggered');                                                                                       //DEBUG
 
     var options = {
       type: 'email',
       to: user.email,
       from: 'tutor4you6@gmail.com',
       template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-      text: 'Welcome in tutor4you! \r\n Please verify your email by opening this link in a web browser: \r\n {href}',
+     // text: 'Please verify your email by opening this link in a web browser: \r\n {href}',                        // presente in user.js inseire se si vuole un text diverso
       redirect: '/verified',
       user: user
     };
@@ -27,15 +27,8 @@ module.exports = function(Student) {
     user.verify(options, function(err, response) {
       if (err) return next(err);
 
-      console.log('> verification email sent:', response);
+      //console.log('> verification email sent:', response);                                                                           //DEBUG
 
-      context.res.render('response', {
-        title: 'Signed up successfully',
-        content: 'Please check your email and click on the verification link ' +
-            'before logging in.',
-        redirectTo: '/',  //controllare
-        redirectToLinkText: 'Log in'
-      });
     });
 });
 

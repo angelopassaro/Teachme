@@ -6,5 +6,9 @@ module.exports = function(app) {
   app.get('/verified', function(req, res) {
       res.render('verified');
   });
-  
+
+  app.get('/signin', function(req, res) {
+      res.redirect('/#/signin');
+});
+
 }
