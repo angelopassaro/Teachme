@@ -24,10 +24,13 @@ Platform for tutoring.
 * add directives for sercurity form
 
 ###Back End
-* Provare Convalida e-Mail (OK)
-* Redirect signin add auto username/email e password
+* Test email verification   (OK)
+* Add login function (OK) --> change name in client form like user-text  and try with client(!important) change name in post client and server
+* Add logout    (OK) try with client
 * Add a function for  resetpassword
-* Delete a user not validated
+* Delete an user not validated (half)
+* hidden/disable path after verification (redirect in page with log in ?)
+* Redirect signin add auto username/email and password
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
 * provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
 * Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)(validatesPresence)

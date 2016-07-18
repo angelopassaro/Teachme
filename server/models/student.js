@@ -7,12 +7,31 @@ var path = require('path');
 
 
 module.exports = function(Student) {
+    /*check the presence of field id */
     Student.validatesPresenceOf('universityId',
     {message: 'Invalid Email or university not available'});
 
+    //console.log(hostAddress);
+    //console.log(portNumber);
+    //sconsole.log(restApiRoot);
 
     Student.afterRemote('create', function(context, user, next) {
     console.log('> user.afterRemote triggered');                                                                                       //DEBUG
+
+
+
+//     var verifyLink = 'https://' +
+//                             hostAddress +
+//                             ':' +
+//                             portNumber +
+//                             restApiRoot +
+//                             '/students/confirm' +
+//                             '?uid=' +
+//                             user.id +
+//                             '&redirect=' +
+//                             verifyRedirect;
+//
+
 
     var options = {
       type: 'email',
@@ -20,16 +39,37 @@ module.exports = function(Student) {
       from: 'tutor4you6@gmail.com',
       template: path.resolve(__dirname, '../../server/views/verify.ejs'),
      // text: 'Please verify your email by opening this link in a web browser: \r\n {href}',                        // presente in user.js inseire se si vuole un text diverso
-      redirect: '/verified',
-      user: user
+      redirect: '/signin',
+      user: user,
+    //   verifyHref: verifyLink,
     };
 
     user.verify(options, function(err, response) {
       if (err) return next(err);
 
-      //console.log('> verification email sent:', response);                                                                           //DEBUG
+     // console.log('> verification email sent:', response);                                                                           //DEBUG
 
     });
+});
+
+
+Student.on('resetPasswordRequest', function(info) {
+   var url = 'http://' + config.host + ':' + config.port + '/reset-password';
+   var html = 'Click <a href="' + url + '?access_token=' +
+       info.accessToken.id + '">here</a> to reset your password';
+
+       console.log(info);
+       console.log(info.email);
+
+   user.app.models.Email.send({
+     to: info.email,
+     from: 'tutor4you6@gmail.com',
+     subject: 'Password reset',
+     html: html
+   }, function(err) {
+     if (err) return console.log('> error sending password reset email');
+     console.log('> sending password reset email to:', info.email);
+   });
 });
 
 
@@ -77,7 +117,7 @@ module.exports = function(Student) {
         //   });
         // });
 
-// finire
+// rifare
         function updatePasspartout(ctx){
             Student.findOne({
                 "where" : { username : ctx.currentInstance.username}
@@ -113,7 +153,7 @@ module.exports = function(Student) {
         function checkDomain(email){
             var x = email.replace(/.*@/, " ");
             x = x.split('.');
-            console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
+            //console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
             return x[1];
         }
     }
