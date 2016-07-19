@@ -27,7 +27,7 @@ Platform for tutoring.
 * Test email verification   (OK)
 * Add login function (OK) --> change name in client form like user-text  and try with client(!important) change name in post client and server
 * Add logout    (OK) try with client
-* Add a function for  resetpassword
+* Add a function for  resetpassword (OK)
 * Delete an user not validated (half)
 * hidden/disable path after verification (redirect in page with log in ?)
 * Redirect signin add auto username/email and password

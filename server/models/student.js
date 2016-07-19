@@ -58,10 +58,10 @@ Student.on('resetPasswordRequest', function(info) {
    var html = 'Click <a href="' + url + '?access_token=' +
        info.accessToken.id + '">here</a> to reset your password';
 
-       console.log(info);
-       console.log(info.email);
+       //console.log(info);                                                                                                                             //DEBUG
+      // console.log(info.email);                                                                                                                   //DEBUG
 
-   user.app.models.Email.send({
+   Student.app.models.Email.send({
      to: info.email,
      from: 'tutor4you6@gmail.com',
      subject: 'Password reset',
@@ -81,11 +81,11 @@ Student.on('resetPasswordRequest', function(info) {
             Student.app.models.University.findOne({
                 where : {tag : domain}
             }, function(err, university) {
-                if (university){
+                if (university){ //add Student need next to confirm
                     ctx.instance.universityId = university.name;
                     addContact(ctx,ctx.instance.email);
                     next();
-                }else
+                }else 
                 next();
             });
         }else {
