@@ -21,8 +21,7 @@
       "required": true
     },
     "birthday": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "contact": {
       "type": [

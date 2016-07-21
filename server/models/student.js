@@ -8,8 +8,10 @@ var path = require('path');
 
 module.exports = function(Student) {
     /*check the presence of field id */
-    Student.validatesPresenceOf('universityId',
-    {message: 'Invalid Email or university not available'});
+    Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
+    Student.validatesPresenceOf('username', {message: 'Enter an username'});
+    Student.validatesLengthOf('username', {min: 3, message: {min: ' Enter min 3 characters  '}});
+    Student.validatesLengthOf('password', {min: 5, message:{ min: 'Too weak'}});
 
     //console.log(hostAddress);
     //console.log(portNumber);
@@ -85,7 +87,7 @@ Student.on('resetPasswordRequest', function(info) {
                     ctx.instance.universityId = university.name;
                     addContact(ctx,ctx.instance.email);
                     next();
-                }else 
+                }else
                 next();
             });
         }else {
