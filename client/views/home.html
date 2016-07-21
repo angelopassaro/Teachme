@@ -1,83 +1,83 @@
  <link type="text/css" rel="stylesheet" href="../css/home.css"/>
- <header>
+ <header class="header">
     <div class="wrapper">
-        <img src="../images/ico1.png" id="main-title">
-        <nav>
+        <div class="title"></div>
+        <nav class="menu">
          <a href="#" id="menu-icon" ng-click="showMenu()"></a>
-            <ul id="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">About Us</a></li>
+            <ul class="menu__ul" id="menu">
+                <li class="menu__li"><a href="#" class="menu__li__a anchor">Home</a></li>
+                <li class="menu__li"><a href="#" class="menu__li__a anchor">Features</a></li>
+                <li class="menu__li"><a href="#" class="menu__li__a anchor">News</a></li>
+                <li class="menu__li"><a href="#" class="menu__li__a anchor">About Us</a></li>
             </ul>
         </nav>
     </div>
  </header>
- <div id="main-image">
+ <div class="mainimage">
     <div class="wrapper">
-        <h2>The <strong>perfect</strong> Tutor for You</h2>
-        <button ng-click="logRef('signin')">Sign-In</button>
-        <button ng-click="logRef('signup')">Sign-Up</button>
+        <h2 class="mainimage__h2 h2">The <strong class="strong">perfect</strong> Tutor for You</h2>
+        <button ng-click="logRef('signin')" class="button button--active">Sign-In</button>
+        <button ng-click="logRef('signup')" class="button button--active">Sign-Up</button>
     </div>
  </div>
- <div id="features">
+ <div class="features">
     <div class="wrapper">
-        <ul>
-            <li class="ft1">
-                <h4>Best Tutors!</h4>
-                <p>Tired to find someone that help you for an exam? You'll find the best tutor suited for you very quickly!</p>
+        <ul class="features__ul">
+            <li class="features__ul__li features__ul__li--ft1">
+                <h4 class="h4">Best Tutors!</h4>
+                <p class="paragraph">Tired to find someone that help you for an exam? You'll find the best tutor suited for you very quickly!</p>
             </li>
-            <li class="ft2">
-                <h4>notes sharing</h4>
-                 <p>With our services students can upload materials to share with everyone</p>
+            <li class="features__ul__li features__ul__li--ft2">
+                <h4 class="h4">notes sharing</h4>
+                 <p class="paragraph">With our services students can upload materials to share with everyone</p>
             </li>
-            <li class="ft3">
-                <h4>Streaming Online</h4>
-                <p>You can't meet your tutors? No problem! Use streaming service and recover the lesson</p>
+            <li class="features__ul__li features__ul__li--ft3">
+                <h4 class="h4">Streaming Online</h4>
+                <p class="paragraph">You can't meet your tutors? No problem! Use streaming service and recover the lesson</p>
             </li>
-            <li class="ft4">
-                <h4>vote your tutor!</h4>
-                <p>Your tutor is great? Vote him for help other to find him</p>
+            <li class="features__ul__li features__ul__li--ft4">
+                <h4 class="h4">vote your tutor!</h4>
+                <p class="paragraph">Your tutor is great? Vote him for help other to find him</p>
             </li>
         </ul>
     </div>
  </div>
- <div id="primary-content">
+ <div class="primarycontent">
     <div class="wrapper">
         <article>
-            <h3>Improve your abilities</h3>
-            <p>With our service you can pass your exams very easely</p>
-            <div id="vote"></div>
+            <h3 class="h3 primarycontent__h3">Improve your abilities</h3>
+            <p class="paragraph">With our service you can pass your exams very easely</p>
+            <div class="vote"></div>
         </article>
     </div>
  </div>
- <div id="secondary-contents">
+ <div class="secondarycontent">
     <div class="wrapper">
         <article>
-            <h4>News</h4>
+            <h4 class="h3 secondarycontent__article__h3">News</h4>
         </article>
     </div>
  </div>
- <div id="cta">
+ <div class="cta">
     <div class="wrapper">
-        <h3>Heard Enough?</h3>
-        <p>Sign up to our service and you life as a student will become more easy</p>
-        <button>Sign-Up</button>
+        <h3 class="h3 cta__h3">Heard Enough?</h3>
+        <p class="paragraph">Sign up to our service and you life as a student will become more easy</p>
+        <button class="button button--active">Sign-Up</button>
     </div>
  </div>
- <footer>
+ <footer class="footer">
     <div class="wrapper">
-        <div id="platform-info">
-            <p>All Right reserved to <strong>Team</strong></p>
-            <p>&#xA9 2016 Copyright</p>
+        <div class="footer__platforminfo">
+            <p class="paragraph">All Right reserved to <strong class="strong">Team</strong></p>
+            <p class="paragraph">&#xA9 2016 Copyright</p>
         </div>
-        <div id="company-links">
-            <p>Terms and Conditions</p>
-            <p>Privacy</p>
+        <div class="footer__companylinks">
+            <p class="paragraph">Terms and Conditions</p>
+            <p class="paragraph">Privacy</p>
         </div>
-        <div id="contact-info">
-            <p><a href="#">Contact</a></p>
-            <p><a href="#">About-Us</a></p>
+        <div class="footer__contactinfo">
+            <p class="paragraph"><a href="#" class="anchor footer__contactinfo__anchor">Contact</a></p>
+            <p class="paragraph"><a href="#" class="anchor footer__contactinfo__anchor">About-Us</a></p>
         </div>
     </div>
  </footer>

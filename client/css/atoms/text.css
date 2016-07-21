@@ -1,0 +1,50 @@
+.span {
+  font-weight: 300;
+}
+
+.h1 {
+  font-weight: 300;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.h2 {
+  font-weight: 300;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.h3 {
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.h4 {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.h5 {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.anchor {
+  text-decoration: none;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.paragraph {
+  line-height: 20px;
+  margin-bottom: 20px;
+}
