@@ -15,7 +15,7 @@ console.log(students);
 */
 
 //https://github.com/strongloop/loopback-example-passport/issues/42
-//router for create a user add birthday no call after remote
+//router for create a user add birthday no call after remote registrazione dal client cancellare
 app.post('/students', function(req, res) {
     User.create(
         {
@@ -35,9 +35,10 @@ app.post('/students', function(req, res) {
     //router for login page
     app.post('/login', function(req, res) {
         //var or no ????
+        console.log(req);
         var mail = {
-            email: req.body.email,
-            password: req.body.password,
+            email: req.body.formLogin.user,
+            password: req.body.formLogin.password,
             ttl: TWO_WEEKS
         };
 
