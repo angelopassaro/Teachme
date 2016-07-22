@@ -1,0 +1,41 @@
+.input_text, .input_email, .input_password{
+  outline: none;
+  border-radius: 3px;
+  padding: 10px 5px 10px 32px;	
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+  border: 1px solid rgb(178, 178, 178);
+  box-sizing : content-box;
+  border-radius: 3px;
+}
+
+.input_submit {
+  vertical-align: top;
+  padding: 0;
+  font-size: 22px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #12ab8d;
+  box-shadow: inset 0 -2px #12ab8d;
+}
+
+.label {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.fieldset {
+  border-color: gray;
+  background: white;
+  border-radius: 3px;
+}
+
+.input_submit--focused:focus, .input_email--focused:focus, .input_password--focused:focus, .input_text--focused:focus{
+  border-color: #21bd5a;
+}
+
+.input_radio {
+  -webkit-appearance:none;
+  -moz-appearance: none;
+  display: none;
+}

@@ -17,6 +17,10 @@ angular.module('app', ['ui.router', 'lbServices'])
                 url: '/signin',
                 templateUrl: 'views/signin.html',
                 controller: 'SignInCtrl'
+                })
+            .state('signup-success', {
+                url: '/signup/verifyemail',
+                templateUrl: 'views/verify.html'
                 });
            $urlRouterProvider.otherwise('/');
         }])

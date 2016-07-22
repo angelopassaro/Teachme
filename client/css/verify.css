@@ -1,0 +1,19 @@
+@import url("atoms/body.css");
+@import url("atoms/wrapper.css");
+@import url("atoms/text.css");
+
+.h3, .h5 {
+  color: #444;
+}
+
+.anchor {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 275px){
+  .h3 {
+    font-size: 25px;
+  }
+}

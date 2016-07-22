@@ -1,14 +1,14 @@
 <link type="text/css" rel="stylesheet" href="../css/signin.css"/>
-  <div id="logo" class="wrapper">
+  <div class="logo">
   </div>
-<div class="wrapper" id="logform">
-  <form>
-    <fieldset>
-      <p>Sign in to Tutor4You</p>
-      <input type="text" id="user-text" required placeholder="Your E-Mail or Username" required/>
-      <input type="password" id="user-passwd" required placeholder="Your Password" required/>
-      <p><a>Forgot your password?</a></p>
-      <input type="submit" id="sub-data" value="Login"/>
+<div class="wrapper">
+  <form class="form" ng-submit="log()">
+    <fieldset class="fieldset">
+      <p class="paragraph">Sign in to Tutor4You</p>
+      <input type="text" class="input_text input_text--focused" ng-model="formLogin.user" required placeholder="Your E-Mail or Username"/>
+      <input type="password" class="input_password input_password--focused" ng-model="formLogin.password" required placeholder="Your Password"/>
+      <p class="paragraph"><a class="anchor anchor--hover">Forgot your password?</a></p>
+      <input type="submit" class="input_submit input_submit--focused"value="Login"/>
       </fieldset>
   </form>
 </div>
