@@ -21,7 +21,12 @@ angular.module('app', ['ui.router', 'lbServices'])
             .state('signup-success', {
                 url: '/signup/verifyemail',
                 templateUrl: 'views/verify.html'
-                });
+                })
+            .state('signin-success', {
+               url: '/signin/platform',
+               templateUrl: 'views/platform.html',
+               controller: 'PlatformCtrl'
+            });
            $urlRouterProvider.otherwise('/');
         }])
     .run(['$rootScope', '$state', '$stateParams',function($rootScope, $state, $stateParams){
