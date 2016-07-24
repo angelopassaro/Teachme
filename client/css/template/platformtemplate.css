@@ -1,0 +1,60 @@
+@import url("../atoms/inputs.css");
+@import url("../atoms/wrapper.css");
+@import url("../atoms/text.css");
+@import url("../molecoles/menu.css");
+
+
+body, html {
+  font: normal 15px "Helvetica Neue", "Arial", "Helvetica", "Geneva", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.h1 {
+  color: #444;
+}
+
+.header {
+  width: 100%;
+  margin: 0;
+  height: 180px;
+}
+
+.menu {
+  border-right: 1px #02b8dd solid;
+  overflow: hidden;
+}
+
+.menu__ul {
+  list-style-type: none;
+}
+
+.menu__li{
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+}
+
+.menu__li__a{
+  color: #444;
+  cursor: pointer;
+}
+
+.container-menu {
+  width: 30%;
+  height: 100%;
+  float: left;
+}
+
+.content {
+  width: 70%;
+  height: 100%;
+  float: right;
+}
+
+@media only screen and (max-width: 810px){
+  #menu-icon{
+    display: block;
+  }
+}
