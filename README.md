@@ -23,14 +23,20 @@ Platform for tutoring.
 * add require.js for dynamic injection of javascript and css file
 * add directives for sercurity form
 
+---------------------------
+* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
+--------------------------
+
 ###Back End
 * Test email verification   (OK)
 * Add login function (OK) --> change name in client form like user-text  and try with client(!important) change name in post client and server
 * Add logout    (OK) try with client
 * Add a function for  resetpassword (OK)
 * Delete an user not validated (half)
-* hidden/disable path after verification (redirect in page with log in ?)
+*  Re-email && hidden email page
 * Redirect signin add auto username/email and password
+*  Security Json https://docs.angularjs.org/api/ng/service/$http
+* hidden/disable path after verification (redirect in page with log in ?)
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
 * provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
 * Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)(validatesPresence)
