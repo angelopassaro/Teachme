@@ -1,14 +1,14 @@
 <link type="text/css" rel="stylesheet" href="../css/platform.css"/>
 <header class="header">
   <div class="wrapper">
-    <h1 class="h1">tutor4you</h1>
+    <div class="title"></div>
   </div>
 </header>
 <div class="container-menu">
   <nav class="menu">
     <a href="#" id="menu-icon" ng-click="showCommandMenu()"></a>
     <ul class="menu__ul">
-      <li class="menu__li"><a href="#" class="menu__li__a anchor">home</a></li>
+      <li class="menu__li"><a ng-click="loadUser()" class="menu__li__a anchor">home</a></li>
       <li class="menu__li"><a href="#" class="menu__li__a anchor">streaming lesson</a></li>
       <li class="menu__li"><a href="#" class="menu__li__a anchor">my skill</a></li>
       <li class="menu__li"><a href="#" class="menu__li__a anchor">notifications</a></li>
@@ -18,4 +18,5 @@
   </nav>
 </div>
 <div class="content">
+  <div ui-view></div>
 </div>

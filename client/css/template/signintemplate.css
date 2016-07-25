@@ -1,7 +1,6 @@
 @import url("../atoms/inputs.css");
 @import url("../atoms/text.css");
 @import url("../atoms/wrapper.css");
-@import url("../atoms/body.css");
 
 .form {
   width: 50%;

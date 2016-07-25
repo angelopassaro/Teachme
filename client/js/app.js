@@ -26,6 +26,10 @@ angular.module('app', ['ui.router', 'lbServices'])
                url: '/signin/platform',
                templateUrl: 'views/platform.html',
                controller: 'PlatformCtrl'
+            })
+            .state('signin-success.platform-home', {
+               url: '/home',
+               templateUrl: 'views/userhome.html'
             });
            $urlRouterProvider.otherwise('/');
         }])
