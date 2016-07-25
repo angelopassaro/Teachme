@@ -1,6 +1,6 @@
 angular.module('app')
     .controller('PlatformCtrl', ['$scope', 'Student', '$state', function($scope, Student, $state){
-      
+      $scope.Student = $scope.Student || {};
       $scope.loadUser = function(){
         if(Student.isAuthenticated()){
         $state.go('signin-success.platform-home');
