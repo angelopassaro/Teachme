@@ -3,19 +3,37 @@ module.exports = function(app) {
     var User = app.models.student;
     var TWO_WEEKS = 60 * 60 * 24 * 7 * 2;
 
+/*******************************************************************************/
+    //Test find a unconfirmed student for delete (test function)
+    var DAY =86400000;
     /*
-    //Test find a unconfirmed student for delete
     app.get('/bla', function(req,res) {
-    User.find({
-    where:{ emailVerified : false }
-},function(err, students){
-console.log(students);
-});
-})
-*/
+        User.destroyAll({
+            "verificationToken": { "neq": null},
+        "created":{ lt: Date.now() - DAY }
+        },function(err, students){
+            console.log(students);
+            console.log(err)
+        });
+    })
+    */
+    app.get('/bla', function(req,res) {
+        User.destroyAll({
+            "verificationToken": { "neq": null},
+        "created":{ lt: Date.now() - DAY }
+        },function(err, students){
+            console.log(students);
+            console.log(err)
+        });
+    })
+
+
+
+/*******************************************************************************/
+
 
 //https://github.com/strongloop/loopback-example-passport/issues/42
-//router for create a user add birthday no call after remote registrazione dal client cancellare
+//router for create a user add birthday no call be
 app.post('/students', function(req, res) {
     User.create(
         {
@@ -35,10 +53,9 @@ app.post('/students', function(req, res) {
     //router for login page
     app.post('/login', function(req, res) {
         //var or no ????
-        console.log(req);
         var mail = {
-            email: req.body.formLogin.user,
-            password: req.body.formLogin.password,
+            email: req.body.email,
+            password: req.body.password,
             ttl: TWO_WEEKS
         };
 

@@ -11,7 +11,7 @@ module.exports = function(Student) {
     Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
     Student.validatesLengthOf('username', {min: 3, message: {min: ' Enter min 3 characters  '}});
-    Student.validatesLengthOf('password', {min: 5, message:{ min: 'Too weak'}});
+    Student.validatesLengthOf('password', {min: 5, message:{ }})
 
     //console.log(hostAddress);
     //console.log(portNumber);
@@ -48,6 +48,7 @@ module.exports = function(Student) {
 
     user.verify(options, function(err, response) {
       if (err) return next(err);
+      next();
 
      // console.log('> verification email sent:', response);                                                                           //DEBUG
 
