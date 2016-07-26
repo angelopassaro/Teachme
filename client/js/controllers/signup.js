@@ -1,8 +1,7 @@
 angular.module('app')
   .controller('SignUpCtrl', ['$scope', 'Student','$state','tutorService',
     function($scope, Student, $state, tutorService){
-      $scope.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-        'August', 'September', 'October', 'November', 'December'];
+      $scope.months = tutorService.createMonths();
       $scope.years = tutorService.range(1970, 2016);
       $scope.days = tutorService.range(1, 31);
       $scope.nickValidator = "\\w*\\d*";

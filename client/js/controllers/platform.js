@@ -2,6 +2,9 @@ angular.module('app')
   .controller('PlatformCtrl', ['$scope', 'Student', '$state', 'tutorService',
     function($scope, Student, $state, tutorService){
       $scope.Student = $scope.Student || {};
+      $scope.years = tutorService.range(1970, 2016);
+      $scope.months = tutorService.createMonths();
+      $scope.days = tutorService.range(1, 31);
       $scope.loadUser = function(){
       if(Student.isAuthenticated()){
         $state.go('signin-success.platform-home');

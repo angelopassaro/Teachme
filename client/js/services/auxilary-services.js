@@ -14,6 +14,11 @@ angular.module('app')
         tmp[i-start] = i;
     }
     return tmp;
-  };  
+  };
+  
+  this.createMonths = function(){
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July','August',
+            'September', 'October', 'November', 'December'];
+  };
   
 });

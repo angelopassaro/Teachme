@@ -31,6 +31,11 @@ angular.module('app', ['ui.router', 'lbServices'])
                url: '/home',
                templateUrl: 'views/userhome.html',
                controller: 'PlatformCtrl'
+            })
+            .state('signin-success.edituser', {
+               url: '/edit-user',
+               templateUrl: 'views/edituser.html',
+               controller: 'PlatformCtrl'
             });
            $urlRouterProvider.otherwise('/');
         }])
