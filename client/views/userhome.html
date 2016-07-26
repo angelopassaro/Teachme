@@ -1,8 +1,9 @@
-<fieldset>
-  <legend>Vital Statistics</legend>
-  <p>Name:<span ng-bind="Student.name"></span></p>
-  <p>Surname:<span ng-bind="Student.lastName"></span></p>
-  <p>BirthDate:<span ng-bind="Student.birthday"></span></p>
-  <p>E-Mail:<span ng-bind="Student.email"></span></p>
-  <p>Contatti:<span ng-bind="Student.contacts"></span></p>
+<fieldset class="fieldset">
+  <legend class="legend">Vital Statistics</legend>
+  <p class="paragraph">Name: <span class="span" ng-bind="Student.name"></span></p>
+  <p class="paragraph">Surname: <span  class="span" ng-bind="Student.lastName"></span></p>
+  <p class="paragraph">BirthDate: <span class="span" ng-bind="Student.birthday"></span></p>
+  <p class="paragraph">E-Mail: <span class="span" ng-bind="Student.email"></span></p>
+  <p class="paragraph">Contatti: <span class="span" ng-bind="Student.contacts"></span></p>
+  <button class="button" ng-click="editUser">Edit</button>
 </fieldset>
