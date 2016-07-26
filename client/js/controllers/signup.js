@@ -30,10 +30,11 @@ angular.module('app')
 				delete $scope.formInfo.passwordrpt;
 				$scope.formInfo.birthday = birth;
 				$scope.formInfo.contact = [];
+                $scope.formInfo.created = Date(Date.UTC);
 				Student.create($scope.formInfo)
 					.$promise
 						.then(function(){
-							 
+
 						});
 					$state.go('signup-success');
 			};
