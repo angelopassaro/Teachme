@@ -23,6 +23,7 @@ new schedule('00 00 05 * * 0-6', function() {
     console.log('> deleting unconfirmed students');
     deleteStudent();
     console.log('> deleting old token');
+    deleteOldToken();
 }, null, true);
 
 
@@ -62,7 +63,7 @@ function deleteStudent() {
 
 //Delete old token (invalid)
 function deleteOldToken() {
-    app.models.accessToken.destroyAll({
+    app.models.AccessToken.destroyAll({
         "created": {lt: Date.now() - DAY}
     },function(err,count) {
         console.log(count);
