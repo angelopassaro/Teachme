@@ -24,13 +24,13 @@ Platform for tutoring.
 * add directives for sercurity form
 
 ---------------------------
-* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/
+* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK 
 --------------------------
 
 ###Back End
 * Test email verification   (OK)
-* Add login function (OK) --> change name in client form like user-text  and try with client(!important) change name in post client and server
-* Add logout    (OK) try with client
+* Add login function (OK)
+* Add logout (OK)
 * Add a function for  resetpassword (OK)
 * Delete an user not validated (OK)
 * Delete old token (OK)
