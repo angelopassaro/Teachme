@@ -24,7 +24,7 @@ Platform for tutoring.
 * add directives for sercurity form
 
 ---------------------------
-* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
+* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/
 --------------------------
 
 ###Back End
