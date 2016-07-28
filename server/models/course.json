@@ -18,12 +18,6 @@
       "type": "hasAndBelongsToMany",
       "model": "teacher",
       "foreignKey": ""
-    },
-    "manage": {
-      "type": "hasMany",
-      "model": "course",
-      "foreignKey": "",
-      "through": "lesson"
     }
   },
   "acls": [],

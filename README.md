@@ -36,7 +36,7 @@ Platform for tutoring.
 * Delete old token (OK)
 * Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
 * Start delete cascade user
-* student that require lesson can see the tutor, tutor can't see the student(haven't contact in studentlesson) add contact in the document or query?
+* tutor don't know who is reserved a lesson
 * No delete a user with lesson ?
 *  Re-email && hidden email page
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
