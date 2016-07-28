@@ -19,8 +19,7 @@ module.exports = function(app) {
     */
     app.get('/bla', function(req,res) {
         User.destroyAll({
-            "verificationToken": { "neq": null},
-        "created":{ lt: Date.now() - DAY }
+            verificationToken: { neq: null}
         },function(err, students){
             console.log(students);
             console.log(err)
@@ -30,78 +29,6 @@ module.exports = function(app) {
 
 
 /*******************************************************************************/
-
-
-//https://github.com/strongloop/loopback-example-passport/issues/42
-//router for create a user add birthday no call be
-app.post('/students', function(req, res) {
-    User.create(
-        {
-            username: req.body.username,
-            name: req.body.userfirstname,
-            lastName: req.body.usersurname,
-            email: req.body.usermail,
-            password: req.body.userpasswd,
-            contact: []
-        },function(err, student){
-            if (err) return res.status(401).send(err);
-            res.send(student);
-        });
-    })
-
-
-    //router for login page
-    app.post('/login', function(req, res) {
-        //var or no ????
-        var mail = {
-            email: req.body.email,
-            password: req.body.password,
-            ttl: TWO_WEEKS
-        };
-
-        var username = {
-            username: req.body.email,
-            password: req.body.password,
-            ttl: TWO_WEEKS
-        };
-
-        //test with response.ejs
-        User.login(mail, function(err, token) {
-            if(err) {
-                User.login(username, function(err, token) {
-                    if(err) {
-                        console.log("ERR usernmae");
-                        res.render('response', {
-                            title: 'Login failed',
-                            content: err,
-                            redirectTo: '/',
-                            redirectToLinkText: 'Try again'
-                        });
-                    } else {
-                        console.log(token.id);                                                                                                         //DEBUG
-                        //add redirect home user
-                        res.render('response', {
-                            title: 'Login succesfull',
-                            content: token.id,
-                            redirectTo: '/',
-                            redirectToLinkText: 'Try again'
-                        });
-                    }
-                });
-            } else {
-                console.log(token.id);                                                                                                                 // DEBUG
-                //add redirect home user
-                res.render('response', {
-                    title: 'Login succesfull',
-                    content: token.id,
-                    redirectTo: '/',
-                    redirectToLinkText: 'Try again'
-                });
-            }
-        });
-    });
-
-
     //router for logout page
     app.post('/logout', function(req, res, next) {
         if (!req.accessToken)

@@ -24,7 +24,7 @@ Platform for tutoring.
 * add directives for sercurity form
 
 ---------------------------
-* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK 
+* Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
 --------------------------
 
 ###Back End
@@ -34,13 +34,16 @@ Platform for tutoring.
 * Add a function for  resetpassword (OK)
 * Delete an user not validated (OK)
 * Delete old token (OK)
+* Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
+* Start delete cascade user
+* student that require lesson can see the tutor, tutor can't see the student(haven't contact in studentlesson) add contact in the document or query?
+* No delete a user with lesson ?
 *  Re-email && hidden email page
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
 * Redirect signin add auto username/email and password
 * hidden/disable path after verification (redirect in page with log in ?)
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
 * provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
-* Aggiungere controlli email e lunghezza caratteri stringhe. (input type?)(validatesPresence)
 * Aggiungere Feedback generico per calcolo
 * cancellare loopback/common/example - > controllare directory
 ____________________________________________________________________________________________________________

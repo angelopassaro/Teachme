@@ -53,8 +53,8 @@ boot(app, __dirname, function(err) {
 //Delete a unconfirmed student after two day
 function deleteStudent() {
     app.models.student.destroyAll({
-        "verificationToken": {"neq": null },
-        "created": {lt: Date.now() - DAY*2 }
+        verificationToken: {neq: null },
+        created: {lt: Date.now() - DAY*2 }
     },function(err,count) {
         console.log(count);
     });
@@ -64,7 +64,7 @@ function deleteStudent() {
 //Delete old token (invalid)
 function deleteOldToken() {
     app.models.AccessToken.destroyAll({
-        "created": {lt: Date.now() - DAY}
+        created: {lt: Date.now() - DAY}
     },function(err,count) {
         console.log(count);
     });
