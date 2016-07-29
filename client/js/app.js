@@ -36,6 +36,11 @@ angular.module('app', ['ui.router', 'lbServices'])
                url: '/edit-user',
                templateUrl: 'views/edituser.html',
                controller: 'PlatformCtrl'
+            })
+            .state('signin-success.myskill', {
+                url: '/myskill',
+                templateUrl: 'views/myskill.html',
+                controller: 'PlatformCtrl'
             });
            $urlRouterProvider.otherwise('/');
         }])
