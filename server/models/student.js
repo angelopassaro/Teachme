@@ -80,7 +80,7 @@ module.exports = function(Student) {
         if (ctx.isNewInstance) {
             var domain = checkDomain(ctx.instance.email);
             Student.app.models.University.findOne({
-                where : {tag : domain}
+                where: {tag : domain}
             }, function(err, university) {
                 if (university){ //add Student need next to confirm
                     ctx.instance.universityId = university.name;
@@ -102,7 +102,6 @@ module.exports = function(Student) {
 
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
-    // delete all token
     //http://stackoverflow.com/questions/28607543/how-to-access-the-modal-instances-that-will-be-deleted-in-the-before-delete
     Student.observe('before delete', function (ctx, next) {
         Student.app.models.Passpartout.destroyAll({
@@ -117,6 +116,22 @@ module.exports = function(Student) {
         }, function(err,feedback) {
             //console.log(feedback);
             //console.log(err);
+            next();
+        });
+        // check
+        Student.app.models.Lesson.findAll({
+            where: {studentId: ctx.where.email}
+        }, function(err, lessons) {
+                for (var i = 0; i < lessons.length; i++) {
+                    Student.app.models.studentlesson.destroyAll({
+                        lessonId: lessons[i].id
+                    });
+                }
+                next();
+        });
+        Student.app.models.AccessToken.destroyAll({
+            userId: ctx.where.email
+        },function(err, count){
             next();
         })
     });
