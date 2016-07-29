@@ -2,6 +2,7 @@ angular.module('app')
   .controller('PlatformCtrl', ['$scope', 'Student', '$state', 'tutorService',
     function($scope, Student, $state, tutorService){
       $scope.Student = $scope.Student || {};
+      $scope.Date = $scope.Date || {};
       $scope.years = tutorService.range(1970, 2016);
       $scope.months = tutorService.createMonths();
       $scope.days = tutorService.range(1, 31);
@@ -16,14 +17,30 @@ angular.module('app')
             $scope.Student.birthday = tutorService.isoDate(student.birthday);
             $scope.Student.email = student.email;
             $scope.Student.contacts = student.contacts;
-            $scope.Student.year = jsonDate.year;
-            $scope.Student.month = $scope.months[jsonDate.month - 1];
-            $scope.Student.day = $scope.days[jsonDate.day - 1];
-            console.log(jsonDate);
+            $scope.Date.year = jsonDate.year;
+            $scope.Date.month = $scope.months[jsonDate.month - 1];
+            $scope.Date.day = $scope.days[jsonDate.day - 1];
           });
         }else {
           console.log("non autenticato");
         }
         
+      };
+      /*Attend to fix*/
+      $scope.updateUser = function(){
+        $scope.Student.birthday = new Date(Date.UTC($scope.Date.year,$scope.months.indexOf($scope.Date.month),$scope.Date.day));
+        Student.prototype$updateAttributes($scope.Student).$promise.then(function(updatedStudent){
+          console.log(updatedStudent);
+          });
+      };
+      $scope.courses = Student.teach({id: Student.getCurrentId()});/*Manca altre query da fare*/
+      $scope.loadSkill = function(){
+        $state.go('signin-success.myskill');
+      };
+      
+      $scope.logout = function(){
+        Student.logout().$promise.then(function(){
+          $state.go('home');
+        });
       };
 }]);
