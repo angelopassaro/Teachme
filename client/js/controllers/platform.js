@@ -29,11 +29,12 @@ angular.module('app')
       /*Attend to fix*/
       $scope.updateUser = function(){
         $scope.Student.birthday = new Date(Date.UTC($scope.Date.year,$scope.months.indexOf($scope.Date.month),$scope.Date.day));
-        Student.prototype$updateAttributes($scope.Student).$promise.then(function(updatedStudent){
-          console.log(updatedStudent);
-          });
+        Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise
+          .then(function(succ){
+            console.log(succ);
+            });
       };
-      $scope.courses = Student.teach({id: Student.getCurrentId()});/*Manca altre query da fare*/
+      Lesson.find({filter: {where: {StudentId : Student.getCurrentId()}}});/*Manca altre query da fare*/
       $scope.loadSkill = function(){
         $state.go('signin-success.myskill');
       };
@@ -43,4 +44,6 @@ angular.module('app')
           $state.go('home');
         });
       };
+      
+      
 }]);
