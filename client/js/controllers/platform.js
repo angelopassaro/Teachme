@@ -1,6 +1,6 @@
 angular.module('app')
-  .controller('PlatformCtrl', ['$scope', 'Student', '$state', 'tutorService',
-    function($scope, Student, $state, tutorService){
+  .controller('PlatformCtrl', ['$scope', 'Student', 'Lesson', 'Course', 'University',  '$state', 'tutorService',
+    function($scope, Student, Lesson, Course, University, $state, tutorService){
       $scope.Student = $scope.Student || {};
       $scope.Date = $scope.Date || {};
       $scope.years = tutorService.range(1970, 2016);
@@ -34,9 +34,42 @@ angular.module('app')
             console.log(succ);
             });
       };
-      Lesson.find({filter: {where: {StudentId : Student.getCurrentId()}}});/*Manca altre query da fare*/
+      
+      
       $scope.loadSkill = function(){
         $state.go('signin-success.myskill');
+        var skill = {};
+        skill.course = [];
+        skill.teacher = [];
+        skill.university = [];
+        skill.lesson = [];
+        /*Capito come fare chiamare a scatole cinesi*/
+        function fillJSON(i, lesson){
+          skill.lesson[i] = lesson[i];  
+            Course.findById({id: skill.lesson[i].courseId}, function(course){
+              skill.course[i] = course;
+            }, function(error){
+                console.log(error);
+            });
+            Course.toughtBy(skill.course[i].id, function(teacher){
+              skill.teacher[i] = teacher;
+              }, function(error){
+              console.log(error);
+              });
+            Student.university({id: Student.getCurrentId()}, function(university){
+              skill.university[i] = university;
+              }, function(error){
+                console.log(error);
+            });
+        }
+        Lesson.find({filter: {where: {studentId: Student.getCurrentId()}}}, function(lesson){
+          for(var i=0; i<=lesson.length; i++){
+            fillJSON(i, lesson);
+          }
+           console.log(skill);
+          },function(error){
+            console.log(error);
+        });
       };
       
       $scope.logout = function(){
@@ -44,6 +77,5 @@ angular.module('app')
           $state.go('home');
         });
       };
-      
       
 }]);
