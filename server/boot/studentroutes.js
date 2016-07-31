@@ -18,27 +18,12 @@ module.exports = function(app) {
     })
     */
     app.get('/bla', function(req,res) {
-        User.destroyAll({
-            verificationToken: { neq: null}
-        },function(err, students){
-            console.log(students);
-            console.log(err)
-        });
+        console.log(student.require());
     })
 
 
 
 /*******************************************************************************/
-    //router for logout page
-    app.post('/logout', function(req, res, next) {
-        if (!req.accessToken)
-        return res.sendStatus(401);
-        User.logout(req.accessToken.id, function(err) {
-            if (err) return next(err);
-            res.redirect('/');
-        });
-    });
-
 
     //routers  for reset password
     app.post('/request-password-reset', function(req, res, next) {

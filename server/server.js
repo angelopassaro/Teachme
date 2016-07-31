@@ -18,11 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(loopback.token());
 
-new schedule('00 00 05 * * 0-6', function() {
+new schedule('00 37 14 * * 0-6', function() {
     console.log(' > start schedule');                                                                                                           //DEBUG
-    console.log('> deleting unconfirmed students');
     deleteStudent();
-    console.log('> deleting old token');
     deleteOldToken();
 }, null, true);
 
@@ -54,9 +52,10 @@ boot(app, __dirname, function(err) {
 function deleteStudent() {
     app.models.student.destroyAll({
         verificationToken: {neq: null },
-        created: {lt: Date.now() - DAY*2 }
+        emailVerified:false,
+        created: {lte: Date.now() - DAY*2 }
     },function(err,count) {
-        console.log(count);
+        console.log('> deleting unconfirmed students', count);
     });
 }
 
@@ -64,8 +63,8 @@ function deleteStudent() {
 //Delete old token (invalid)
 function deleteOldToken() {
     app.models.AccessToken.destroyAll({
-        created: {lt: Date.now() - DAY}
+        created: {lte: Date.now() - DAY}
     },function(err,count) {
-        console.log(count);
+        console.log('> deleting old token', count);
     });
 }

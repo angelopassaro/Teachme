@@ -16,24 +16,9 @@ module.exports = function(Student) {
 
     /*triggered for verification email*/
     Student.afterRemote('create', function(context, user, next) {
-        console.log('> user.afterRemote triggered');                                                                                       //DEBUG
-
-        var options = {
-            type: 'email',
-            to: user.email,
-            from: 'tutor4you6@gmail.com',
-            template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-            redirect: '/signin',
-            user: user,
-        };
-
-        user.verify(options, function(err, response) {
-            if (err) return next(err);
-            next();
-
-            // console.log('> verification email sent:', response);                                                                           //DEBUG
-
-        });
+        console.log('> user.afterRemote triggered');                                                                                   //DEBUG
+        Email(user);
+        next();
     });
 
 
@@ -87,39 +72,44 @@ module.exports = function(Student) {
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
     //http://stackoverflow.com/questions/28607543/how-to-access-the-modal-instances-that-will-be-deleted-in-the-before-delete
-    /* Delete cascade for user*/
-    Student.observe('before delete', function (ctx, next) {
-        Student.app.models.Passpartout.destroyAll({
-            studentId: ctx.where.email
-        }, function(err,passpartout) {
-            //console.log(passpartout);
-            //console.log(err);
-            next();
-        });
-        Student.app.models.Feedback.destroyAll({
-            sendToId: ctx.where.email
-        }, function(err,feedback) {
-            //console.log(feedback);
-            //console.log(err);
-            next();
-        });
-        // check
-        Student.app.models.Lesson.findAll({
-            where: {studentId: ctx.where.email}
-        }, function(err, lessons) {
-            for (var i = 0; i < lessons.length; i++) {
-                Student.app.models.studentlesson.destroyAll({
-                    lessonId: lessons[i].id
-                });
-            }
-            next();
-        });
-        Student.app.models.AccessToken.destroyAll({
-            userId: ctx.where.email
-        },function(err, count){
-            next();
-        })
-    });
+    /* Delete cascade for user   add delete prenotation from stdent(no tutor)*/
+    // Student.observe('before delete', function (ctx, next) {
+    //     Student.app.models.Passpartout.destroyAll({
+    //         studentId: ctx.where.email
+    //     }, function(err,passpartout) {
+    //         console.log("passoartout cancellati", passpartout);
+    //         console.log("Errore passpartout" , err);
+    //         next();
+    //     });
+    //     Student.app.models.Feedback.destroyAll({
+    //         sendToId: ctx.where.email
+    //     }, function(err,feedback) {
+    //         console.log("feedback cancellati", feedback);
+    //         console.log("Errore feedback" ,err);
+    //         next();
+    //     });
+    //     // check
+    //      Student.app.models.Lesson.find({
+    //          where: {studentId: ctx.where.email}
+    //      }, function(err, lessons) {
+    //          if(lessons) {
+    //              for (var i = 0; i < lessons.length; i++) {
+    //                  Student.app.models.StudentLesson.destroyAll({
+    //                      lessonId: lessons[i].id
+    //                  });
+    //                  console.log(lessons[i]);
+    //              }
+    //          }
+    //          next();
+    //      });
+    //     Student.app.models.AccessToken.destroyAll({
+    //         userId: ctx.where.email
+    //     },function(err, token){
+    //         console.log("token cancellati", token);
+    //         console.log("Errore token", err);
+    //         next();
+    //     })
+    // });
 
 
     // rifare
@@ -155,12 +145,56 @@ module.exports = function(Student) {
 
 
     /*Find the university domain (conviene partire dal''ultimo punto)*/
-    function checkDomain(email){
+    function checkDomain(email) {
         var x = email.replace(/.*@/, " ");
         x = x.split('.');
         //console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
         return x[1];
     }
+
+
+    function Email(user) {
+
+        var options = {
+            type: 'email',
+            to: user.email,
+            from: 'tutor4you6@gmail.com',
+            template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+            redirect: '/signin',
+            user: user,
+        };
+
+        user.verify(options, function(err, response) {
+            if (err) return next(err);
+            // console.log('> verification email sent:', response);                                                                //DEBUG
+        });
+    }
+
+
+    Student.send = function(email, cb) {
+            Student.findOne({
+                where: {
+                    email: email,
+                    emailVerified: false
+                 }
+            }, function (err, user) {
+                if(!user) return cb(null, "Student don't exist");
+                Email(user);
+                cb(null, "Check your email");
+            })
+    }
+
+
+    Student.remoteMethod(
+        'send',
+        {
+            description:["Send verification email"],
+            accepts: {arg: 'email', type: 'string'},
+            returns: {arg: 'info', type: 'string'},
+            http: {path: '/re-email'}
+        }
+    )
+
 }
 
 /*

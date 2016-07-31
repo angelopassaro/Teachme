@@ -35,10 +35,11 @@ Platform for tutoring.
 * Delete an user not validated (OK)
 * Delete old token (OK)
 * Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
+*  Re-email (OK) (only check a new user registration)
 * Start delete cascade user
 * tutor don't know who is reserved a lesson (find in studentlesson the lesson's id)
 * No delete a user with lesson ?
-*  Re-email && hidden email page
+* Email when a studen ask for tutor
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
 * Redirect signin add auto username/email and password
 * hidden/disable path after verification (redirect in page with log in ?)
