@@ -4,9 +4,11 @@
 
 var config = require('../../server/config.json');
 var path = require('path');
+var loopback = require('loopback');
 
 
-module.exports = function(Student) {
+
+module.exports = function(Student, options) {
     /*check the presence of field id*/
     Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
@@ -45,20 +47,20 @@ module.exports = function(Student) {
 
     //https://greenin.space/notes-on-loopback-operation-hooks/
     /* before save  a new user check for valid email and add a default contact*/
-    Student.observe('before save', function(ctx, next){
+    Student.observe('before save', function(ctx, next) {
         if (ctx.isNewInstance) {
             var domain = checkDomain(ctx.instance.email);
             Student.app.models.University.findOne({
                 where: {tag : domain}
             }, function(err, university) {
-                if (university){ //add Student need next to confirm
+                if (university) { //add Student need next to confirm
                     ctx.instance.universityId = university.name;
                     addContact(ctx,ctx.instance.email);
                     next();
-                }else
+                } else
                 next();
             });
-        }else {
+        } else {
             //console.log("CTX DATA ",ctx.data);                                                                                        //DEBUG
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
@@ -72,51 +74,62 @@ module.exports = function(Student) {
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
     //http://stackoverflow.com/questions/28607543/how-to-access-the-modal-instances-that-will-be-deleted-in-the-before-delete
-    /* Delete cascade for user   add delete prenotation from stdent(no tutor)*/
-    // Student.observe('before delete', function (ctx, next) {
-    //     Student.app.models.Passpartout.destroyAll({
-    //         studentId: ctx.where.email
-    //     }, function(err,passpartout) {
-    //         console.log("passoartout cancellati", passpartout);
-    //         console.log("Errore passpartout" , err);
-    //         next();
-    //     });
-    //     Student.app.models.Feedback.destroyAll({
-    //         sendToId: ctx.where.email
-    //     }, function(err,feedback) {
-    //         console.log("feedback cancellati", feedback);
-    //         console.log("Errore feedback" ,err);
-    //         next();
-    //     });
-    //     // check
-    //      Student.app.models.Lesson.find({
-    //          where: {studentId: ctx.where.email}
-    //      }, function(err, lessons) {
-    //          if(lessons) {
-    //              for (var i = 0; i < lessons.length; i++) {
-    //                  Student.app.models.StudentLesson.destroyAll({
-    //                      lessonId: lessons[i].id
-    //                  });
-    //                  console.log(lessons[i]);
-    //              }
-    //          }
-    //          next();
-    //      });
-    //     Student.app.models.AccessToken.destroyAll({
-    //         userId: ctx.where.email
-    //     },function(err, token){
-    //         console.log("token cancellati", token);
-    //         console.log("Errore token", err);
-    //         next();
-    //     })
-    // });
+    /* Delete cascade for user  */
+    Student.observe('before delete', function (ctx, next) {
+
+        Student.app.models.Feedback.destroyAll({
+            sendToId: ctx.where.email
+        }, function(err,feedback) {
+            console.log("feedback cancellati", feedback);
+        });
+
+
+        Student.app.models.Lesson.find({
+            where:{
+                studentId: ctx.where.email
+            }
+        }, function(err, lessons) {
+            if(lessons){
+                console.log(lessons);
+                var linkModel = loopback.getModelByType("studentlesson");
+                for(var i = 0; i < lessons.length; i++){
+                    console.log(lessons[i].id);
+                    linkModel.destroyAll({ lessonId : lessons[i].id});
+                }
+            }
+        })
+
+
+        Student.findOne({
+            where: {email: ctx.where.email}
+        }, function(err, student) {
+            if(student) {
+                         student.teach.destroyAll(function(err) {
+                             console.log(err);
+                         })
+                         // check again again .....
+                         student.require.destroyAll(function(err) {
+                             console.log(err);
+                         })
+                    }
+        });
+
+        Student.app.models.AccessToken.destroyAll({
+            userId: ctx.where.email
+        },function(err, token) {
+            console.log("token cancellati", token);
+        })
+
+        next();
+    });
+
 
 
     // rifare
     function updatePasspartout(ctx){
         Student.findOne({
             "where" : { username : ctx.currentInstance.username}
-        }, function(err,student){
+        }, function(err,student) {
             if(student.mypasspartout != undefined){
                 var newDate = ctx.data.mypasspartout.expiredDate;
                 var  oldDate = student.mypasspartout.expiredDate;
@@ -137,7 +150,7 @@ module.exports = function(Student) {
 
 
     /*add dinamically  a contact  or default the email  at creation*/
-    function addContact(ctx, data, type="Default email"){
+    function addContact(ctx, data, type="Default email") {
         var jsondata = {};
         jsondata[type] = data ;
         ctx.instance.contact.push(jsondata);
@@ -175,7 +188,7 @@ module.exports = function(Student) {
             Student.findOne({
                 where: {
                     email: email,
-                    emailVerified: false
+                    emailVerified: {neq: true}
                  }
             }, function (err, user) {
                 if(!user) return cb(null, "Student don't exist");
@@ -188,10 +201,10 @@ module.exports = function(Student) {
     Student.remoteMethod(
         'send',
         {
-            description:["Send verification email"],
+            description:'Send verification email',
             accepts: {arg: 'email', type: 'string'},
             returns: {arg: 'info', type: 'string'},
-            http: {path: '/re-email'}
+            http: {verb: 'post', path: '/re-email'}
         }
     )
 

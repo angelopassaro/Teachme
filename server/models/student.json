@@ -1,80 +1,80 @@
 {
-  "name": "student",
-  "plural": "students",
-  "base": "User",
-  "idInjection": false,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "email": {
-      "type": "string",
-      "id": true,
-      "required": true
+    "name": "student",
+    "plural": "students",
+    "base": "User",
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
     },
-    "name": {
-      "type": "string",
-      "required": true
+    "properties": {
+        "email": {
+            "type": "string",
+            "id": true,
+            "required": true
+        },
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "lastName": {
+            "type": "string",
+            "required": true
+        },
+        "birthday": {
+            "type": "date"
+        },
+        "contact": {
+            "type": [
+                "object"
+            ],
+            "required": true
+        },
+        "isTutor": {
+            "type": "boolean",
+            "required": true,
+            "default": false
+        }
     },
-    "lastName": {
-      "type": "string",
-      "required": true
+    "validations": [],
+    "relations": {
+        "passpartout": {
+            "type": "embedsOne",
+            "model": "passpartout",
+            "property": "mypasspartout",
+            "options": {
+                "validate": true,
+                "forceId": false
+            }
+        },
+        "teach": {
+            "type": "hasAndBelongsToMany",
+            "model": "course",
+            "foreignKey": "",
+            "through": "lesson"
+        },
+        "require": {
+            "type": "hasAndBelongsToMany",
+            "model": "lesson",
+            "foreignKey": ""
+        },
+        "university": {
+            "type": "belongsTo",
+            "model": "university",
+            "foreignKey": ""
+        },
+        "share": {
+            "type": "hasMany",
+            "model": "note",
+            "foreignKey": ""
+        }
     },
-    "birthday": {
-      "type": "date"
+    "scopes": {
+        "tutors": {
+            "where": {
+                "isTutor": true
+            }
+        }
     },
-    "contact": {
-      "type": [
-        "object"
-      ],
-      "required": true
-    },
-    "isTutor": {
-      "type": "boolean",
-      "required": true,
-      "default": false
-    }
-  },
-  "validations": [],
-  "relations": {
-    "passpartout": {
-      "type": "embedsOne",
-      "model": "passpartout",
-      "property": "mypasspartout",
-      "options": {
-        "validate": true,
-        "forceId": false
-      }
-    },
-    "teach": {
-      "type": "hasAndBelongsToMany",
-      "model": "course",
-      "foreignKey": "",
-      "through": "lesson"
-    },
-    "require": {
-      "type": "hasAndBelongsToMany",
-      "model": "lesson",
-      "foreignKey": ""
-    },
-    "university": {
-      "type": "belongsTo",
-      "model": "university",
-      "foreignKey": ""
-    },
-    "share": {
-      "type": "hasMany",
-      "model": "note",
-      "foreignKey": ""
-    }
-  },
-  "scopes": {
-    "tutors": {
-      "where": {
-        "isTutor": true
-      }
-    }
-  },
-  "acls": [],
-  "methods": {}
+    "acls": [],
+    "methods": {}
 }

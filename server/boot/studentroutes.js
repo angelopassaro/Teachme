@@ -18,7 +18,11 @@ module.exports = function(app) {
     })
     */
     app.get('/bla', function(req,res) {
-        console.log(student.require());
+        app.models.Lesson.find({
+            where: {studentId: "a.passaro14@studenti.unisa.it"}
+        }, function(err, lessons) {
+            console.log(lessons[0].teach)
+        });
     })
 
 

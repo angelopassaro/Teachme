@@ -51,8 +51,8 @@ boot(app, __dirname, function(err) {
 //Delete a unconfirmed student after two day
 function deleteStudent() {
     app.models.student.destroyAll({
-        verificationToken: {neq: null },
-        emailVerified:false,
+        verificationToken: {neq: null},
+        emailVerified: {neq: true},
         created: {lte: Date.now() - DAY*2 }
     },function(err,count) {
         console.log('> deleting unconfirmed students', count);

@@ -32,7 +32,7 @@
       "model": "student",
       "foreignKey": ""
     },
-    "sendFrom": {
+    "FromTo": {
       "type": "belongsTo",
       "model": "student",
       "foreignKey": ""
