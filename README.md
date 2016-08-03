@@ -32,13 +32,15 @@ Platform for tutoring.
 * Add login function (OK)
 * Add logout (OK)
 * Add a function for  resetpassword (OK)
-* Delete an user not validated (OK)
+* Delete an user not validated (OK)  (!check time schedule(is modified)!)
 * Delete old token (OK)
 * Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
 *  Re-email (OK) (only check a new user registration)
-* Start delete cascade user
+* Start delete cascade user(add delete require)
 * tutor don't know who is reserved a lesson (find in studentlesson the lesson's id)
 * No delete a user with lesson ?
+* feedback relation try hasmanybelongsto  problema feedback studenti non esistenti
+* Student can tutor himself
 * Email when a studen ask for tutor
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
 * Redirect signin add auto username/email and password
