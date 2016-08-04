@@ -12,16 +12,17 @@ Platform for tutoring.
 #TODO LIST
 
 ###Front End
-* Fix images of home.html for mobile view
-* Fix Nav bar click for tablet and mobile view
-* Fix title for mobile view
-* add animation for validate form into signup.html
-* add cross-compatible select and checkbox
-* add an index.css for reorganize style of page (!important)
-* Create view, controllers and style for service page.
-* signin.html change view
-* add require.js for dynamic injection of javascript and css file
-* add directives for sercurity form
+* Fix images of home.html for mobile view(OK)
+* Fix Nav bar click for tablet and mobile view(OK)
+* Fix title for mobile view (OK)
+* add animation for validate form into signup.html (OK)
+* add cross-compatible select and checkbox (OK)
+* optimize CSS speed loading use angular-css castillo
+* Create view, controllers and style for service page. (PARTIALS)
+* signin.html change view (OK)
+* add require.js for dynamic injection of javascript (OK)
+* add directives for sercurity form (OK)
+* Add responsive platform.html 
 
 ---------------------------
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK

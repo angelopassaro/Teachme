@@ -1,5 +1,5 @@
-angular.module('app')
-    .controller('SignInCtrl', ['$scope', 'Student', '$state', function($scope, Student, $state){
+define(['app'], function(app){
+    app.controller('SigninCtrl', ['$scope', 'Student', '$state', function($scope, Student, $state){
         $scope.log = function(){
             $scope.formLogin.ttl = 60 * 60;
             var logType = $scope.formLogin.user;
@@ -10,10 +10,10 @@ angular.module('app')
             $scope.formLogin.email = logType;
         }
           Student.login($scope.formLogin).$promise.then(function success(){
-            $state.go('signin-success');
+            $state.go('platform');
             }, function err(error){
                 console.log(error);
             });
         };
 }]);
-
+});

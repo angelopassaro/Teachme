@@ -1,0 +1,13 @@
+<div ng-init="skills = getSkills()">
+  <div ng-repeat ="skill in skills">
+  <fieldset class="fieldset">
+    <legend class="legend">Skill:</legend>
+    <p class="paragraph">University:<span class="span">{{skill.university.name}}</span></p>
+    <p class="paragraph">Course:<span class="span">{{skill.course.name}}</span></p>
+    <p class="paragraph">Teacher:<span class="span">{{skill.teacher[0].name+ ' '+skill.teacher[0].lastName}}</span></p>
+     <p class="paragraph">Price:<span class="span">{{skill.lesson.totalPrice}}</span></p>
+     <button class="button" ng-click="">Edit</button>
+     <button class="button" ng-click="">Delete</button>
+  </fieldset>
+  </div>
+</div>
