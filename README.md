@@ -36,7 +36,7 @@ Platform for tutoring.
 * Delete old token (OK)
 * Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
 *  Re-email (OK) (only check a new user registration)
-* Start delete cascade user(add delete require)
+* Start delete cascade user(OK)
 * tutor don't know who is reserved a lesson (find in studentlesson the lesson's id)
 * No delete a user with lesson ?
 * feedback relation try hasmanybelongsto  problema feedback studenti non esistenti

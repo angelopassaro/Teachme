@@ -9,39 +9,14 @@ var loopback = require('loopback');
 
 
 module.exports = function(Student, options) {
+
+
+
     /*check the presence of field id*/
     Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
     Student.validatesLengthOf('username', {min: 3, message: {min: ' Enter min 3 characters  '}});
     Student.validatesLengthOf('password', {min: 5, message:{min: 'Enter min 5 characters' }})
-
-
-    /*triggered for verification email*/
-    Student.afterRemote('create', function(context, user, next) {
-        console.log('> user.afterRemote triggered');                                                                                   //DEBUG
-        Email(user);
-        next();
-    });
-
-
-    Student.on('resetPasswordRequest', function(info) {
-        var url = 'http://' + config.host + ':' + config.port + '/reset-password';
-        var html = 'Click <a href="' + url + '?access_token=' +
-        info.accessToken.id + '">here</a> to reset your password';
-
-        //console.log(info);                                                                                                                             //DEBUG
-        // console.log(info.email);                                                                                                                   //DEBUG
-
-        Student.app.models.Email.send({
-            to: info.email,
-            from: 'tutor4you6@gmail.com',
-            subject: 'Password reset',
-            html: html
-        }, function(err) {
-            if (err) return console.log('> error sending password reset email');
-            console.log('> sending password reset email to:', info.email);
-        });
-    });
 
 
 
@@ -65,11 +40,40 @@ module.exports = function(Student, options) {
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             if(ctx.data)
-                if(ctx.data.mypasspartout)
-                    updatePasspartout(ctx);
+            if(ctx.data.mypasspartout)
+            updatePasspartout(ctx);
             next();
         }
     });
+
+
+
+    /*triggered for verification email*/
+    Student.afterRemote('create', function(context, user, next) {
+        console.log('> user.afterRemote triggered');                                                                                   //DEBUG
+        Email(user);
+        next();
+    });
+
+    Student.on('resetPasswordRequest', function(info) {
+        var url = 'http://' + config.host + ':' + config.port + '/reset-password';
+        var html = 'Click <a href="' + url + '?access_token=' +
+        info.accessToken.id + '">here</a> to reset your password';
+
+        //console.log(info);                                                                                                                             //DEBUG
+        // console.log(info.email);                                                                                                                   //DEBUG
+
+        Student.app.models.Email.send({
+            to: info.email,
+            from: 'tutor4you6@gmail.com',
+            subject: 'Password reset',
+            html: html
+        }, function(err) {
+            if (err) return console.log('> error sending password reset email');
+            console.log('> sending password reset email to:', info.email);
+        });
+    });
+
 
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
@@ -80,9 +84,8 @@ module.exports = function(Student, options) {
         Student.app.models.Feedback.destroyAll({
             sendToId: ctx.where.email
         }, function(err,feedback) {
-            console.log("feedback cancellati", feedback);
+            //console.log("feedback cancellati", feedback);
         });
-
 
         Student.app.models.Lesson.find({
             where:{
@@ -90,15 +93,14 @@ module.exports = function(Student, options) {
             }
         }, function(err, lessons) {
             if(lessons){
-                console.log(lessons);
+                //console.log(lessons);
                 var linkModel = loopback.getModelByType("studentlesson");
                 for(var i = 0; i < lessons.length; i++){
-                    console.log(lessons[i].id);
+                    //console.log(lessons[i].id);
                     linkModel.destroyAll({ lessonId : lessons[i].id});
                 }
             }
         })
-
 
         Student.findOne({
             where: {email: ctx.where.email}
@@ -149,22 +151,6 @@ module.exports = function(Student, options) {
     }
 
 
-    /*add dinamically  a contact  or default the email  at creation*/
-    function addContact(ctx, data, type="Default email") {
-        var jsondata = {};
-        jsondata[type] = data ;
-        ctx.instance.contact.push(jsondata);
-    }
-
-
-    /*Find the university domain (conviene partire dal''ultimo punto)*/
-    function checkDomain(email) {
-        var x = email.replace(/.*@/, " ");
-        x = x.split('.');
-        //console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
-        return x[1];
-    }
-
 
     function Email(user) {
 
@@ -184,6 +170,7 @@ module.exports = function(Student, options) {
     }
 
 
+
     Student.send = function(email, cb) {
             Student.findOne({
                 where: {
@@ -196,6 +183,26 @@ module.exports = function(Student, options) {
                 cb(null, "Check your email");
             })
     }
+
+
+
+/*add dinamically  a contact  or default the email  at creation*/
+    function addContact(ctx, data, type="Default email") {
+        var jsondata = {};
+        jsondata[type] = data ;
+        ctx.instance.contact.push(jsondata);
+    }
+
+
+
+    /*Find the university domain (conviene partire dal''ultimo punto)*/
+    function checkDomain(email) {
+        var x = email.replace(/.*@/, " ");
+        x = x.split('.');
+        //console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
+        return x[1];
+    }
+
 
 
     Student.remoteMethod(
