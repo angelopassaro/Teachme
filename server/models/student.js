@@ -7,8 +7,7 @@ var path = require('path');
 var loopback = require('loopback');
 
 
-
-module.exports = function(Student, options) {
+module.exports = function(Student) {
 
 
 
@@ -40,8 +39,8 @@ module.exports = function(Student, options) {
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             if(ctx.data)
-            if(ctx.data.mypasspartout)
-            updatePasspartout(ctx);
+                if(ctx.data.mypasspartout)
+                    updatePasspartout(ctx);
             next();
         }
     });
@@ -75,52 +74,80 @@ module.exports = function(Student, options) {
     });
 
 
+    // send a emai when a student require a lesson
+    Student.afterRemote('*.__link__require', function(context, instance, next){
+        Student.app.models.Lesson.findOne({
+            where:{
+                id: instance.lessonId
+            }
+        }, function(err, lesson){
+            Student.findOne({
+                where:{
+                    email:lesson.studentId
+                }
+            },
+            function(err, student) {
+                var options = ["Have request for lesson check your account", "News: Request lesson"];
+                Email(student, options);
+            })
+        }
+    )
+    next();
+});
+
+
+    // operation for reqiore delete
+    Student.afterRemote('*.__unlink__require', function(context, instance, next){
+        //console.log(context);
+        next();
+    });
+
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
     //http://stackoverflow.com/questions/28607543/how-to-access-the-modal-instances-that-will-be-deleted-in-the-before-delete
     /* Delete cascade for user  */
     Student.observe('before delete', function (ctx, next) {
 
-        Student.app.models.Feedback.destroyAll({
-            sendToId: ctx.where.email
-        }, function(err,feedback) {
-            //console.log("feedback cancellati", feedback);
-        });
+         Student.app.models.Feedback.destroyAll({
+             sendToId: ctx.where.email
+         }, function(err,feedback) {
+             //console.log("feedback cancellati", feedback);
+         });
 
-        Student.app.models.Lesson.find({
-            where:{
-                studentId: ctx.where.email
-            }
-        }, function(err, lessons) {
-            if(lessons){
-                //console.log(lessons);
-                var linkModel = loopback.getModelByType("studentlesson");
-                for(var i = 0; i < lessons.length; i++){
-                    //console.log(lessons[i].id);
-                    linkModel.destroyAll({ lessonId : lessons[i].id});
-                }
-            }
-        })
+         Student.app.models.Lesson.find({
+             where:{
+                 studentId: ctx.where.email
+             }
+         }, function(err, lessons) {
+             if(lessons){
+                 //console.log(lessons);
+                 var linkModel = loopback.getModelByType("studentlesson");
+                 for(var i = 0; i < lessons.length; i++){
+                     //console.log(lessons[i].id);
+                     linkModel.destroyAll({ lessonId : lessons[i].id});
+                 }
+             }
+         })
 
-        Student.findOne({
-            where: {email: ctx.where.email}
-        }, function(err, student) {
-            if(student) {
-                         student.teach.destroyAll(function(err) {
-                             console.log(err);
-                         })
-                         // check again again .....
-                         student.require.destroyAll(function(err) {
-                             console.log(err);
-                         })
-                    }
-        });
+         Student.findOne({
+             where: {email: ctx.where.email}
+         }, function(err, student) {
+             if(student) {
+                          student.teach.destroyAll(function(err) {
+                              console.log(err);
+                          })
+                          // check again again .....
+                          student.require.destroyAll(function(err) {
+                              console.log(err);
+                          })
+                     }
+         });
 
-        Student.app.models.AccessToken.destroyAll({
-            userId: ctx.where.email
-        },function(err, token) {
-            console.log("token cancellati", token);
-        })
+         Student.app.models.AccessToken.destroyAll({
+             userId: ctx.where.email
+         },function(err, token) {
+             //console.log("token cancellati", token);
+         })
 
         next();
     });
@@ -152,23 +179,30 @@ module.exports = function(Student, options) {
 
 
 
-    function Email(user) {
+    function Email(user, texts=null) {
 
-        var options = {
-            type: 'email',
-            to: user.email,
-            from: 'tutor4you6@gmail.com',
-            template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-            redirect: '/signin',
-            user: user,
-        };
+            var options = {
+                type: 'email',
+                to: user.email,
+                from: 'tutor4you6@gmail.com',
+                user: user,
+                template: path.resolve(__dirname, '../../server/views/verify.ejs'),
+                redirect: '/signin',
+                title: "<h3> Welcome in Tutor4You </h3>"
+            };
+
+
+        if (texts != null && texts.length != 2) {
+            options["text"] = texts[0];
+            options["subject"] = texts[1];
+        }
+
 
         user.verify(options, function(err, response) {
             if (err) return next(err);
-            // console.log('> verification email sent:', response);                                                                //DEBUG
+             console.log('> email sent:', response);                                                                                   //DEBUG
         });
     }
-
 
 
     Student.send = function(email, cb) {
