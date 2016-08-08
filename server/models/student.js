@@ -29,7 +29,7 @@ module.exports = function(Student) {
             }, function(err, university) {
                 if (university) { //add Student need next to confirm
                     ctx.instance.universityId = university.name;
-                    addContact(ctx,ctx.instance.email);
+                    addContact(ctx.instance.contact, ctx.instance.email);
                     next();
                 } else
                 next();
@@ -200,7 +200,7 @@ module.exports = function(Student) {
 
         user.verify(options, function(err, response) {
             if (err) return next(err);
-             console.log('> email sent:', response);                                                                                   //DEBUG
+             //console.log('> email sent:', response);                                                                                   //DEBUG
         });
     }
 
@@ -221,10 +221,11 @@ module.exports = function(Student) {
 
 
 /*add dinamically  a contact  or default the email  at creation*/
-    function addContact(ctx, data, type="Default email") {
+    function addContact(contact, data, type) {
+        var type = type || "Default email";
         var jsondata = {};
         jsondata[type] = data ;
-        ctx.instance.contact.push(jsondata);
+        contact.push(jsondata);
     }
 
 

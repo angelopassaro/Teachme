@@ -39,7 +39,7 @@ define(['app', 'services/date-services'], function(app){
 						.then(function(){
               $state.go('platform');
 						},function(error){
-            console.log(error);  
+            console.log(error);
         });
 			};
 }]);
