@@ -179,7 +179,9 @@ module.exports = function(Student) {
 
 
 
-    function Email(user, texts=null) {
+    function Email(user, texts) {
+
+        var texts = texts || null;
 
             var options = {
                 type: 'email',
@@ -192,7 +194,8 @@ module.exports = function(Student) {
             };
 
 
-        if (texts != null && texts.length != 2) {
+        if (texts != null && texts.length == 2) {
+            options["title"] = "<h3> Hey </h3>";
             options["text"] = texts[0];
             options["subject"] = texts[1];
         }
@@ -200,7 +203,7 @@ module.exports = function(Student) {
 
         user.verify(options, function(err, response) {
             if (err) return next(err);
-             //console.log('> email sent:', response);                                                                                   //DEBUG
+             //console.log('> email sent:', response);                                                                                    //DEBUG
         });
     }
 
