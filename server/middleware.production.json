@@ -1,9 +1,9 @@
 {
-  "final:after": {
-    "strong-error-handler": {
-      "params": {
-        "includeStack":false
+    "final:after": {
+        "loopback#errorHandler": {
+          "params": {
+            "includeStack": false
+          }
+        }
       }
-    }
-  }
 }
