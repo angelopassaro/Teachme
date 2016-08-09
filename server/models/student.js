@@ -47,31 +47,32 @@ module.exports = function(Student) {
 
 
 
+
+
     /*triggered for verification email*/
     Student.afterRemote('create', function(context, user, next) {
-        console.log('> user.afterRemote triggered');                                                                                   //DEBUG
+        //console.log('> user.afterRemote triggered');                                                                                   //DEBUG
         Email(user);
         next();
     });
 
-    Student.on('resetPasswordRequest', function(info) {
+
+
+
+
+    Student.on('resetPasswordRequest', function(user) {
         var url = 'http://' + config.host + ':' + config.port + '/reset-password';
         var html = 'Click <a href="' + url + '?access_token=' +
-        info.accessToken.id + '">here</a> to reset your password';
+        user.accessToken.id + '">here</a> to reset your password';
 
-        //console.log(info);                                                                                                                             //DEBUG
-        // console.log(info.email);                                                                                                                   //DEBUG
 
-        Student.app.models.Email.send({
-            to: info.email,
-            from: 'tutor4you6@gmail.com',
-            subject: 'Password reset',
-            html: html
-        }, function(err) {
-            if (err) return console.log('> error sending password reset email');
-            console.log('> sending password reset email to:', info.email);
-        });
+        var texts = [ "<h3>Title</h3>", "Password reset", html];
+        Email(user.user, texts);
+
     });
+
+
+
 
 
     // send a emai when a student require a lesson
@@ -87,7 +88,7 @@ module.exports = function(Student) {
                 }
             },
             function(err, student) {
-                var options = ["Have request for lesson check your account", "News: Request lesson"];
+                var options = ["<h3>Title</h3>","News: Request lesson", "Have request for lesson check your account"];
                 Email(student, options);
             })
         }
@@ -96,11 +97,18 @@ module.exports = function(Student) {
 });
 
 
+
+
+
+
     // operation for reqiore delete
     Student.afterRemote('*.__unlink__require', function(context, instance, next){
         //console.log(context);
         next();
     });
+
+
+
 
 
     //scriverla meglio app.models verra usato spesso ??var = app.models e array di models da usare  per utilizzare un for?? creare un unico metodo da utilizzare per tutti i models vedi mixins
@@ -154,6 +162,8 @@ module.exports = function(Student) {
 
 
 
+
+
     // rifare
     function updatePasspartout(ctx){
         Student.findOne({
@@ -179,6 +189,8 @@ module.exports = function(Student) {
 
 
 
+
+
     function Email(user, texts) {
 
         var texts = texts || null;
@@ -194,10 +206,11 @@ module.exports = function(Student) {
             };
 
 
-        if (texts != null && texts.length == 2) {
-            options["title"] = "<h3> Hey </h3>";
-            options["text"] = texts[0];
+        if (texts != null && texts.length == 3) {
+            options["title"] = texts[0];
             options["subject"] = texts[1];
+            options["text"] = texts[2];
+            options["redirect"] = " ";
         }
 
 
@@ -206,6 +219,9 @@ module.exports = function(Student) {
              //console.log('> email sent:', response);                                                                                    //DEBUG
         });
     }
+
+
+
 
 
     Student.send = function(email, cb) {
@@ -223,6 +239,8 @@ module.exports = function(Student) {
 
 
 
+
+
 /*add dinamically  a contact  or default the email  at creation*/
     function addContact(contact, data, type) {
         var type = type || "Default email";
@@ -233,6 +251,8 @@ module.exports = function(Student) {
 
 
 
+
+
     /*Find the university domain (conviene partire dal''ultimo punto)*/
     function checkDomain(email) {
         var x = email.replace(/.*@/, " ");
@@ -240,6 +260,8 @@ module.exports = function(Student) {
         //console.log("DEBUG    dominio",x[1]);                                                                                           //DEBUG
         return x[1];
     }
+
+
 
 
 
