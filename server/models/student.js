@@ -51,7 +51,7 @@ module.exports = function(Student) {
 
     /*triggered for verification email*/
     Student.afterRemote('create', function(context, user, next) {
-        //console.log('> user.afterRemote triggered');                                                                                   //DEBUG
+        console.log('> user.afterRemote triggered');                                                                                   //DEBUG
         Email(user);
         next();
     });
@@ -66,7 +66,7 @@ module.exports = function(Student) {
         user.accessToken.id + '">here</a> to reset your password';
 
 
-        var texts = [ "<h3>Title</h3>", "Password reset", html];
+        var texts = ["Password reset", html];
         Email(user.user, texts);
 
     });
@@ -88,8 +88,11 @@ module.exports = function(Student) {
                 }
             },
             function(err, student) {
-                var options = ["<h3>Title</h3>","News: Request lesson", "Have request for lesson check your account"];
-                Email(student, options);
+                if(student) {
+                    console.log(student.notification.add);
+                    var options = ["News: Request lesson", "Have request for lesson check your account"];
+                    Email(student, options);
+                }
             })
         }
     )
@@ -206,19 +209,25 @@ module.exports = function(Student) {
             };
 
 
-        if (texts != null && texts.length == 3) {
-            options["title"] = texts[0];
-            options["subject"] = texts[1];
-            options["text"] = texts[2];
-            options["redirect"] = " ";
+            if (texts != null && texts.length == 2) {
+                // options["title"] = texts[0]; template non funzione provare con html:html al posto di text
+                options["subject"] = texts[0];
+                options["text"] = texts[1];
+                options["redirect"] = " ";
+
+                Student.app.models.Email.send(options, function(err) {
+                    if(err) console.log("error  email");
+                });
+
+                return;
+            }
+
+
+                user.verify(options, function(err, response) {
+                    if (err) return next(err);
+                    //console.log('> email sent:', response);                                                                                    //DEBUG
+                });
         }
-
-
-        user.verify(options, function(err, response) {
-            if (err) return next(err);
-             //console.log('> email sent:', response);                                                                                    //DEBUG
-        });
-    }
 
 
 

@@ -70,5 +70,9 @@
     "feedback": {
         "dataSource": "db",
         "public": true
+    },
+    "notification": {
+        "dataSource": "transient",
+        "public": false
     }
 }

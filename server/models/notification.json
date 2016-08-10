@@ -1,0 +1,22 @@
+{
+    "name": "notification",
+    "base": "Model",
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
+    },
+    "properties": {
+        "text": {
+            "type": "string",
+            "required": true
+        },
+        "read": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+}

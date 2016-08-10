@@ -46,6 +46,15 @@
                 "forceId": false
             }
         },
+        "notification": {
+            "type": "embedsMany",
+            "model": "notification",
+            "property": "mynotification",
+            "options": {
+                "validate": true,
+                "forceId": false
+            }
+        },
         "teach": {
             "type": "hasAndBelongsToMany",
             "model": "course",
