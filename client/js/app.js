@@ -1,6 +1,6 @@
-define(['angular-router', 'loopback'],function(){
+define(['angular-router', 'loopback', 'angular-css'],function(){
   'use-strict';
-  var app = angular.module("app", ['ui.router', 'lbServices']);
+  var app = angular.module("app", ['ui.router', 'lbServices', 'angularCSS']);
   app.config(['$controllerProvider', '$compileProvider', '$filterProvider','$provide',
               function($controllerProvider, $compileProvider, $filterProvider,$provide){
                 app.controller = $controllerProvider.register;
