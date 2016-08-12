@@ -90,7 +90,7 @@ module.exports = function(Student) {
             function(err, student) {
                 if(student) {
                     console.log(student.notification.add);
-                    var options = ["News: Request lesson", "Have request for lesson check your account"];
+                    var options = ["News: Request lesson", " Have request for lesson check your account"];
                     Email(student, options);
                 }
             })
@@ -193,7 +193,9 @@ module.exports = function(Student) {
 
 
 
-
+// send a email a specific user
+//@param user the user that recive the email
+//@param texts an array contatin subject and body email  
     function Email(user, texts) {
 
         var texts = texts || null;
@@ -210,9 +212,8 @@ module.exports = function(Student) {
 
 
             if (texts != null && texts.length == 2) {
-                // options["title"] = texts[0]; template non funzione provare con html:html al posto di text
                 options["subject"] = texts[0];
-                options["text"] = texts[1];
+                options["html"] = texts[1];
                 options["redirect"] = " ";
 
                 Student.app.models.Email.send(options, function(err) {
@@ -232,7 +233,7 @@ module.exports = function(Student) {
 
 
 
-
+//remoteMethod for re-send registration email
     Student.send = function(email, cb) {
             Student.findOne({
                 where: {
