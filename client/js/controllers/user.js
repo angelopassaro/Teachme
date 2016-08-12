@@ -21,11 +21,11 @@ define(['app', 'services/date-services'], function(app){
           console.log(error);
           });
     } else { console.log("non autenticato"); }
-    
+
     $scope.editUser = function(){
-      $state.go('platform.edituser');
+      $state.go('platform.user.edit');
     };
-    
+
     $scope.updateUser = function(){
       $scope.Student.birthday = new Date(Date.UTC($scope.Date.year, $scope.months.indexOf($scope.Date.month), $scope.Date.day));
       Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise

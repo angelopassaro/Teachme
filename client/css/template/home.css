@@ -1,7 +1,4 @@
-@import url("../atoms/button.css");
-@import url("../atoms/text.css");
-@import url("../molecoles/menu.css");
-@import url("../atoms/wrapper.css");
+@import url("../components/menu.css");
 
 body{
   font: normal 15px "Helvetica Neue", "Arial", "Helvetica", "Geneva", sans-serif;
@@ -175,24 +172,72 @@ body{
   color: #444;
 }
 
+.title{
+  background: url("../../images/ico1.png") no-repeat center;
+  background-size: 100% auto;
+}
+
+.features__ul__li--ft1{
+  background: url('../../images/search.png') no-repeat top center;
+}
+
+.features__ul__li--ft2{
+  background: url('../../images/notes.png') no-repeat top center;
+}
+
+.features__ul__li--ft3 {
+   background: url('../../images/streaming.png') no-repeat top center;
+}
+
+.features__ul__li--ft4{
+  background: url('../../images/feedback.png') no-repeat top center;
+}
+
+.mainimage{
+  background: url('../../images/main.gif') no-repeat center;
+  background-size: contain;
+  background-color: #0091b4;
+}
+
+.vote {
+  background: url('../../images/vote.jpg') no-repeat center;
+  background-size: 100% 100%;
+}
+
 @media only screen and (max-width: 480px){
-  
+
+  .mainimage{
+    background: url('../../images/mobilemain1.jpg') no-repeat center;
+    background-size: 100% 100%;
+    height: 100%;
+  }
+
+  .title{
+    width: 70%;
+  }
+
+  .vote{
+    height: 325px;
+    background: url('../../images/votemobile.jpg') no-repeat center;
+    background-size: contain;
+  }
+
   .primarycontent__h3{
     width: 100%;
   }
-  
+
   .mainimage__h2{
     font-size: 40px;
   }
-  
+
   .cta__h3{
     width: 100%;
   }
-  
+
   .button{
     width: 30%;
   }
-  
+
   .features__ul{
   column-count: 1;
   -webkit-column-count: 1;
@@ -200,13 +245,13 @@ body{
 	padding-left: 0;
 	text-indent: 0;
   }
-  
+
   .features__ul__li{
     float: none;
     margin: auto;
     display: inline-block;
   }
-  
+
 .footer__contactinfo, .footer__companylinks, .footer__platforminfo{
   width: 100%;
   clear: both;
@@ -215,7 +260,7 @@ body{
 }
 
 @media screen and (min-width: 481px) and (max-width: 1280px){
-  
+
   .features__ul{
     column-count: 2;
    -webkit-column-count: 2;
@@ -223,11 +268,11 @@ body{
    margin: 0 auto;
    display: inline-block;
   }
-  
+
   .features__ul__li{
     clear: both;
   }
-  
+
   .footer__contactinfo, .footer__companylinks, .footer__platforminfo{
     width: 33%;
 		vertical-align: top;
@@ -239,7 +284,7 @@ body{
     display: inline-block;
     vertical-align: bottom;
   }
-  
+
   .menu__ul{
     display: none;
 		position: absolute;
@@ -251,14 +296,14 @@ body{
 		width: 50%;
 		border-radius: 4px 0 4px 4px;
   }
-  
+
   .menu__li{
     text-align: center;
 		width: 100%;
 		padding: 10px 0;
 		margin: 0;
   }
-  
+
   .features__ul__li{
     width: 100%;
   }
@@ -270,7 +315,7 @@ body{
 		display: inline-block;
 		margin: 0;
 	}
-  
+
   .vote{
     height: 900px;
   }

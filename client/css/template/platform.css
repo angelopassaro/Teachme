@@ -1,10 +1,16 @@
-@import url("../atoms/inputs.css");
-@import url("../atoms/wrapper.css");
-@import url("../atoms/text.css");
-@import url("../molecoles/menu.css");
+@import url("../components/menu.css");
 
+.header {
+  background: #0091b4;
+}
 
-body, html {
+.title {
+  background: url("../../images/ico1.png") no-repeat center;
+  background-size: contain;
+  height: 92px;
+}
+
+body{
   font: normal 15px "Helvetica Neue", "Arial", "Helvetica", "Geneva", sans-serif;
   margin: 0;
   padding: 0;

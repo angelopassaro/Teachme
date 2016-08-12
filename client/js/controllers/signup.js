@@ -1,7 +1,8 @@
 define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('SignupCtrl', ['$scope', 'Student','$state','dateService',
-    function($scope, Student, $state, dateService){
+  app.controller('SignupCtrl', ['$scope', 'Student','$state','dateService', 'cssInjector',
+    function($scope, Student, $state, dateService, cssInjector){
+      cssInjector.add($state.current.data.css);
       /*Constants and Validators*/
       $scope.months = dateService.createMonths();
       $scope.years = dateService.range(1970, 2016);

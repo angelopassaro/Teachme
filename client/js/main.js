@@ -6,7 +6,7 @@ require.config({
     'angular-router': '../vendor/angular-ui-router/release/angular-ui-router',
     'app-router': './config/router',
     'loopback': './services/lb-services',
-    'angular-css': '../vendor/angular-css/angular-css'
+    'angular-css': '../vendor/angular-css-injector/angular-css-injector'
   },
   shim : {
     'angular': {exports: 'angular'},
@@ -14,7 +14,7 @@ require.config({
     'angular-resource': {deps: ['angular']},
     'loopback': {deps: ['angular', 'angular-resource']},
     'app-router': {deps: ['angular-router']},
-    'angular-css': {deps: ['angular-router']}
+    'angular-css': {deps: ['angular']}
   },
   priority: ['angular']
 });
