@@ -28,6 +28,8 @@ Platform for tutoring.
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
 --------------------------
 
+effetuare il login , poi il logout(vedere che succede alla pagina principale) effettuare nuovamente il login (vedere che succede)
+
 ###Back End
 * Test email verification   (OK)
 * Add login function (OK)
