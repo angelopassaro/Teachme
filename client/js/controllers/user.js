@@ -23,7 +23,7 @@ define(['app', 'services/date-services'], function(app){
     } else { console.log("non autenticato"); }
 
     $scope.editUser = function(){
-      $state.go('platform.user.edit');
+      $state.go('edituser');
     };
 
     $scope.updateUser = function(){

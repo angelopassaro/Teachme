@@ -1,6 +1,6 @@
 <div ng-init="skills = getSkills()">
   <div ng-repeat ="skill in skills">
-  <fieldset class="fieldset">
+  <fieldset class="fieldset" ng-hide="skill.visible">
     <legend class="legend">Skill:</legend>
     <p class="paragraph">University:<span class="span" ng-bind="skill.university.name"></span></p>
     <p class="paragraph">Course:<span class="span" ng-bind="skill.course.name"></span></p>
@@ -10,5 +10,6 @@
      <button class="button" ng-click="deleteLesson($index)">Delete</button>
   </fieldset>
   </div>
-  <div ui-view></div>
+<div ui-view></div>
 </div>
+<button class="button">Create New</button>

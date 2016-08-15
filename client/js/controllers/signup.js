@@ -1,17 +1,16 @@
 define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('SignupCtrl', ['$scope', 'Student','$state','dateService', 'cssInjector',
+  app.controller('SignupCtrl', ['$scope', 'Student','$state','dateService',
     function($scope, Student, $state, dateService, cssInjector){
-      cssInjector.add($state.current.data.css);
       /*Constants and Validators*/
       $scope.months = dateService.createMonths();
       $scope.years = dateService.range(1970, 2016);
       $scope.days = dateService.range(1, 31);
-      $scope.nickValidator = "\\w*\\d*";
-      $scope.nameValidator = "\\w*";
-      $scope.lastnameValidator = "\\w*";
-      $scope.emailValidator = "\\w*.\\w+\\d@\\w*.unisa.it";/*Fix it*/
-      $scope.passwordValidator = "\\w*";
+      $scope.nickValidator = app.TEXT_PATTERN;
+      $scope.nameValidator = app.TEXT_PATTERN
+      $scope.lastnameValidator = app.TEXT_PATTERN
+      $scope.emailValidator = app.EMAIL_VALIDATOR;
+      $scope.passwordValidator = app.PASSWD_PATTERN;
       /*Functions*/
       $scope.createDays = function(){
 			 switch($scope.Form.month){

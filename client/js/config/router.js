@@ -39,29 +39,51 @@ define(['app', 'providers/lazyload'], function(app){
          data: {css: ASSETS_PATH + '/platform.css'},
          resolve: lazyLoadProvider.resolve('platform')
       })
-        .state('platform.user', {
+        .state('user', {
          url: '/user',
+         parent: 'platform',
          templateUrl: FRONT_PATH + '/userhome.html',
          controller: 'UserCtrl',
          resolve: lazyLoadProvider.resolve('user')
       })
-        .state('platform.user.edit', {
+        .state('edituser', {
          url: '/edit',
+         parent: 'user',
          templateUrl: FRONT_PATH + '/edituser.html',
          controller: 'UserCtrl',
          resolve: lazyLoadProvider.resolve('user')
       })
-        .state('platform.skill', {
-          url: '/skill',
+        .state('skill', {
+          url: '/skills',
+          parent: 'platform',
           templateUrl: FRONT_PATH + '/myskill.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
         })
-        .state('platform.skill.edit', {
+        .state('editskill', {
           url: '/edit',
+          parent: 'skill',
           templateUrl: FRONT_PATH + '/editskill.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
         });
+  }]);
+  app.run(['$rootScope', 'lazyLoad', function($rootScope, lazyLoadProvider){
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){
+      if(fromState.name === toState.parent){/*Da padre a figlio*/
+        if(fromState.data.css !== toState.data.css){
+          lazyLoadProvider.injectCSS(toState.data.css);
+        }
+      } else if (fromState.parent === toState.name) { /*Da figlio a padre*/
+          lazyLoadProvider.injectCSS(fromState.data.css);
+      } else{
+         if(fromState.data !== undefined){
+          lazyLoadProvider.injectCSS(toState.data.css);
+          lazyLoadProvider.removeCSS(fromState.data.css);
+        }else {
+          lazyLoadProvider.injectCSS(toState.data.css);
+        }
+      }
+    });
   }]);
 });

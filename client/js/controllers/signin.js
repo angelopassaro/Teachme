@@ -1,6 +1,5 @@
 define(['app'], function(app){
-    app.controller('SigninCtrl', ['$scope', 'Student', '$state', 'cssInjector', function($scope, Student, $state, cssInjector){
-      cssInjector.add($state.current.data.css);
+    app.controller('SigninCtrl', ['$scope', 'Student', '$state', function($scope, Student, $state){
         $scope.log = function(){
             $scope.formLogin.ttl = 60 * 60;
             var logType = $scope.formLogin.user;

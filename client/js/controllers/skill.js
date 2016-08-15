@@ -1,6 +1,8 @@
 define(['app'], function(app){
   app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course',
     function($scope, $state, Student, Lesson, Course){
+      $scope.Skill = $scope.Skill || {};
+      $scope.visible = [];
       $scope.getSkills = function(){
         var tutorSkills = [];
         Lesson.find({filter: {where: {studentId: Student.getCurrentId()}}},
@@ -10,7 +12,6 @@ define(['app'], function(app){
               fillJSON(json, lessons[i]);
               tutorSkills[i] = json;
             }
-            console.log(tutorSkills);
             },
             function(error){
               console.log(error);
@@ -44,6 +45,10 @@ define(['app'], function(app){
       };
 
       $scope.editForm = function(index){
+        for(var i=index; i<$scope.skills.length; i++){
+           $scope.skills[i].visible = true;
+         }
+        $state.go('editskill');
         $scope.Skill.university = $scope.skills[index].university.name;
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
