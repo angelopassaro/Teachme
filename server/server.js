@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(loopback.token());
 
-new schedule('00 03 14 * * 0-6', function() {
+new schedule('00 37 14 * * 0-6', function() {
     console.log(' > start schedule');                                                                                                           //DEBUG
     deleteStudent();
     deleteOldToken();
