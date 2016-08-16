@@ -78,8 +78,8 @@ define(['app', 'providers/lazyload'], function(app){
           lazyLoadProvider.injectCSS(fromState.data.css);
       } else{
          if(fromState.data !== undefined){
-          lazyLoadProvider.injectCSS(toState.data.css);
           lazyLoadProvider.removeCSS(fromState.data.css);
+          lazyLoadProvider.injectCSS(toState.data.css);
         }else {
           lazyLoadProvider.injectCSS(toState.data.css);
         }
