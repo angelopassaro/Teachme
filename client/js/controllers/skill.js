@@ -1,6 +1,7 @@
 define(['app'], function(app){
-  app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course',
-    function($scope, $state, Student, Lesson, Course){
+  'use-strict';
+  app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course', 'University',
+    function($scope, $state, Student, Lesson, Course, University){
       $scope.Skill = $scope.Skill || {};
       $scope.visible = [];
       $scope.getSkills = function(){
@@ -53,6 +54,27 @@ define(['app'], function(app){
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
         $scope.Skill.price = $scope.skills[index].lesson.totalPrice;
+      };
+
+      $scope.editSkill = function(){
+        Student.findById({id: Student.getCurrentId()}, function(student){
+          University.findById({id: student.universityId}, function(university){
+            University.offers({id: university.id}, function(course){
+              Lesson.find({filter: {where: {studentId: Student.getCurrentId(), courseId: course.id}}}, function(lesson){
+                lesson.price = $scope.Skill.price;
+              }, function(error){console.log("Lesson FIND ERROR");});
+              Course.toughtBy({id: course.id}, function(teacher){
+                teacher.name = $scope.Skill.teacher.split(' ')[0];
+                teacher.lastName = $scope.Skill.teacher.split(' ')[1];
+                teacher.$save();
+              }, function(error){console.log("Course TOUGHTBY ERROR");});
+              course.name = $scope.Skill.course;
+              course.$save();
+            }, function(error){console.log("University OFFERS ERROR");});
+            university.name = $scope.Skill.university;
+            university.$save();
+          }, function(error){console.log("University FINDBYID ERROR");});
+        }, function(error){console.log("Student FINDBYID ERROR");});
       };
   }]);
 });
