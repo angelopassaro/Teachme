@@ -1,7 +1,3 @@
-//added
-//var loopback = require('loopback');
-// changed password hidden in user.json(node_module/loopback/common)
-
 var config = require('../../server/config.json');
 var path = require('path');
 var loopback = require('loopback');
@@ -15,7 +11,6 @@ module.exports = function(Student) {
     Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
     Student.validatesLengthOf('username', {min: 3, message: {min: ' Enter min 3 characters  '}});
-    Student.validatesLengthOf('password', {min: 5, message:{min: 'Enter min 5 characters' }})
 
 
 
@@ -28,7 +23,12 @@ module.exports = function(Student) {
                 where: {tag : domain}
             }, function(err, university) {
                 if (university) { //add Student need next to confirm
-                    ctx.instance.universityId = university.name;
+                    // ctx.instance.universityId = university.name;
+                    // ctx.instance.contact = [
+                    //     {
+                    //         "Default email: ": ctx.instance.email
+                    //     }
+                    // ];
                     addContact(ctx.instance.contact, ctx.instance.email);
                     next();
                 } else
@@ -119,50 +119,51 @@ module.exports = function(Student) {
     /* Delete cascade for user  */
     Student.observe('before delete', function (ctx, next) {
 
-         Student.app.models.Feedback.destroyAll({
-             sendToId: ctx.where.email
-         }, function(err,feedback) {
-             //console.log("feedback cancellati", feedback);
-         });
 
-         Student.app.models.Lesson.find({
-             where:{
-                 studentId: ctx.where.email
-             }
-         }, function(err, lessons) {
-             if(lessons){
-                 //console.log(lessons);
-                 var linkModel = loopback.getModelByType("studentlesson");
-                 for(var i = 0; i < lessons.length; i++){
-                     //console.log(lessons[i].id);
-                     linkModel.destroyAll({ lessonId : lessons[i].id});
-                 }
-             }
-         })
-
-         Student.findOne({
-             where: {email: ctx.where.email}
-         }, function(err, student) {
-             if(student) {
-                          student.teach.destroyAll(function(err) {
-                              console.log(err);
-                          })
-                          // check again again .....
-                          student.require.destroyAll(function(err) {
-                              console.log(err);
-                          })
-                     }
-         });
-
-         Student.app.models.AccessToken.destroyAll({
-             userId: ctx.where.email
-         },function(err, token) {
-             //console.log("token cancellati", token);
-         })
+        //  Student.app.models.Feedback.destroyAll({
+        //      sendToId: ctx.where.email
+        //  }, function(err,feedback) {
+        //      //console.log("feedback cancellati", feedback);
+        //  });
+         //
+        //  Student.app.models.Lesson.find({
+        //      where:{
+        //          studentId: ctx.where.email
+        //      }
+        //  }, function(err, lessons) {
+        //      if(lessons){
+        //          console.log("trovata lezione",lessons,"************************");
+        //          var linkModel = loopback.getModelByType("studentlesson");
+        //          for(var i = 0; i < lessons.length; i++){
+        //              console.log("ciclo lezioni studente" ,lessons[i].id);
+        //              linkModel.destroyAll({ lessonId : lessons[i].id});
+        //          }
+        //      }
+        //  })
+         //
+        //  Student.findOne({
+        //      where: {email: ctx.where.email}
+        //  }, function(err, student) {
+        //      if(student) {
+        //          console.log("trovato student")
+        //                   student.teach.destroyAll(function(err) {
+        //                       //console.log(err);
+        //                   })
+        //                   // check again again .....
+        //                   student.require.destroyAll(function(err) {
+        //                       //console.log(err);
+        //                   })
+        //              }
+        //  });
+         //
+        //  Student.app.models.AccessToken.destroyAll({
+        //      userId: ctx.where.email
+        //  },function(err, token) {
+        //      //console.log("token cancellati", token);
+        //  })
 
         next();
     });
-
 
 
 
@@ -195,7 +196,7 @@ module.exports = function(Student) {
 
 // send a email a specific user
 //@param user the user that recive the email
-//@param texts an array contatin subject and body email  
+//@param texts an array contatin subject and body email
     function Email(user, texts) {
 
         var texts = texts || null;

@@ -45,6 +45,7 @@ effetuare il login , poi il logout(vedere che succede alla pagina principale) ef
 * add notify in student (embeddsmany)
 * accept in lesson is usless ->delete
 * No delete a user with lesson ?
+* add student a universities
 * feedback relation try hasmanybelongsto  problema feedback studenti non esistenti feedback relations with user(send) and lesson (find course and tutor)
 * Student can tutor himself
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
