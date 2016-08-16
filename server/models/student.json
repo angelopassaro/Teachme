@@ -2,7 +2,7 @@
     "name": "student",
     "plural": "students",
     "base": "User",
-    "idInjection": false,
+    "idInjection": true,
     "options": {
         "validateUpsert": true
     },
