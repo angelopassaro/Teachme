@@ -2,8 +2,24 @@ define(['app'], function(app){
   'use-strict';
   app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course', 'University',
     function($scope, $state, Student, Lesson, Course, University){
+      /*Initialization of scope Variables*/
       $scope.Skill = $scope.Skill || {};
-      $scope.visible = [];
+      University.find(function(success){
+        $scope.universities = success.map(function(data){ return data.id;});
+      });
+
+      $scope.getCourses = function(){
+        University.offers({id: $scope.Skill.university}, function(success){
+          $scope.courses = success.map(function(element){ return element.name;});
+        });
+      };
+
+      $scope.getTeachers = function(){
+        Course.toughtBy({id: $scope.Skill.course}, function(success){
+          $scope.Skill.teacher = success.name + ' ' + success.lastName;
+        });
+      }
+      /*Functions from API.*/
       $scope.getSkills = function(){
         var tutorSkills = [];
         Lesson.find({filter: {where: {studentId: Student.getCurrentId()}}},
@@ -13,6 +29,7 @@ define(['app'], function(app){
               fillJSON(json, lessons[i]);
               tutorSkills[i] = json;
             }
+            console.log(tutorSkills);
             },
             function(error){
               console.log(error);
@@ -50,7 +67,7 @@ define(['app'], function(app){
            $scope.skills[i].visible = true;
          }
         $state.go('editskill');
-        $scope.Skill.university = $scope.skills[index].university.name;
+        $scope.Skill.university = $scope.skills[index].university.id;
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
         $scope.Skill.price = $scope.skills[index].lesson.totalPrice;
@@ -71,10 +88,14 @@ define(['app'], function(app){
               course.name = $scope.Skill.course;
               course.$save();
             }, function(error){console.log("University OFFERS ERROR");});
-            university.name = $scope.Skill.university;
+            university.id = $scope.Skill.university;
             university.$save();
           }, function(error){console.log("University FINDBYID ERROR");});
         }, function(error){console.log("Student FINDBYID ERROR");});
+      };
+
+      $scope.createForm = function(){
+        $state.go('newskill');
       };
   }]);
 });

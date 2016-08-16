@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <fieldset class="fieldset">
+    <legend class="legend">New Skill</legend>
+    <label class="label">University:<select ng-change="getCourses()" ng-model="Skill.university" class="select" ng-init="Skill.university = universities[0]" ng-options="university for university in universities"></select></label>
+    <label class="label">Course:<select class="select" ng-change="getTeachers()" ng-model="Skill.course" ng-init="Skill.course = courses[0]" ng-options="course for course in courses"></select></label>
+    <label class="label">Teacher:<select class="select"  ng-model="Skill.teacher" ng-init="Skill.teacher = teachers[0]" ng-options="teacher for teacher in teachers"></select></label>
+    <label class="label">Price:<input type="text" class="input_text input_text--focused" ng-model="Skill.price"/></label>
+    <button class="button">Create</button>
+  </fieldset>
+</div>

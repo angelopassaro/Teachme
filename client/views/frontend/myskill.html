@@ -2,7 +2,7 @@
   <div ng-repeat ="skill in skills">
   <fieldset class="fieldset" ng-hide="skill.visible">
     <legend class="legend">Skill:</legend>
-    <p class="paragraph">University:<span class="span" ng-bind="skill.university.name"></span></p>
+    <p class="paragraph">University:<span class="span" ng-bind="skill.university.id"></span></p>
     <p class="paragraph">Course:<span class="span" ng-bind="skill.course.name"></span></p>
     <p class="paragraph">Teacher:<span class="span" ng-bind="skill.teacher[0].name+' '+skill.teacher[0].lastName"></span></p>
      <p class="paragraph">Price:<span class="span" ng-bind="skill.lesson.totalPrice"></span></p>
@@ -12,4 +12,4 @@
   </div>
 <div ui-view></div>
 </div>
-<button class="button">Create New</button>
+<button class="button" ng-click="createForm()">Create New</button>

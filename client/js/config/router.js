@@ -66,6 +66,13 @@ define(['app', 'providers/lazyload'], function(app){
           templateUrl: FRONT_PATH + '/editskill.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
+        })
+        .state('newskill', {
+          url: 'new',
+          parent: 'platform',
+          templateUrl: FRONT_PATH + '/newskill.html',
+          controller: 'SkillCtrl',
+          resolve: lazyLoadProvider.resolve('skill')
         });
   }]);
   app.run(['$rootScope', 'lazyLoad', function($rootScope, lazyLoadProvider){
