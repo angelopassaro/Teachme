@@ -77,19 +77,20 @@ module.exports = function(Student) {
                 id: instance.lessonId
             }
         }, function(err, lesson){
-            Student.findOne({
-                where:{
-                    email:lesson.studentId
-                }
-            },
-            function(err, student) {
-                if(student) {
-                    //student.notification.create({text : "aggiungere un testo "});
-
+            if(lesson){
+                Student.findOne({
+                    where:{
+                        email:lesson.studentId
+                    }
+                },
+                function(err, student) {
+                    if(student) {
+                    student.notification.create({text : "aggiungere un testo "});
                     var options = ["News: Request lesson", " Have request for lesson check your account"];
-                    //Email(student, options);
-                }
-            })
+                    Email(student, options);
+                    }
+                })
+            }
         }
     )
     next();

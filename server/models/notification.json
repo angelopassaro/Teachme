@@ -1,7 +1,8 @@
 {
     "name": "notification",
+    "plural": "notifications",
     "base": "Model",
-    "idInjection": false,
+    "idInjection": true,
     "options": {
         "validateUpsert": true
     },
