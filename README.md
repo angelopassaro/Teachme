@@ -42,10 +42,9 @@ effetuare il login , poi il logout(vedere che succede alla pagina principale) ef
 * Start delete cascade user(OK)
 * Email when a studen ask for tutor (OK)
 * tutor don't know who is reserved a lesson (find in studentlesson the lesson's id)
-* add notify in student (embeddsmany)
+* add notify in student (embeddsmany)(OK)
 * accept in lesson is usless ->delete
 * No delete a user with lesson ?
-* add student a universities
 * feedback relation try hasmanybelongsto  problema feedback studenti non esistenti feedback relations with user(send) and lesson (find course and tutor)
 * Student can tutor himself
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
@@ -60,3 +59,5 @@ ________________________________________________________________________________
 * student passpartout come inviare la data di scadenza? (!important) (criptare richiesta?)(nascondere nel response passpartout)
 * embedds bug per mongo idInjection https://github.com/strongloop/loopback/issues/2302 (in attesa di soluzione)
 * embedds bug per hook https://github.com/strongloop/loopback-datasource-juggler/issues/480
+
+* aggiunto acl in university per  provare la get con student (rivedere gli acl alla fine)

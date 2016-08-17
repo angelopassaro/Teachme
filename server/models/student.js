@@ -23,12 +23,6 @@ module.exports = function(Student) {
                 where: {tag : domain}
             }, function(err, university) {
                 if (university) { //add Student need next to confirm
-                    // ctx.instance.universityId = university.name;
-                    // ctx.instance.contact = [
-                    //     {
-                    //         "Default email: ": ctx.instance.email
-                    //     }
-                    // ];
                     addContact(ctx.instance.contact, ctx.instance.email);
                     next();
                 } else
@@ -77,23 +71,26 @@ module.exports = function(Student) {
 
     // send a emai when a student require a lesson
     Student.afterRemote('*.__link__require', function(context, instance, next){
+        //console.log(context);
         Student.app.models.Lesson.findOne({
             where:{
                 id: instance.lessonId
             }
         }, function(err, lesson){
-            Student.findOne({
-                where:{
-                    email:lesson.studentId
-                }
-            },
-            function(err, student) {
-                if(student) {
-                    console.log(student.notification.add);
+            if(lesson){
+                Student.findOne({
+                    where:{
+                        email:lesson.studentId
+                    }
+                },
+                function(err, student) {
+                    if(student) {
+                    student.notification.create({text : "aggiungere un testo "});
                     var options = ["News: Request lesson", " Have request for lesson check your account"];
                     Email(student, options);
-                }
-            })
+                    }
+                })
+            }
         }
     )
     next();
@@ -133,10 +130,10 @@ module.exports = function(Student) {
                  }
              }, function(err, lessons) {
                  if(lessons){
-                     console.log(lessons);
+                     //console.log(lessons);
                      var linkModel = loopback.getModelByType("studentlesson");
                      for(var i = 0; i < lessons.length; i++){
-                         console.log(lessons[i].id);
+                         //console.log(lessons[i].id);
                          linkModel.destroyAll({ lessonId : lessons[i].id});
                      }
                  }

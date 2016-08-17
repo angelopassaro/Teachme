@@ -2,7 +2,7 @@
     "name": "student",
     "plural": "students",
     "base": "User",
-    "idInjection": false,
+    "idInjection": true,
     "options": {
         "validateUpsert": true
     },
@@ -84,6 +84,14 @@
             }
         }
     },
-    "acls": [],
+    "acls": [
+        {
+        "accessType": "EXECUTE",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "ALLOW",
+        "property": "__get__notifications"
+      }
+    ],
     "methods": {}
 }
