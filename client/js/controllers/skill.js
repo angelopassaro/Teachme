@@ -41,7 +41,7 @@ define(['app'], function(app){
         return tutorSkills;
       };
 
-      var oldValues;
+
       $scope.editForm = function(index){
         for(var i=index; i<$scope.skills.length; i++){
            $scope.skills[i].visible = true;
@@ -51,11 +51,27 @@ define(['app'], function(app){
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
         $scope.Skill.price = $scope.skills[index].lesson.totalPrice;
-        oldValues = $scope.Skill;
+        $scope.Old = $scope.skills[index];
       };
 
       $scope.editSkill = function(){
-        console.log(oldValues);
+        University.findById({id: $scope.Old.university.id}, function(university){
+          university.id = $scope.Skill.university;
+          University.prototype$updateAttributes({id: $scope.Old.university.id}, university);
+        }, function(error){ console.log(error); });
+        Teacher.findById({id: $scope.Old.teacher[0].id}, function(teacher){
+          teacher.name = $scope.Skill.teacher.split(' ')[0];
+          teacher.lastName = $scope.Skill.teacher.split(' ')[1];
+          Teacher.prototype$updateAttributes({id: teacher.id}, teacher);
+        }, function(error){ console.log(error); });
+        Course.findById({id: $scope.Old.course.id}, function(course){
+          course.name = $scope.Skill.course;
+          Course.prototype$updateAttributes({id: course.id}, course);
+        }, function(error){ console.log(error); });
+        Lesson.findById({id: $scope.Old.lesson.id}, function(lesson){
+          lesson.totalPrice = $scope.Skill.price;
+          Lesson.prototype$updateAttributes({id: lesson.id}, lesson);
+        }, function(error){ console.log(error);});
       };
 
       $scope.createForm = function(){
