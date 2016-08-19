@@ -4,21 +4,30 @@ define(['app'], function(app){
     function($scope, $state, Student, Lesson, Course, University, Teacher){
       /*Initialization of scope Variables*/
       $scope.Skill = $scope.Skill || {};
-      University.find(function(success){
-        $scope.universities = success.map(function(data){ return data.id;});
-      });
+      University.find(function(universities){
+        $scope.universities = universities.map(function(value){
+          return value.id;
+        });
+      }, function(error){ console.log(error);});
 
       $scope.getCourses = function(){
-        University.offers({id: $scope.Skill.university}, function(success){
-          $scope.courses = success.map(function(element){ return element.name;});
-        });
+        University.offers({id: $scope.Skill.university}, function(courses){
+          $scope.courses = courses.map(function(value){
+            return value.name;
+          });
+        }, function(error){ console.log(error); });
       };
 
       $scope.getTeachers = function(){
-        Course.toughtBy({id: $scope.Skill.course}, function(success){
-          $scope.Skill.teacher = success.name + ' ' + success.lastName;
+        University.offers({id: $scope.Skill.university, filter: {where: {name: $scope.Skill.course}}}, function(course){
+          Course.toughtBy({id: course[0].id}, function(teacher){
+            $scope.teachers = teacher.map(function(value){
+              return value.name + ' ' + value.lastName;
+            })
+          }, function(error){ console.log(error); });
         });
       }
+
       /*Functions from API.*/
       $scope.getSkills = function(){
         var tutorSkills = [];
@@ -76,6 +85,22 @@ define(['app'], function(app){
 
       $scope.createForm = function(){
         $state.go('newskill');
+      };
+
+      $scope.createSkill = function(){
+        University.offers({id: $scope.Skill.university, filter:{where: {name: $scope.Skill.course}}}, function(course){
+          Lesson.create({studentId: Student.getCurrentId(), courseId: course[0].id,
+            dateLesson: new Date(), startLesson: new Date(), duration: 0, totalPrice: $scope.Skill.price}, function(lesson){
+              console.log(lesson);
+            }, function(error){ console.log(error);});
+        }, function(error){ console.log(error);});
+      };
+
+      $scope.deleteLesson = function(index){
+        Lesson.deleteById({id: $scope.skills[index].lesson.id}, function(result){
+          console.log(result);
+          $state.go('skill');
+        }, function(error){ console.log(error);});
       };
   }]);
 });
