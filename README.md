@@ -8,21 +8,17 @@ Platform for tutoring.
 * [CSS3](https://it.wikipedia.org/wiki/CSS)
 * [ANGULARJS](https://it.wikipedia.org/wiki/AngularJS)
 * [LOOPBACK](https://strongloop.com/node-js/loopback-framework/)
+* [MONGODB](https://it.wikipedia.org/wiki/MongoDB)
 
 #TODO LIST
 
 ###Front End
-* Fix images of home.html for mobile view(OK)
-* Fix Nav bar click for tablet and mobile view(OK)
-* Fix title for mobile view (OK)
-* add animation for validate form into signup.html (OK)
-* add cross-compatible select and checkbox (OK)
-* optimize CSS speed loading use angular-css castillo
+* Use better resized images for home page (NOT CRITICAL)
 * Create view, controllers and style for service page. (PARTIALS)
-* signin.html change view (OK)
-* add require.js for dynamic injection of javascript (OK)
-* add directives for sercurity form (OK)
-* Add responsive platform.html
+* Add responsive platform.html (CRITICAL)
+* Need RegExp pattern for global validantion (PARTIALS)
+* Set filter limit to mySkill (!IMPORTANT)
+* Streaming Peer to Peer ? (NOT IMPORTANT)
 
 ---------------------------
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
