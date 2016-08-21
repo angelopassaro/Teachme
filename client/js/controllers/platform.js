@@ -1,4 +1,5 @@
 define(['app'], function(app){
+  'use-strict';
   app.controller('PlatformCtrl', ['$scope', '$state', 'Student', function($scope, $state, Student){
     $scope.loadView = function(state){
       $state.go(state);
