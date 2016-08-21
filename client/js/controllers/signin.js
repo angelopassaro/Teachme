@@ -1,4 +1,5 @@
 define(['app'], function(app){
+  'use-strict';
     app.controller('SigninCtrl', ['$scope', 'Student', '$state', function($scope, Student, $state){
         $scope.log = function(){
             $scope.formLogin.ttl = 60 * 60;

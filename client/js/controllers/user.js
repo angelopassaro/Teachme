@@ -1,4 +1,5 @@
 define(['app', 'services/date-services'], function(app){
+  'use-strict';
   app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', function($scope, $state, Student, dateService){
     $scope.Student = $scope.Student || {};
     $scope.Date = $scope.Date || {};

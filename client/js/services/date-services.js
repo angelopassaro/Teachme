@@ -1,6 +1,7 @@
 define(['app'], function(app){
+  'use-strict';
   app.service('dateService', function(){
-    
+
   /*Format a Date object following ISO standard
    *params: date (String or date object)
    *return: a string formatted yyyy-mm-dd  or for selected token
@@ -11,7 +12,7 @@ define(['app'], function(app){
     else
       return date.substring(0, 10).replace("-", token);
   };
-  
+
   /*Create a JSON object Date
    *params: date (could be Date object or String)*
    *return : A JSON containing day month and year*
@@ -23,7 +24,7 @@ define(['app'], function(app){
       newDate = date.substring(0, 10).split('-');
       return {'year': parseInt(newDate[0]), 'month': parseInt(newDate[1]), 'day': parseInt(newDate[2])};
   };
-  
+
   /*Create an array for generating ranged days or years
    *params: start: value from start
    *params: finish: value from finish
