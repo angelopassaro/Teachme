@@ -12,7 +12,7 @@ define(['app', 'services/date-services'], function(app){
           jsonDate = dateService.parseDate(student.birthday);
           $scope.Student.name = student.name;
           $scope.Student.lastName = student.lastName;
-          $scope.Student.birthday = dateService.isoDate(student.birthday);
+          $scope.Student.birthday = dateService.isoDate(student.birthday, 0);
           $scope.Student.email = student.email;
           $scope.Student.contacts = student.contacts;
           $scope.Date.year = jsonDate.year;

@@ -1,16 +1,18 @@
 define(['app'], function(app){
   'use-strict';
   app.service('dateService', function(){
-
+    var ACCEPTED_TOKENS = ['-', '/', '.', ' '];
   /*Format a Date object following ISO standard
-   *params: date (String or date object)
+   *params: date (String or date object), token: An integer that represent token separation
+   * Possible values of token: 0 => '-', 1 => '/', 2 => '.', 3 =>' '. Values greater to 3 or lesser to 0 are assigned to 1
    *return: a string formatted yyyy-mm-dd  or for selected token
    */
-  this.isoDate = function(date, token="-"){
+  this.isoDate = function(date, token){
+    token = (token < 0 && token > 3) ? 0 : token;
     if(date instanceof Date)
-      return [date.getFullYear(), (date.getMonth() + 1), date.getDay()].join(token);
+      return [date.getFullYear(), (date.getMonth() + 1), date.getDay()].join(ACCEPTED_TOKENS[token]);
     else
-      return date.substring(0, 10).replace("-", token);
+      return date.substring(0, 10).replace("-", ACCEPTED_TOKENS[token]);
   };
 
   /*Create a JSON object Date
