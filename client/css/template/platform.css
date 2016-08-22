@@ -1,11 +1,14 @@
-
 .header {
   background: #0091b4;
 }
 
 .title {
+  float: left;
   background: url("../../images/ico1.png") no-repeat center;
   background-size: contain;
+  display: inline-block;
+  vertical-align: middle;
+  width: 391px;
   height: 92px;
 }
 
@@ -106,15 +109,11 @@ body{
 @media only screen and (max-width: 810px){
   #menu-icon{
     display: inline-block;
-    float: left;
+    float: right;
   }
 
   .content {
     width: 100%;
-  }
-
-  .button {
-    float: none;
   }
 
   .menu__ul{
@@ -124,7 +123,7 @@ body{
 		background: #0091b4;
 		border: 5px solid #444;
 		left: 20px;
-		top: 100px;
+		top: 60px;
 		width: 70%;
 		border-radius: 4px 0 4px 4px;
     z-index: 1;
@@ -140,7 +139,6 @@ body{
 
 @media only screen and (max-width: 480px){
   .title {
-    width: 60%;
-    float: right;
+    width: 70%;
   }
 }

@@ -1,9 +1,9 @@
 .menu {
-  
+
 }
 
 .menu__ul{
-  
+
 }
 
 .menu__li {
@@ -23,5 +23,5 @@
   background: url('../../images/nav.png') no-repeat center;
   width: 40px;
   height: 40px;
-  margin: 36px 25px;
+  margin: 30px 15px;
 }

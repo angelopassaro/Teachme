@@ -1,15 +1,19 @@
-
-
+/*Desktop */
 body{
   font: normal 15px "Helvetica Neue", "Arial", "Helvetica", "Geneva", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #fff;
-  color: #777;
 }
 
 .paragraph{
   color: #444;
+}
+
+.container {
+  position: absolute;
+  bottom: 0;
+  width: 100%
 }
 
 .button {
@@ -28,7 +32,6 @@ body{
 
 .h2 {
   color: #444;
-  margin-bottom: 20px;
 }
 
 .h3 {
@@ -50,7 +53,7 @@ body{
 }
 
 .mainimage__h2{
-  margin: 180px 0 40px 0;
+  margin: 180px 0 0 0;
   color: #e5e5e5;
   text-shadow: 1px 0 #444, 0 1px #444, 1px 0 #444, 0 1px #444;
 }
@@ -64,7 +67,7 @@ body{
 .title {
   float: left;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   width: 391px;
   height: 92px;
 }
@@ -166,6 +169,8 @@ body{
 .mainimage{
   height: 580px;
   padding-top: 1px;
+  text-align: center;
+  position: relative;
 }
 
 .footer__contactinfo__anchor{
@@ -194,22 +199,28 @@ body{
 }
 
 .mainimage{
-  background: url('../../images/main.gif') no-repeat center;
+  background:url('../../images/main.gif') no-repeat center;
   background-size: contain;
   background-color: #0091b4;
 }
 
 .vote {
   background: url('../../images/vote.jpg') no-repeat center;
-  background-size: 100% 100%;
+  background-size: contain;
+  height: 700px;
 }
-
+/*Smarthphone*/
 @media only screen and (max-width: 480px){
 
   .mainimage{
     background: url('../../images/mobilemain1.jpg') no-repeat center;
-    background-size: 100% 100%;
-    height: 100%;
+    background-size: cover;
+    height: 338px;
+  }
+
+  .mainimage__h2 {
+    margin: auto;
+    font-size: 35px;
   }
 
   .title{
@@ -219,7 +230,7 @@ body{
   .vote{
     height: 325px;
     background: url('../../images/votemobile.jpg') no-repeat center;
-    background-size: contain;
+    background-size: cover;
   }
 
   .primarycontent__h3{
@@ -235,7 +246,7 @@ body{
   }
 
   .button{
-    width: 30%;
+    width: 40%;
   }
 
   .features__ul{
@@ -258,8 +269,12 @@ body{
   text-align: center;
   }
 }
-
+/*Tablet and mini notebook*/
 @media screen and (min-width: 481px) and (max-width: 1280px){
+
+  .primarycontent, .secondarycontent {
+    padding: 0;
+  }
 
   .features__ul{
     column-count: 2;
@@ -278,11 +293,12 @@ body{
 		vertical-align: top;
   }
 }
-
+/*Abilitate menu icon*/
 @media only screen and (max-width: 810px){
   #menu-icon{
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: middle;
+    float: right;
   }
 
   .menu__ul{
@@ -293,8 +309,9 @@ body{
 		border: 5px solid #444;
 		right: 20px;
 		top: 60px;
-		width: 50%;
+		width: 70%;
 		border-radius: 4px 0 4px 4px;
+    z-index: 1;
   }
 
   .menu__li{
@@ -308,7 +325,7 @@ body{
     width: 100%;
   }
 }
-
+/*Bigger screen*/
 @media only screen and (min-width: 1281px){
 	.features__ul__li{
 		width: 25%;
