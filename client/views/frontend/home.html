@@ -4,22 +4,22 @@
         <nav class="menu">
          <a href="#" id="menu-icon" ng-click="showMenu()"></a>
             <ul class="menu__ul" id="menu">
-                <li class="menu__li"><a href="#" class="menu__li__a anchor">Home</a></li>
-                <li class="menu__li"><a href="#" class="menu__li__a anchor">Features</a></li>
-                <li class="menu__li"><a href="#" class="menu__li__a anchor">News</a></li>
-                <li class="menu__li"><a href="#" class="menu__li__a anchor">About Us</a></li>
+                <li class="menu__li"><a href="" ng-click="smoothScroll('mainimage')" class="menu__li__a anchor">Home</a></li>
+                <li class="menu__li"><a href="" ng-click="smoothScroll('features')" class="menu__li__a anchor">Features</a></li>
+                <li class="menu__li"><a href="" ng-click="smoothScroll('news')" class="menu__li__a anchor">News</a></li>
+                <li class="menu__li"><a href="" ng-click="smoothScroll('about')" class="menu__li__a anchor">About Us</a></li>
             </ul>
         </nav>
     </div>
 </header>
- <div class="mainimage">
+ <div class="mainimage" id="mainimage">
     <div class="wrapper">
         <h2 class="mainimage__h2 h2">The <strong class="strong">perfect</strong> Tutor for You</h2>
         <button ng-click="logRef('signin')" class="button button--active">Sign-In</button>
         <button ng-click="logRef('signup')" class="button button--active">Sign-Up</button>
     </div>
  </div>
- <div class="features">
+ <div class="features" id="features">
     <div class="wrapper">
         <ul class="features__ul">
             <li class="features__ul__li features__ul__li--ft1">
@@ -50,7 +50,7 @@
         </article>
     </div>
  </div>
- <div class="secondarycontent">
+ <div class="secondarycontent" id="news">
     <div class="wrapper">
         <article>
             <h4 class="h3 secondarycontent__article__h3">News</h4>
@@ -64,7 +64,7 @@
         <button class="button button--active">Sign-Up</button>
     </div>
  </div>
- <footer class="footer">
+ <footer class="footer" id="about">
     <div class="wrapper">
         <div class="footer__platforminfo">
             <p class="paragraph">All Right reserved to <strong class="strong">Team</strong></p>

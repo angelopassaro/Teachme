@@ -105,6 +105,42 @@ body{
 
 @media only screen and (max-width: 810px){
   #menu-icon{
-    display: block;
+    display: inline-block;
+    float: left;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .button {
+    float: none;
+  }
+
+  .menu__ul{
+    display: none;
+		position: absolute;
+		padding: 20px;
+		background: #0091b4;
+		border: 5px solid #444;
+		left: 20px;
+		top: 100px;
+		width: 70%;
+		border-radius: 4px 0 4px 4px;
+    z-index: 1;
+  }
+
+  .menu__li{
+    text-align: center;
+		width: 100%;
+		padding: 10px 0;
+		margin: 0;
+  }
+}
+
+@media only screen and (max-width: 480px){
+  .title {
+    width: 60%;
+    float: right;
   }
 }

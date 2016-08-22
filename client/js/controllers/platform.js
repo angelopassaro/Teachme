@@ -13,5 +13,10 @@ define(['app'], function(app){
       });
     };
 
+    $scope.showCommandMenu = function(){
+      var elem = document.getElementsByClassName('menu__ul')[0];
+      elem.style.display = (elem.style.display === 'none') ? 'block' : 'none';
+    };
+
   }]);
 });

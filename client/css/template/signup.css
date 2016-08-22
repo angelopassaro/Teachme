@@ -73,6 +73,17 @@
   font-family: inherit;
 }
 
+.mark.ng-hide-add, .mark.ng-hide-remove{
+  transition: all linear 0.5s;
+  -moz-trannsition: all linear 0.5s;
+  -webkit-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
+}
+
+.mark.ng-hide {
+  opacity: 0;
+}
+
 @media only screen and (max-width: 754px){
   .paragraph {
     display: block;
