@@ -1,6 +1,7 @@
 <div ng-init="skills = getSkills()">
+  <h2 ng-hide="skills.length">You dont' have skill</h2>
   <div ng-repeat ="skill in skills">
-  <fieldset class="fieldset" ng-hide="skill.visible">
+  <fieldset class="fieldset" ng-hide="skill.visible" ng-init="skill.visible = false">
     <legend class="legend">Skill:</legend>
     <p class="paragraph">University:<span class="span" ng-bind="skill.university.id"></span></p>
     <p class="paragraph">Course:<span class="span" ng-bind="skill.course.name"></span></p>
