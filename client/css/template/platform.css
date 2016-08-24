@@ -133,11 +133,23 @@
   .button {
     float: none;
     width: 40%;
+    margin-top: 5px;
   }
 }
 
 @media only screen and (max-width: 480px){
   .title {
     width: 70%;
+  }
+
+  .input_text{
+    width: 80%;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .select {
+    display: block;
+    width: 80%;
   }
 }
