@@ -1,19 +1,15 @@
-
 .header {
   background: #0091b4;
 }
 
 .title {
+  float: left;
   background: url("../../images/ico1.png") no-repeat center;
   background-size: contain;
+  display: inline-block;
+  vertical-align: middle;
+  width: 391px;
   height: 92px;
-}
-
-body{
-  font: normal 15px "Helvetica Neue", "Arial", "Helvetica", "Geneva", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
 }
 
 .h1 {
@@ -82,6 +78,7 @@ body{
   height: 30px;
   float: right;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .select{
@@ -106,15 +103,11 @@ body{
 @media only screen and (max-width: 810px){
   #menu-icon{
     display: inline-block;
-    float: left;
+    float: right;
   }
 
   .content {
     width: 100%;
-  }
-
-  .button {
-    float: none;
   }
 
   .menu__ul{
@@ -124,7 +117,7 @@ body{
 		background: #0091b4;
 		border: 5px solid #444;
 		left: 20px;
-		top: 100px;
+		top: 60px;
 		width: 70%;
 		border-radius: 4px 0 4px 4px;
     z-index: 1;
@@ -136,11 +129,27 @@ body{
 		padding: 10px 0;
 		margin: 0;
   }
+
+  .button {
+    float: none;
+    width: 40%;
+    margin-top: 5px;
+  }
 }
 
 @media only screen and (max-width: 480px){
   .title {
-    width: 60%;
-    float: right;
+    width: 70%;
+  }
+
+  .input_text{
+    width: 80%;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .select {
+    display: block;
+    width: 80%;
   }
 }

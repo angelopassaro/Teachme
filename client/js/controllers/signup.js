@@ -37,7 +37,7 @@ define(['app', 'services/date-services'], function(app){
 				Student.create($scope.Form)
 					.$promise
 						.then(function(){
-              $state.go('platform');
+              $state.go('signup-success');
 						},function(error){
             console.log(error);
         });

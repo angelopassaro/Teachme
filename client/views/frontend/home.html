@@ -1,8 +1,7 @@
 <header class="header">
-    <div class="wrapper">
         <div class="title"></div>
+        <a href="#" id="menu-icon" ng-click="showMenu()"></a>
         <nav class="menu">
-         <a href="#" id="menu-icon" ng-click="showMenu()"></a>
             <ul class="menu__ul" id="menu">
                 <li class="menu__li"><a href="" ng-click="smoothScroll('mainimage')" class="menu__li__a anchor">Home</a></li>
                 <li class="menu__li"><a href="" ng-click="smoothScroll('features')" class="menu__li__a anchor">Features</a></li>
@@ -10,14 +9,13 @@
                 <li class="menu__li"><a href="" ng-click="smoothScroll('about')" class="menu__li__a anchor">About Us</a></li>
             </ul>
         </nav>
-    </div>
 </header>
  <div class="mainimage" id="mainimage">
-    <div class="wrapper">
         <h2 class="mainimage__h2 h2">The <strong class="strong">perfect</strong> Tutor for You</h2>
+        <div class="container">
         <button ng-click="logRef('signin')" class="button button--active">Sign-In</button>
         <button ng-click="logRef('signup')" class="button button--active">Sign-Up</button>
-    </div>
+      </div>
  </div>
  <div class="features" id="features">
     <div class="wrapper">
@@ -42,13 +40,11 @@
     </div>
  </div>
  <div class="primarycontent">
-    <div class="wrapper">
         <article>
             <h3 class="h3 primarycontent__h3">Improve your abilities</h3>
             <p class="paragraph">With our service you can pass your exams very easely</p>
             <div class="vote"></div>
         </article>
-    </div>
  </div>
  <div class="secondarycontent" id="news">
     <div class="wrapper">

@@ -2,7 +2,7 @@ define(['app'], function(app){
   'use-strict';
   app.controller('PlatformCtrl', ['$scope', '$state', 'Student', function($scope, $state, Student){
     $scope.loadView = function(state){
-      $state.go(state);
+      $state.go(state, {}, {reload: true});
     };
 
     $scope.logout = function(){
@@ -14,8 +14,12 @@ define(['app'], function(app){
     };
 
     $scope.showCommandMenu = function(){
-      var elem = document.getElementsByClassName('menu__ul')[0];
-      elem.style.display = (elem.style.display === 'none') ? 'block' : 'none';
+      var menu = angular.element(document.getElementsByClassName('menu__ul')[0]);
+      if(menu.css('display') === 'none'){
+        menu.css('display', 'block');
+      }else {
+        menu.css('display', 'none');
+      }
     };
 
   }]);

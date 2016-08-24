@@ -52,9 +52,16 @@ define(['app'], function(app){
 
 
       $scope.editForm = function(index){
-        for(var i=index; i<$scope.skills.length; i++){
-           $scope.skills[i].visible = true;
-         }
+        var right = index;
+        var left = index;
+        while(right < $scope.skills.length){
+          $scope.skills[right].visible = true;
+          right++;
+        }
+        while(left >= 0){
+          $scope.skills[left].visible = true;
+          left--;
+        }
         $state.go('editskill');
         $scope.Skill.university = $scope.skills[index].university.id;
         $scope.Skill.course = $scope.skills[index].course.name;
@@ -81,6 +88,7 @@ define(['app'], function(app){
           lesson.totalPrice = $scope.Skill.price;
           Lesson.prototype$updateAttributes({id: lesson.id}, lesson);
         }, function(error){ console.log(error);});
+        $state.go('skill', {}, {reload: true});
       };
 
       $scope.createForm = function(){
@@ -91,15 +99,14 @@ define(['app'], function(app){
         University.offers({id: $scope.Skill.university, filter:{where: {name: $scope.Skill.course}}}, function(course){
           Lesson.create({studentId: Student.getCurrentId(), courseId: course[0].id,
             dateLesson: new Date(), startLesson: new Date(), duration: 0, totalPrice: $scope.Skill.price}, function(lesson){
-              console.log(lesson);
+              $state.go('skill');
             }, function(error){ console.log(error);});
         }, function(error){ console.log(error);});
       };
 
       $scope.deleteLesson = function(index){
         Lesson.deleteById({id: $scope.skills[index].lesson.id}, function(result){
-          console.log(result);
-          $state.go('skill');
+          $state.reload();
         }, function(error){ console.log(error);});
       };
   }]);

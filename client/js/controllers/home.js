@@ -7,8 +7,12 @@ define(['app'], function(app){
         };
 
         $scope.showMenu = function(){
-            var elem = document.getElementById('menu');
-            elem.style.display = (elem.style.display === 'none') ? 'block' : 'none';
+            var elem = angular.element(document.getElementById('menu'));
+            if(elem.css('display') === 'none'){
+              elem.css('display', 'block');
+            }else {
+              elem.css('display', 'none');
+            }
         };
 }]);
 });
