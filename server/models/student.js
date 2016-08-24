@@ -5,12 +5,13 @@ var loopback = require('loopback');
 
 module.exports = function(Student) {
 
+"use strict";
 
 
     /*check the presence of field id*/
     Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
-    Student.validatesLengthOf('username', {min: 3, message: {min: ' Enter min 3 characters  '}});
+    Student.validatesLengthOf('username', {min: 3,  message: {min: ' Enter min 3 characters  '}});
 
 
 
@@ -24,6 +25,7 @@ module.exports = function(Student) {
             }, function(err, university) {
                 if (university) { //add Student need next to confirm
                     addContact(ctx.instance.contact, ctx.instance.email);
+                    ctx.instance.universityId = university.id;
                     next();
                 } else
                 next();
@@ -68,26 +70,19 @@ module.exports = function(Student) {
 
 
 
-
     // send a emai when a student require a lesson
-    Student.afterRemote('*.__link__require', function(context, instance, next){
-        //console.log(context);
-        Student.app.models.Lesson.findOne({
-            where:{
-                id: instance.lessonId
-            }
-        }, function(err, lesson){
+    Student.afterRemote('*.__link__require', function(context, instance, next) {
+        Student.app.models.Lesson.findById(instance.lessonId, function(err, lesson){
             if(lesson){
-                Student.findOne({
-                    where:{
-                        email:lesson.studentId
-                    }
-                },
-                function(err, student) {
+
+                Student.findById(lesson.studentId, function(err, student) {
                     if(student) {
-                    student.notification.create({text : "aggiungere un testo "});
-                    var options = ["News: Request lesson", " Have request for lesson check your account"];
-                    Email(student, options);
+                        student.notification.create(
+                            { text : context.instance.name + " require a lesson for " +
+                                lesson.courseId, "creation":  new Date()}
+                         );
+                        var options = ["News: Request lesson", " Have request for lesson check your account"];
+                        Email(student, options);
                     }
                 })
             }
@@ -139,9 +134,7 @@ module.exports = function(Student) {
                  }
              })
 
-             Student.findOne({
-                 where: {email: ctx.where.email}
-             }, function(err, student) {
+             Student.findById(ctx.where.email, function(err, student) {
                  if(student) {
                      console.log("trovato student")
                      student.teach.destroyAll(function(err) {
@@ -233,22 +226,50 @@ module.exports = function(Student) {
 
 
 
-//remoteMethod for re-send registration email
-    Student.send = function(email, cb) {
+        //remoteMethod for re-send registration email
+        Student.send = function(email, cb) {
+
+            var error = new Error();
+            error.status = 401;
+
             Student.findOne({
                 where: {
                     email: email,
                     emailVerified: {neq: true}
-                 }
+                }
             }, function (err, user) {
-                if(!user) return cb(null, "Student don't exist");
+                if(!user) return cb(error, "Student don't exist");
                 Email(user);
                 cb(null, "Check your email");
             })
+        }
+
+
+        Student.notify = function(email, cb) {
+
+            var list = [];
+
+            Student.findById(email,function(err, student) {
+
+                //console.log(Student.app.models.Student.prototype)
+
+
+                if (student) {
+                    var mynotification = student.mynotification;
+
+                    for (var i = 0; i < mynotification.length; i++) {
+                        list.push(mynotification[i]);
+                        //console.log(mynotification[i])
+                        student.notification.destroy(mynotification[i].id)
+                    }
+
+                    //console.log("primo",list);
+                    cb(null, list);
+            } else
+                cb(null,"User don't exist");
+        })
+
     }
-
-
-
 
 
 /*add dinamically  a contact  or default the email  at creation*/
@@ -279,11 +300,26 @@ module.exports = function(Student) {
         'send',
         {
             description:'Send verification email',
-            accepts: {arg: 'email', type: 'string'},
+            accepts: {arg: 'email', type: 'string', required: true},
             returns: {arg: 'info', type: 'string'},
             http: {verb: 'post', path: '/re-email'}
         }
     )
+
+
+
+     Student.remoteMethod(
+         'notify',
+         {
+             description:'Show user notifications',
+             accepts: {arg: 'email', type: 'string', required: true},
+             returns: {arg: 'list', type: 'array'},
+             http: {verb: 'post', path: '/notify'}
+         }
+     )
+
+
+
 
 }
 

@@ -11,9 +11,9 @@
             "type": "string",
             "required": true
         },
-        "read": {
-            "type": "boolean",
-            "default": false
+        "creation": {
+            "type": "date",
+            "required": true
         }
     },
     "validations": [],
