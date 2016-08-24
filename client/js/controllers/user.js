@@ -6,7 +6,7 @@ define(['app', 'services/date-services'], function(app){
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
     $scope.days = dateService.range(1, 31);
-    if(Student.isAuthenticated()){
+
       Student.findById({id: Student.getCurrentId()})
         .$promise.then(function(student){
           jsonDate = dateService.parseDate(student.birthday);
@@ -18,10 +18,7 @@ define(['app', 'services/date-services'], function(app){
           $scope.Date.year = jsonDate.year;
           $scope.Date.month = $scope.months[jsonDate.month - 1];
           $scope.Date.day = $scope.days[jsonDate.day - 1];
-        }, function(error){
-          console.log(error);
-          });
-    } else { console.log("non autenticato"); }
+        }, function(error){console.log(error);});
 
     $scope.editUser = function(){
       $state.go('edituser');

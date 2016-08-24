@@ -1,0 +1,13 @@
+<div ng-init="tutors = getTutors()">
+  <button class="button">Search Tutor</button>
+  <h2 ng-hide="tutors.length">You dont'have Tutor</h2>
+  <fieldset class="fieldset" ng-repeat="tutor for tutor in tutors">
+    <legend class="legend">Tutor:</legend>
+    <p class="paragraph">Name:<span class="span" ng-bind="tutor.name"></span></p>
+    <p class="paragraph">Surname:<span class="span" ng-bind="tutor.lastName"></span></p>
+    <p class="paragraph">Course:<span class="span" ng-bind="tutor.course"></span></p>
+    <p class="paragraph">Teacher:<span class="span" ng-bind="tutor.teacher"></span></p>
+    <button class="button">Prenote Lesson</button>
+    <button class="button" ng-click="">Delete</button>
+  </fieldset>
+</div>

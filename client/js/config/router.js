@@ -1,7 +1,7 @@
 define(['app', 'providers/lazyload'], function(app){
   'use-strict';
   var FRONT_PATH = "views/frontend";
-  var ASSETS_PATH = "css/template";
+  var ASSETS_PATH = "css/templates";
   app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function($stateProvider,
                 $urlRouterProvider, $locationProvider, lazyLoadProvider){
     $locationProvider.html5Mode(true);
@@ -73,6 +73,13 @@ define(['app', 'providers/lazyload'], function(app){
           templateUrl: FRONT_PATH + '/newskill.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
+        })
+        .state('tutors', {
+          url: '/tutors',
+          parent: 'platform',
+          templateUrl: FRONT_PATH + '/tutors.html',
+          controller: 'TutorCtrl',
+          resolve: lazyLoadProvider.resolve('tutor')
         });
   }]);
   app.run(['$rootScope', 'lazyLoad', function($rootScope, lazyLoadProvider){
