@@ -251,20 +251,19 @@ module.exports = function(Student) {
 
             Student.findById(email,function(err, student) {
 
-                //console.log(Student.app.models.Student.prototype)
-
-
                 if (student) {
-                    var mynotification = student.mynotification;
 
-                    for (var i = 0; i < mynotification.length; i++) {
-                        list.push(mynotification[i]);
-                        //console.log(mynotification[i])
-                        student.notification.destroy(mynotification[i].id)
+                    var number = student.mynotification.length;
+
+                    for (var i = 0; i < number; i++) {
+                        list.push(student.mynotification[i]);
                     }
 
-                    //console.log("primo",list);
-                    cb(null, list);
+                    student.notification.destroyAll(function(err) {
+                        //console.log("Called notify. Deleted notification of user");
+                    });
+
+                    cb(null, list, number);
             } else
                 cb(null,"User don't exist");
         })
@@ -299,7 +298,7 @@ module.exports = function(Student) {
     Student.remoteMethod(
         'send',
         {
-            description:'Send verification email',
+            description: 'Send verification email',
             accepts: {arg: 'email', type: 'string', required: true},
             returns: {arg: 'info', type: 'string'},
             http: {verb: 'post', path: '/re-email'}
@@ -311,9 +310,12 @@ module.exports = function(Student) {
      Student.remoteMethod(
          'notify',
          {
-             description:'Show user notifications',
+             description: 'Show user notifications',
              accepts: {arg: 'email', type: 'string', required: true},
-             returns: {arg: 'list', type: 'array'},
+             returns: [
+                 {arg: 'list', type: 'array'},
+                 {arg: 'count', type: 'number'}
+             ],
              http: {verb: 'post', path: '/notify'}
          }
      )
