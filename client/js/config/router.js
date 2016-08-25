@@ -4,7 +4,7 @@ define(['app', 'providers/lazyload'], function(app){
   var ASSETS_PATH = "css/templates";
   app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function($stateProvider,
                 $urlRouterProvider, $locationProvider, lazyLoadProvider){
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
     $urlRouterProvider.otherwise('/');
       $stateProvider
         .state('home', {
