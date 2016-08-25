@@ -3,7 +3,6 @@
   <form class="form">
     <label class="label">Name:<input ng-model="Student.name" class="input_text input_text--focused" type="text"/></label>
     <label class="label">Surname:<input ng-model="Student.lastName" class="input_text input_text--focused" type="text"/></label>
-    <p>
     <label class="label">Day:
     <select class="select" ng-model="Date.day" ng-options="day for day in days">
       </select>
@@ -17,7 +16,6 @@
       <select class="select" ng-model="Date.year" ng-options="year for year in years">
       </select>
     </label>
-    <p>
       <button class="button" ng-click="updateUser()">Confirm</button>
   </form>
 </fieldset>
