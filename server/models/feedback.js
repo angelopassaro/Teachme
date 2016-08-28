@@ -15,7 +15,6 @@ module.exports = function(Feedback) {
 
         if (ctx.isNewInstance) {
 
-
             Feedback.app.models.Lesson.findById(ctx.instance.relativeId, function (err, lesson) {
 
                 if (lesson) {
@@ -28,7 +27,11 @@ module.exports = function(Feedback) {
                         Feedback.app.models.Student.findById(ctx.instance.studentId, function(err , student) {
 
                             student.require.destroyAll({ lessonId: ctx.instance.relativeId }, function(err, count) {
-                                if(count == 1) {
+                                if(count['count'] == 1) {
+                                    student.notification.create(
+                                        { text : "Have a new feedback from " + lesson.username +"for the lesson ",
+                                                    "creation":  new Date()}
+                                     );
                                     ctx.instance.belongId = lesson.studentId
                                     next();
                                 } else {
