@@ -2,14 +2,11 @@ var config = require('../../server/config.json');
 var path = require('path');
 var loopback = require('loopback');
 
-
 module.exports = function(Student) {
 
-"use strict";
 
 
-    /*check the presence of field id*/
-    Student.validatesPresenceOf('universityId', {message: 'Invalid Email or university not available'});
+    /*check the value of field */
     Student.validatesPresenceOf('username', {message: 'Enter an username'});
     Student.validatesLengthOf('username', {min: 3,  message: {min: ' Enter min 3 characters  '}});
 
@@ -18,22 +15,24 @@ module.exports = function(Student) {
     //https://greenin.space/notes-on-loopback-operation-hooks/
     /* before save  a new user check for valid email and add a default contact*/
     Student.observe('before save', function(ctx, next) {
+
+        var error = new Error();
+        error.status = 401;
+
+
         if (ctx.isNewInstance) {
             var domain = checkDomain(ctx.instance.email);
             Student.app.models.University.findOne({
                 where: {tag : domain}
             }, function(err, university) {
                 if (university) { //add Student need next to confirm
-                    addContact(ctx.instance.contact, ctx.instance.email);
+                    //addContact(ctx.instance.contact, ctx.instance.email);
                     ctx.instance.universityId = university.id;
                     next();
                 } else
-                next();
+                next(error.message = "Can't create user");
             });
         } else {
-            //console.log("CTX DATA ",ctx.data);                                                                                        //DEBUG
-            //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
-            //console.log("CTX INSTANCE ",ctx.currentInstance);                                                             //DEBUG
             if(ctx.data)
                 if(ctx.data.mypasspartout)
                     updatePasspartout(ctx);
@@ -113,11 +112,11 @@ module.exports = function(Student) {
 
         if(ctx.where.email) {
 
-             Student.app.models.Feedback.destroyAll({
-                 sendToId: ctx.where.email
-             }, function(err,feedback) {
-                 //console.log("feedback cancellati", feedback);
-             });
+              Student.app.models.Feedback.destroyAll({
+                  studentId: ctx.where.email
+              }, function(err,feedback) {
+                  //console.log("feedback cancellati", feedback);
+              });
 
              Student.app.models.Lesson.find({
                  where:{
@@ -225,59 +224,33 @@ module.exports = function(Student) {
 
 
 
+/*add dinamically  a contact  or default the email
+    function addContact(contact, data, type) {
 
-        //remoteMethod for re-send registration email
-        Student.send = function(email, cb) {
 
-            var error = new Error();
-            error.status = 401;
+        var type = type || "University email";
+        var jsondata = {};
+        jsondata["visibility"] = true;
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-            Student.findOne({
-                where: {
-                    email: email,
-                    emailVerified: {neq: true}
-                }
-            }, function (err, user) {
-                if(!user) return cb(error, "Student don't exist");
-                Email(user);
-                cb(null, "Check your email");
-            })
+
+        if (type != "University email") {
+            jsondata["visibility"] = false;
+            if (type == "Telephone" && !(data.match(phoneno))) {
+                return false;
+            }
+
+            if (type == "Email" && !(data.match(re))) {
+                return false
+            }
         }
 
-
-        Student.notify = function(email, cb) {
-
-            var list = [];
-
-            Student.findById(email,function(err, student) {
-
-                if (student) {
-
-                    var number = student.mynotification.length;
-
-                    for (var i = 0; i < number; i++) {
-                        list.push(student.mynotification[i]);
-                    }
-
-                    student.notification.destroyAll(function(err) {
-                        //console.log("Called notify. Deleted notification of user");
-                    });
-
-                    cb(null, list, number);
-            } else
-                cb(null,"User don't exist");
-        })
-
-    }
-
-
-/*add dinamically  a contact  or default the email  at creation*/
-    function addContact(contact, data, type) {
-        var type = type || "Default email";
-        var jsondata = {};
         jsondata[type] = data ;
         contact.push(jsondata);
+        return true;
     }
+    */
 
 
 
@@ -304,6 +277,86 @@ module.exports = function(Student) {
             http: {verb: 'post', path: '/re-email'}
         }
     )
+
+
+
+    //remoteMethod for re-send registration email
+    Student.send = function(email, cb) {
+
+        var error = new Error();
+        error.status = 401;
+
+        Student.findOne({
+            where: {
+                email: email,
+                emailVerified: {neq: true}
+            }
+        }, function (err, user) {
+            if(!user) return cb(error, "Student don't exist");
+            Email(user);
+            cb(null, "Check your email");
+        })
+    }
+
+
+
+    Student.contact = function(email, data, type, cb) {
+
+        var error = new Error();
+        error.status = 401;
+
+
+        Student.findById( email, function (err, user) {
+            if(!user) return cb(error.message = "User don't exist");
+
+            if(addContact(user.contact, type, data)) {
+                user.save();
+                cb(null);
+            } else {
+                cb(error.message = "No valid contact");
+            }
+        })
+    }
+
+
+
+    // remoteMethod for show the notification and delete them
+    Student.notify = function(email, cb) {
+
+        var list = [];
+
+        Student.findById(email,function(err, student) {
+            if (student) {
+
+                var number = student.mynotification.length;
+
+                for (var i = 0; i < number; i++) {
+                    list.push(student.mynotification[i]);
+                }
+
+                student.notification.destroyAll(function(err) {
+                    //console.log("Called notify. Deleted notification of user");
+                });
+
+                cb(null, list, number);
+            } else
+            cb(null,"User don't exist");
+        })
+
+    }
+
+    /*Student.remoteMethod(
+        'contact',
+        {
+            description: 'Add a contact of specific student',
+            accepts: [
+                {arg: 'email', type: 'string', required: true, description: 'Email of student who want add a new contact'},
+                {arg: 'type', type: 'string', required: true, description: 'Type of contact'},
+                {arg: 'data', type: 'string', required: true, description: ' Value of Data'}
+            ],
+            http: {verb: 'post', path: '/contact'}
+        }
+    )*/
 
 
 

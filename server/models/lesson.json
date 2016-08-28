@@ -12,7 +12,7 @@
       "required": true
     },
     "duration": {
-      "type": "date",
+      "type": "number",
       "required": true
     },
     "startLesson": {
@@ -32,6 +32,11 @@
   },
   "validations": [],
   "relations": {},
+  "mixins": {
+    "Cascade": {
+          "studentlesson": "studentId"
+    }
+},
   "acls": [],
   "methods": {}
 }

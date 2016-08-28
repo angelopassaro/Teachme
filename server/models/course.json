@@ -20,6 +20,11 @@
       "foreignKey": ""
     }
   },
+  "mixins": {
+    "Cascade": {
+          "courseteacher": "teacherId"
+    }
+},
   "acls": [],
   "methods": {}
 }

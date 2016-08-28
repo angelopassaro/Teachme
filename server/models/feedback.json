@@ -1,43 +1,37 @@
 {
-  "name": "feedback",
-  "plural": "feedbacks",
-  "base": "PersistedModel",
-  "idInjection": false,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "capacityToExplain": {
-      "type": "number",
-      "required": true
+    "name": "feedback",
+    "plural": "feedbacks",
+    "base": "PersistedModel",
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
     },
-    "preparation": {
-      "type": "number",
-      "required": true
+    "properties": {
+        "capacityToExplain": {
+            "type": "number",
+            "required": true
+        },
+        "preparation": {
+            "type": "number",
+            "required": true
+        },
+        "text": {
+            "type": "string"
+        }
     },
-    "text": {
-      "type": "string",
-      "required": true
-    }
-  },
-  "validations": [],
-  "relations": {
-    "relativeTo": {
-      "type": "belongsTo",
-      "model": "course",
-      "foreignKey": ""
+    "validations": [],
+    "relations": {
+        "relative": {
+            "type": "belongsTo",
+            "model": "lesson",
+            "foreignKey": ""
+        },
+        "belong": {
+            "type": "belongsTo",
+            "model": "student",
+            "foreignKey": ""
+        }
     },
-    "sendTo": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    },
-    "FromTo": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    }
-  },
-  "acls": [],
-  "methods": {}
+    "acls": [],
+    "methods": {}
 }

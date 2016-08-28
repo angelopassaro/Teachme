@@ -3,8 +3,6 @@
 
 module.exports = function(Lesson) {
 
-    "use strict";
-
 
 
 // check the student for tutoring
@@ -15,6 +13,7 @@ module.exports = function(Lesson) {
         var error = new Error();
         error.status = 401;
         error.message = 'Need to be tutor';
+
 
         if(ctx.isNewInstance) {
            id = ctx.instance.studentId;
