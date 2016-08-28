@@ -1,6 +1,3 @@
-
-
-
 module.exports = function(Lesson) {
 
 
@@ -12,7 +9,7 @@ module.exports = function(Lesson) {
 
         var error = new Error();
         error.status = 401;
-        error.message = 'Need to be tutor';
+        error.message = "Can't create this lesson(check the data of lesson). You need to be tutor. ";
 
 
         if(ctx.isNewInstance) {
@@ -25,7 +22,7 @@ module.exports = function(Lesson) {
 
 
         Lesson.app.models.Student.findById(id, function(err, student) {
-             student.isTutor ?  next() : next(error);
+             student.isTutor && new Date(ctx.instance.dateLesson) > Date.now() ?  next() : next(error);
         })
 
     })
