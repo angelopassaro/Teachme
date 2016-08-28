@@ -2,6 +2,11 @@
   background: #0091b4;
 }
 
+.anchor {
+  cursor: pointer;
+  color: #444;
+}
+
 .title {
   float: left;
   background: url("../../images/ico1.png") no-repeat center;
@@ -61,6 +66,7 @@
 
 .span {
   font-weight: bold;
+  font-size: 15px;
 }
 
 .legend {
