@@ -224,8 +224,8 @@ module.exports = function(Student) {
 
 
 
-/*add dinamically  a contact  or default the email
-    function addContact(contact, data, type) {
+//add dinamically  a contact  or default the email
+/*    function addContact(contact, data, type) {
 
 
         var type = type || "University email";
@@ -249,8 +249,8 @@ module.exports = function(Student) {
         jsondata[type] = data ;
         contact.push(jsondata);
         return true;
-    }
-    */
+    }*/
+
 
 
 
@@ -321,31 +321,44 @@ module.exports = function(Student) {
 
 
     // remoteMethod for show the notification and delete them
-    Student.notify = function(email, cb) {
+    Student.notify = function(token, cb) {
+
+        var error = new Error();
+        error.status = 401;
 
         var list = [];
 
-        Student.findById(email,function(err, student) {
-            if (student) {
+        Student.app.models.AccessToken.findOne({
+            where: { id:token}
+        }, function(err,token) {
+            if(token) {
+                Student.findById(token.userId, function(err, student) {
+                    if (student) {
 
-                var number = student.mynotification.length;
+                        var number = student.mynotification.length;
 
-                for (var i = 0; i < number; i++) {
-                    list.push(student.mynotification[i]);
-                }
+                        for (var i = 0; i < number; i++) {
+                            list.push(student.mynotification[i]);
+                        }
 
-                student.notification.destroyAll(function(err) {
-                    //console.log("Called notify. Deleted notification of user");
-                });
+                        student.notification.destroyAll(function(err) {
+                            //console.log("Called notify. Deleted notification of user");
+                        });
 
-                cb(null, list, number);
-            } else
-            cb(null,"User don't exist");
+                        cb(null, list, number);
+                    } else
+                    cb(error.message = "Student don't exist");
+                })
+            } else {
+                cb(error.message = "Invalid session");
+            }
         })
+
+
 
     }
 
-    /*Student.remoteMethod(
+/*    Student.remoteMethod(
         'contact',
         {
             description: 'Add a contact of specific student',
@@ -356,15 +369,15 @@ module.exports = function(Student) {
             ],
             http: {verb: 'post', path: '/contact'}
         }
-    )*/
-
+    )
+*/
 
 
      Student.remoteMethod(
          'notify',
          {
              description: 'Show user notifications',
-             accepts: {arg: 'email', type: 'string', required: true},
+             accepts: {arg: 'token', type: 'string', required: true},
              returns: [
                  {arg: 'list', type: 'array'},
                  {arg: 'count', type: 'number'}

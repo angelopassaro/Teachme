@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(loopback.token());
 
 // new schedule('00 09 15 * * 0-6', function() {
-//     console.log('> start schedule');                                                                                                       
+//     console.log('> start schedule');
 //     deleteStudent();
 //     deleteOldToken();
 // }, null, true);
