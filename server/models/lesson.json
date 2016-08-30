@@ -6,6 +6,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Cascade": {
+      "studentlesson": "studentId"
+    }
+  },
   "properties": {
     "dateLesson": {
       "type": "date",
@@ -32,11 +37,6 @@
   },
   "validations": [],
   "relations": {},
-  "mixins": {
-    "Cascade": {
-          "studentlesson": "studentId"
-    }
-},
   "acls": [],
   "methods": {}
 }

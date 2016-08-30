@@ -1,19 +1,21 @@
 {
-    "name": "passpartout",
-    "base": "Model",
-    "idInjection": false,
-    "options": {
-        "validateUpsert": true
-    },
-    "properties": {
-        "expiredDate": {
-            "type": "date",
-            "required": true
-        }
-    },
-    "hidden" : ["expiredDate"],
-    "validations": [],
-    "relations": {},
-    "acls": [],
-    "methods": {}
+  "name": "passpartout",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "expiredDate"
+  ],
+  "properties": {
+    "expiredDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
 }

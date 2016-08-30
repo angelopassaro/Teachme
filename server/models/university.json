@@ -6,6 +6,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Cascade": {
+      "universitycourse": "universityId"
+    }
+  },
   "properties": {
     "id": {
       "type": "string",
@@ -34,20 +39,14 @@
       }
     }
   },
-  "mixins": {
-    "Cascade": {
-          "universitycourse": "universityId"
-    }
-},
   "acls": [
-      {
+    {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "__get__students"
     }
-
   ],
   "methods": {}
 }

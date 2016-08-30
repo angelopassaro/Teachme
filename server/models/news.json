@@ -1,18 +1,17 @@
 {
-  "name": "notification",
-  "plural": "notifications",
-  "base": "Model",
+  "name": "news",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "text": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "creation": {
-      "type": "date",
+    "text": {
+      "type": "string",
       "required": true
     }
   },

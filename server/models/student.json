@@ -1,107 +1,107 @@
 {
-    "name": "student",
-    "plural": "students",
-    "base": "User",
-    "idInjection": true,
-    "scopes": {
-        "tutors": {
-            "where": {
-                "isTutor": true
-            }
-        }
+  "name": "student",
+  "plural": "students",
+  "base": "User",
+  "idInjection": true,
+  "scopes": {
+    "tutors": {
+      "where": {
+        "isTutor": true
+      }
+    }
+  },
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "email": {
+      "type": "string",
+      "id": true,
+      "required": true
     },
-    "options": {
-        "validateUpsert": true
+    "name": {
+      "type": "string",
+      "required": true
     },
-    "properties": {
-        "email": {
-            "type": "string",
-            "id": true,
-            "required": true
-        },
-        "name": {
-            "type": "string",
-            "required": true
-        },
-        "lastName": {
-            "type": "string",
-            "required": true
-        },
-        "birthday": {
-            "type": "date"
-        },
-        "contacts": {
-            "type": [
-                "object"
-            ],
-            "required": true
-        },
-        "isTutor": {
-            "type": "boolean",
-            "required": true,
-            "default": false
-        }
+    "lastName": {
+      "type": "string",
+      "required": true
     },
-    "validations": [],
-    "relations": {
-        "passpartout": {
-            "type": "embedsOne",
-            "model": "passpartout",
-            "property": "mypasspartout",
-            "options": {
-                "validate": true,
-                "forceId": false
-            }
-        },
-        "notification": {
-            "type": "embedsMany",
-            "model": "notification",
-            "property": "mynotification",
-            "options": {
-                "validate": true,
-                "forceId": true
-            }
-        },
-        "teach": {
-            "type": "hasAndBelongsToMany",
-            "model": "course",
-            "foreignKey": "",
-            "through": "lesson"
-        },
-        "require": {
-            "type": "hasAndBelongsToMany",
-            "model": "lesson",
-            "foreignKey": ""
-        },
-        "university": {
-            "type": "belongsTo",
-            "model": "university",
-            "foreignKey": ""
-        },
-        "share": {
-            "type": "hasMany",
-            "model": "note",
-            "foreignKey": ""
-        },
-        "make": {
-            "type": "hasMany",
-            "model": "feedback",
-            "foreignKey": ""
-        }
+    "birthday": {
+      "type": "date"
     },
-    "acls": [
-        {
-            "accessType": "*",
-            "principalType": "ROLE",
-            "principalId": "$everyone",
-            "permission": "DENY"
-        },
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$authenticated",
-            "permission": "ALLOW"
-        }
-    ],
-    "methods": {}
+    "contacts": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    },
+    "isTutor": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "passpartout": {
+      "type": "embedsOne",
+      "model": "passpartout",
+      "property": "mypasspartout",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    },
+    "notification": {
+      "type": "embedsMany",
+      "model": "notification",
+      "property": "mynotification",
+      "options": {
+        "validate": true,
+        "forceId": true
+      }
+    },
+    "teach": {
+      "type": "hasAndBelongsToMany",
+      "model": "course",
+      "foreignKey": "",
+      "through": "lesson"
+    },
+    "require": {
+      "type": "hasAndBelongsToMany",
+      "model": "lesson",
+      "foreignKey": ""
+    },
+    "university": {
+      "type": "belongsTo",
+      "model": "university",
+      "foreignKey": ""
+    },
+    "share": {
+      "type": "hasMany",
+      "model": "note",
+      "foreignKey": ""
+    },
+    "make": {
+      "type": "hasMany",
+      "model": "feedback",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
 }
