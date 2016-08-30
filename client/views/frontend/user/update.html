@@ -40,8 +40,8 @@
           </tr>
           <tr ng-repeat="contact in Student.contacts">
             <td ng-repeat="spec in contact" class="table_data">
-              <span class="span"  ng-bind="spec"></span>
-              <button class="button_icon" ng-click="removeContact($index)">&#x2716</button>
+              <span class="span" ng-bind="spec"></span>
+              <button class="button_icon" ng-click="removeContact($parent.$index)">&#x2716</button>
             </td>
           </tr>
         </table>

@@ -35,7 +35,7 @@ define(['app', 'services/date-services'], function(app){
 				$scope.Form.contacts = [];
         var baseContact = {};
         baseContact["Mail"] = $scope.Form.email;
-        $scope.Form.contatcs.push(baseContact);
+        $scope.Form.contacts.push(baseContact);
         $scope.Form.created = Date(Date.UTC);
 				Student.create($scope.Form)
 					.$promise

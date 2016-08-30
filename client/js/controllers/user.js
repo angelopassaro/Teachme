@@ -15,7 +15,7 @@ define(['app', 'services/date-services'], function(app){
           $scope.Student.lastName = student.lastName;
           $scope.Student.birthday = dateService.isoDate(student.birthday, 0);
           $scope.Student.email = student.email;
-          $scope.Student.contacts = student.contact;
+          $scope.Student.contacts = student.contacts;
           $scope.Date.year = jsonDate.year;
           $scope.Date.month = $scope.months[jsonDate.month - 1];
           $scope.Date.day = $scope.days[jsonDate.day - 1];
@@ -39,10 +39,10 @@ define(['app', 'services/date-services'], function(app){
       var newObject = {}
       newObject[$scope.Contact.type] = $scope.Contact.name;
       $scope.Student.contacts.push(newObject);
-      console.log($scope.Student.contacts);
     };
 
     $scope.removeContact = function(index){
+      console.log(index);
       delete $scope.Student.contacts[index];
     }
   }]);
