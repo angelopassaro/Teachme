@@ -5,7 +5,9 @@ module.exports = function(Lesson) {
 // check the student for tutoring
     Lesson.observe('before save', function(ctx, next) {
 
-        var id = " ";
+        var id = "";
+        var date = Date();
+
 
         var error = new Error();
         error.status = 401;
@@ -14,15 +16,18 @@ module.exports = function(Lesson) {
 
         if(ctx.isNewInstance) {
            id = ctx.instance.studentId;
-         }
+           date = ctx.instance.dateLesson;
+       }
 
         if(ctx.data) {
-            id = ctx.data.studentId;
-        }
+            console.log(ctx)
+            id = ctx.currentInstance.studentId;
+            date = ctx.currentInstance.dateLesson;
+    }
 
 
         Lesson.app.models.Student.findById(id, function(err, student) {
-             student.isTutor && new Date(ctx.instance.dateLesson) > Date.now() ?  next() : next(error);
+             student.isTutor && date > Date.now() ?  next() : next(error);
         })
 
     })

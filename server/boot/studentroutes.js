@@ -1,7 +1,7 @@
 //http://stackoverflow.com/questions/28459975/mean-stack-angular-routing-vs-express-routing
 module.exports = function(app) {
     var User = app.models.student;
-    
+
 
 /*******************************************************************************/
     //Test find a unconfirmed student for delete (test function)

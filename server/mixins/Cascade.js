@@ -10,7 +10,6 @@ var loopback = require('loopback');
 
 module.exports = function(Model, options) {
 
-    "use strict";
 
     Model.observe('before delete', function(ctx, next) {
 

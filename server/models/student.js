@@ -71,23 +71,25 @@ module.exports = function(Student) {
 
     // send a emai when a student require a lesson
     Student.afterRemote('*.__link__require', function(context, instance, next) {
-        Student.app.models.Lesson.findById(instance.lessonId, function(err, lesson){
-            if(lesson){
+       Student.app.models.Lesson.findById(instance.lessonId, function(err, lesson){
+           if(lesson){
 
-                Student.findById(lesson.studentId, function(err, student) {
-                    if(student) {
-                        student.notification.create(
-                            { text : context.instance.name + " require a lesson for " +
-                                lesson.courseId, "creation":  new Date()}
-                         );
-                        var options = ["News: Request lesson", " Have request for lesson check your account"];
-                        Email(student, options);
-                    }
-                })
-            }
-        }
-    )
-    next();
+               lesson.updateAttribute('available', false, function(err,update) {
+               });
+               Student.findById(lesson.studentId, function(err, student) {
+                   if(student) {
+                       student.notification.create(
+                           { text : context.instance.name + " require a lesson for " +
+                               lesson.courseId, "creation":  new Date()}
+                        );
+                       var options = ["News: Request lesson", " Have request for lesson check your account"];
+                       Email(student, options);
+                   }
+               })
+           }
+       }
+   )
+   next();
 });
 
 
@@ -97,7 +99,12 @@ module.exports = function(Student) {
 
     // operation for reqiore delete
     Student.afterRemote('*.__unlink__require', function(context, instance, next){
-        //console.log(context);
+        Student.app.models.Lesson.findById(context.args.fk, function(err, lesson) {
+            if(lesson) {
+                lesson.updateAttribute('available', true, function(err, update){
+                })
+            }
+        })
         next();
     });
 
@@ -135,7 +142,6 @@ module.exports = function(Student) {
 
              Student.findById(ctx.where.email, function(err, student) {
                  if(student) {
-                     console.log("trovato student")
                      student.teach.destroyAll(function(err) {
                          //console.log(err);
                      })

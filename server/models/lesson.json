@@ -24,10 +24,10 @@
       "type": "date",
       "required": true
     },
-    "accepted": {
+    "available": {
       "type": "boolean",
       "required": true,
-      "default": false
+      "default": true
     },
     "totalPrice": {
       "type": "number",
