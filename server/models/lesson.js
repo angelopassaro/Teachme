@@ -15,12 +15,13 @@ module.exports = function(Lesson) {
 
 
         if(ctx.isNewInstance) {
+            
            id = ctx.instance.studentId;
            date = ctx.instance.dateLesson;
        }
 
         if(ctx.data) {
-            console.log(ctx)
+
             id = ctx.currentInstance.studentId;
             date = ctx.currentInstance.dateLesson;
     }

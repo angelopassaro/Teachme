@@ -11,4 +11,5 @@ app.models.Lesson.find({
             }
         })
     }
+    process.exit();
 })
