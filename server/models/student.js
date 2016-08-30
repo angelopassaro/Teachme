@@ -247,7 +247,7 @@ module.exports = function(Student) {
         }
 
         jsondata[type] = data ;
-        contact.push(jsondata);
+        contacts.push(jsondata);
         return true;
     }*/
 
@@ -299,7 +299,7 @@ module.exports = function(Student) {
     }
 
 
-
+/*
     Student.contact = function(email, data, type, cb) {
 
         var error = new Error();
@@ -317,6 +317,7 @@ module.exports = function(Student) {
             }
         })
     }
+*/
 
 
 
