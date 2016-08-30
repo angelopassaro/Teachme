@@ -198,7 +198,7 @@ module.exports = function(Student) {
                 from: 'tutor4you6@gmail.com',
                 user: user,
                 template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-                redirect: '/signin',
+                redirect: '/#/signin',
                 title: "<h3> Welcome in Tutor4You </h3>"
             };
 
