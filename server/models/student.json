@@ -30,7 +30,7 @@
         "birthday": {
             "type": "date"
         },
-        "contact": {
+        "contacts": {
             "type": [
                 "object"
             ],
