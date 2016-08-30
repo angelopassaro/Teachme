@@ -42,35 +42,37 @@ define(['app', 'providers/lazyload'], function(app){
         .state('user', {
          url: '/user',
          parent: 'platform',
-         templateUrl: FRONT_PATH + '/userhome.html',
+         templateUrl: FRONT_PATH + '/user/read.html',
          controller: 'UserCtrl',
+         data: {css: ASSETS_PATH + '/formdata.css'},
          resolve: lazyLoadProvider.resolve('user')
       })
         .state('edituser', {
          url: '/edit',
          parent: 'user',
-         templateUrl: FRONT_PATH + '/edituser.html',
+         templateUrl: FRONT_PATH + '/user/update.html',
          controller: 'UserCtrl',
          resolve: lazyLoadProvider.resolve('user')
       })
         .state('skill', {
           url: '/skills',
           parent: 'platform',
-          templateUrl: FRONT_PATH + '/myskill.html',
+          templateUrl: FRONT_PATH + '/skill/read.html',
           controller: 'SkillCtrl',
+          data: {css: ASSETS_PATH + '/formdata.css'},
           resolve: lazyLoadProvider.resolve('skill')
         })
         .state('editskill', {
           url: '/edit',
           parent: 'skill',
-          templateUrl: FRONT_PATH + '/editskill.html',
+          templateUrl: FRONT_PATH + '/skill/update.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
         })
         .state('newskill', {
-          url: 'new',
-          parent: 'platform',
-          templateUrl: FRONT_PATH + '/newskill.html',
+          url: '/new',
+          parent: 'skill',
+          templateUrl: FRONT_PATH + '/skill/create.html',
           controller: 'SkillCtrl',
           resolve: lazyLoadProvider.resolve('skill')
         })

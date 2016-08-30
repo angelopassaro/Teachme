@@ -1,0 +1,52 @@
+<fieldset class="fieldset">
+  <legend class="legend">Edit Student Data</legend>
+  <form class="form">
+    <label class="label">Name:<input ng-model="Student.name" class="input_text input_text--focused" type="text"/></label>
+    <label class="label">Surname:<input ng-model="Student.lastName" class="input_text input_text--focused" type="text"/></label>
+    <label class="label">Day:
+    <select class="select" ng-model="Date.day" ng-options="day for day in days">
+      </select>
+    </label>
+    <label class="label">Month:
+    <select class="select" ng-model="Date.month" ng-options="month for month in months">
+    </select>
+    </label>
+    <label class="label">
+      Year:
+      <select class="select" ng-model="Date.year" ng-options="year for year in years">
+      </select>
+    </label>
+    <fieldset class="fieldset">
+      <legend class="legend">Manage Contacts</legend>
+      <form class="form">
+        <table class="table">
+          <tr>
+            <td class="table_data">
+            <input type="text" placeholder="Add new Contact" class="search_text" ng-model="Contact.name"/>
+            <button class="button_icon" ng-click="addContact()">&#x271A</button>
+          </td>
+        </tr>
+          <tr>
+            <td class="table_data">
+              <label class="label__radio" for="mail">
+              <input id="mail" type="radio" class="input_radio" checked="checked" ng-model="Contact.type" value="Mail"/>
+              <span class="span">Mail</span>
+            </label>
+            <label class="label__radio" for="phone">
+              <input id="phone" class="input_radio" type="radio" ng-model="Contact.type" value="Phone"/>
+              <span class="span">Phone</span>
+            </label>
+            </td>
+          </tr>
+          <tr ng-repeat="contact in Student.contacts">
+            <td ng-repeat="spec in contact" class="table_data">
+              <span class="span"  ng-bind="spec"></span>
+              <button class="button_icon" ng-click="removeContact($index)">&#x2716</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </fieldset>
+      <button class="button" ng-click="updateUser()">Confirm</button>
+  </form>
+</fieldset>

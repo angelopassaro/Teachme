@@ -32,7 +32,8 @@ define(['app', 'services/date-services'], function(app){
 				delete $scope.Form.day;
 				delete $scope.Form.passwordrpt;
 				$scope.Form.birthday = birth;
-				$scope.Form.contact = [];
+				$scope.Form.contacts = [];
+        $scope.Form.contatcs.push({"Mail" : $scope.Form.email});
         $scope.Form.created = Date(Date.UTC);
 				Student.create($scope.Form)
 					.$promise

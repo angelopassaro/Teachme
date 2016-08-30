@@ -1,7 +1,7 @@
-.input_text, .input_email, .input_password{
+.input_text, .input_email, .input_password, .search_text{
   outline: none;
   border-radius: 3px;
-  padding: 10px 5px 10px 32px;	
+  padding: 10px 5px 10px 32px;
   box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
   border: 1px solid rgb(178, 178, 178);
   box-sizing : content-box;

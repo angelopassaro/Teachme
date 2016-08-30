@@ -2,6 +2,7 @@ define(['app', 'services/date-services'], function(app){
   'use-strict';
   app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', function($scope, $state, Student, dateService){
     $scope.Student = $scope.Student || {};
+    $scope.Contact = $scope.Contact || {};
     $scope.Date = $scope.Date || {};
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
@@ -33,5 +34,16 @@ define(['app', 'services/date-services'], function(app){
           console.log(error);
         });
     };
-    }]);
+
+    $scope.addContact = function(){
+      var newObject = {}
+      newObject[$scope.Contact.type] = $scope.Contact.name;
+      $scope.Student.contacts.push(newObject);
+      console.log($scope.Student.contacts);
+    };
+
+    $scope.removeContact = function(index){
+      delete $scope.Student.contacts[index];
+    }
+  }]);
 });

@@ -69,46 +69,10 @@
   font-size: 15px;
 }
 
-.legend {
-  font-weight: bold;
-}
-
-.fieldset {
-  margin: 20px 10px 20px 10px;
-}
-
-.button {
-  color: white;
-  background: #21bd5a;
-  width: 15%;
-  height: 30px;
-  float: right;
-  cursor: pointer;
-  margin-right: 20px;
-}
-
-.select{
-  width: 60%;
-  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
-  font-size: inherit;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.label {
-  display: block;
-  vertical-align: middle;
-}
-
-.input_text {
-  margin-top: 20px;
-  margin-left: 10px;
-  width: 70%;
-}
 
 @media only screen and (max-width: 810px){
   #menu-icon{
-    display: inline-block;
+    display: nline-block;
     float: right;
   }
 
@@ -135,27 +99,10 @@
 		padding: 10px 0;
 		margin: 0;
   }
-
-  .button {
-    float: none;
-    width: 40%;
-    margin-top: 5px;
-  }
 }
 
 @media only screen and (max-width: 480px){
   .title {
     width: 70%;
-  }
-
-  .input_text{
-    width: 80%;
-    margin-top: 5px;
-    display: block;
-  }
-
-  .select {
-    display: block;
-    width: 80%;
   }
 }
