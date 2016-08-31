@@ -36,7 +36,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+      "belongs":{
+          "type": "belongsTo",
+          "model": "teacher",
+          "foreignKey":""
+      }
+  },
   "acls": [],
   "methods": {}
 }
