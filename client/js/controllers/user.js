@@ -29,7 +29,7 @@ define(['app', 'services/date-services'], function(app){
       $scope.Student.birthday = new Date(Date.UTC($scope.Date.year, $scope.months.indexOf($scope.Date.month), $scope.Date.day));
       Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise
         .then(function(success){
-          console.log(success);
+          $state.go('user')
         }, function(error){
           console.log(error);
         });

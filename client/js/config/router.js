@@ -84,22 +84,9 @@ define(['app', 'providers/lazyload'], function(app){
           resolve: lazyLoadProvider.resolve('tutor')
         });
   }]);
-  app.run(['$rootScope', 'lazyLoad', function($rootScope, lazyLoadProvider){
+  app.run(['$rootScope', 'lazyLoad', '$state', function($rootScope, lazyLoadProvider, $state){
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){
-      if(fromState.name === toState.parent){/*Da padre a figlio*/
-        if(fromState.data.css !== toState.data.css){
-          lazyLoadProvider.injectCSS(toState.data.css);
-        }
-      } else if (fromState.parent === toState.name) { /*Da figlio a padre*/
-          lazyLoadProvider.injectCSS(fromState.data.css);
-      } else{
-         if(fromState.data !== undefined){
-          lazyLoadProvider.removeCSS(fromState.data.css);
-          lazyLoadProvider.injectCSS(toState.data.css);
-        }else {
-          lazyLoadProvider.injectCSS(toState.data.css);
-        }
-      }
+      lazyLoadProvider.cssHandler(fromState, toState, $state);
     });
   }]);
 });
