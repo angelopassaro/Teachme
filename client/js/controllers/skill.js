@@ -1,7 +1,7 @@
-define(['app'], function(app){
+define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course', 'University', 'Teacher',
-    function($scope, $state, Student, Lesson, Course, University, Teacher){
+  app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course', 'University', 'Teacher', 'dateService',
+    function($scope, $state, Student, Lesson, Course, University, Teacher, dateService){
       /*Initialization of scope Variables*/
       $scope.Skill = $scope.Skill || {};
       University.find(function(universities){
@@ -67,28 +67,23 @@ define(['app'], function(app){
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
         $scope.Skill.price = $scope.skills[index].lesson.totalPrice;
+        $scope.Skill.months = dateService.createMonths();
+        $scope.Skill.days = dateService.range(1, 31);
+        $scope.Skill.year = new Date().getFullYear();
         $scope.Old = $scope.skills[index];
       };
 
       $scope.editSkill = function(){
-        University.findById({id: $scope.Old.university.id}, function(university){
-          university.id = $scope.Skill.university;
-          University.prototype$updateAttributes({id: $scope.Old.university.id}, university);
-        }, function(error){ console.log(error); });
-        Teacher.findById({id: $scope.Old.teacher[0].id}, function(teacher){
-          teacher.name = $scope.Skill.teacher.split(' ')[0];
-          teacher.lastName = $scope.Skill.teacher.split(' ')[1];
-          Teacher.prototype$updateAttributes({id: teacher.id}, teacher);
-        }, function(error){ console.log(error); });
-        Course.findById({id: $scope.Old.course.id}, function(course){
-          course.name = $scope.Skill.course;
-          Course.prototype$updateAttributes({id: course.id}, course);
-        }, function(error){ console.log(error); });
         Lesson.findById({id: $scope.Old.lesson.id}, function(lesson){
           lesson.totalPrice = $scope.Skill.price;
-          Lesson.prototype$updateAttributes({id: lesson.id}, lesson);
+          lesson.dateLesson = new Date(Date.UTC($scope.Skill.year, $scope.months.indexOf($scope.Skill.month), $scope.Skill.day));
+          Lesson.prototype$updateAttributes({id: lesson.id}, lesson).$promise
+            .then(function(success){
+              $state.go('skill', {}, {reload: true});
+            }, function(error){
+              console.log(error);
+            });
         }, function(error){ console.log(error);});
-        $state.go('skill', {}, {reload: true});
       };
 
       $scope.createForm = function(){
