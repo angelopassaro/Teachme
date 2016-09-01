@@ -80,6 +80,7 @@ define(['app', 'providers/lazyload'], function(app){
           url: '/tutors',
           parent: 'platform',
           templateUrl: FRONT_PATH + '/tutors.html',
+          data: {css: ASSETS_PATH + '/formdata.css'},
           controller: 'TutorCtrl',
           resolve: lazyLoadProvider.resolve('tutor')
         });
