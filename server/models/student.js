@@ -274,15 +274,6 @@ module.exports = function(Student) {
 
 
 
-    Student.remoteMethod(
-        'send',
-        {
-            description: 'Send verification email',
-            accepts: {arg: 'email', type: 'string', required: true},
-            returns: {arg: 'info', type: 'string'},
-            http: {verb: 'post', path: '/re-email'}
-        }
-    )
 
 
 
@@ -335,16 +326,14 @@ module.exports = function(Student) {
 
         var list = [];
 
-        Student.app.models.AccessToken.findOne({
-            where: { id:token}
-        }, function(err,token) {
+        Student.app.models.AccessToken.findById(token, function(err,token) {
             if(token) {
                 Student.findById(token.userId, function(err, student) {
                     if (student) {
 
-                        var number = student.mynotification.length;
+                        var length = student.mynotification.length;
 
-                        for (var i = 0; i < number; i++) {
+                        for (var i = 0; i < length; i++) {
                             list.push(student.mynotification[i]);
                         }
 
@@ -352,7 +341,7 @@ module.exports = function(Student) {
                             //console.log("Called notify. Deleted notification of user");
                         });
 
-                        cb(null, list, number);
+                        cb(null, list, length);
                     } else
                     cb(error.message = "Student don't exist");
                 })
@@ -378,13 +367,23 @@ module.exports = function(Student) {
         }
     )
 */
+Student.remoteMethod(
+    'send',
+    {
+        description: 'Send verification email',
+        accepts: {arg: 'email', type: 'string', required: true},
+        returns: {arg: 'info', type: 'string'},
+        http: {verb: 'post', path: '/re-email'}
+    }
+)
+
 
 
      Student.remoteMethod(
          'notify',
          {
              description: 'Show user notifications',
-             accepts: {arg: 'token', type: 'string', required: true},
+             accepts: {arg: 'token', type: 'string', required: true, description: 'The token of current user'},
              returns: [
                  {arg: 'list', type: 'array'},
                  {arg: 'count', type: 'number'}
