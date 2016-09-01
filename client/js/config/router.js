@@ -83,6 +83,14 @@ define(['app', 'providers/lazyload'], function(app){
           data: {css: ASSETS_PATH + '/formdata.css'},
           controller: 'TutorCtrl',
           resolve: lazyLoadProvider.resolve('tutor')
+        })
+        .state('passpartout', {
+          url: '/passpartout',
+          parent: 'platform',
+          templateUrl: FRONT_PATH + '/passpartout.html',
+          data: {css: ASSETS_PATH + '/formdata.css'},
+          controller: 'PassCtrl',
+          resolve: lazyLoadProvider.resolve('passpartout')
         });
   }]);
   app.run(['$rootScope', 'lazyLoad', '$state', function($rootScope, lazyLoadProvider, $state){

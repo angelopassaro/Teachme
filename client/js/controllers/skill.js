@@ -67,9 +67,12 @@ define(['app', 'services/date-services'], function(app){
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
         $scope.Skill.price = $scope.skills[index].lesson.totalPrice;
-        $scope.Skill.months = dateService.createMonths();
-        $scope.Skill.days = dateService.range(1, 31);
-        $scope.Skill.year = new Date().getFullYear();
+        $scope.months = dateService.createMonths();
+        $scope.days = dateService.range(1, 31);
+        var parsedDate = dateService.parseDate($scope.skills[index].lesson.dateLesson);
+        $scope.Skill.day = parsedDate.day;
+        $scope.Skill.month = $scope.months[parsedDate.month];
+        $scope.Skill.year = parsedDate.year;
         $scope.Old = $scope.skills[index];
       };
 
@@ -77,6 +80,7 @@ define(['app', 'services/date-services'], function(app){
         Lesson.findById({id: $scope.Old.lesson.id}, function(lesson){
           lesson.totalPrice = $scope.Skill.price;
           lesson.dateLesson = new Date(Date.UTC($scope.Skill.year, $scope.months.indexOf($scope.Skill.month), $scope.Skill.day));
+          console.log(lesson.dateLesson);
           Lesson.prototype$updateAttributes({id: lesson.id}, lesson).$promise
             .then(function(success){
               $state.go('skill', {}, {reload: true});

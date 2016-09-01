@@ -6,11 +6,11 @@
       <p class="paragraph">Course:<span ng-bind="Skill.course" type="text" class="span"></span></p>
       <p class="paragraph">Teacher:<span ng-bind="Skill.teacher" type="text" class="span"/></span></p>
       <label class="label">Day:
-        <select class="select" ng-model="Skill.day" ng-options="sDay for day in days">
+        <select class="select" ng-model="Skill.day" ng-options="day for day in days">
         </select>
       </label>
       <label class="label">Month:
-        <select class="select" ng-model="Skill.month" ng-options="sMonth for month in months">
+        <select class="select" ng-model="Skill.month" ng-options="month for month in months">
         </select>
       </label>
       <label class="label">Year:<input type="text" class="input_text input_text--focused" ng-model="Skill.year" disabled="disabled"/></label>
