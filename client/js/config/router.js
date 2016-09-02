@@ -91,6 +91,14 @@ define(['app', 'providers/lazyload'], function(app){
           data: {css: ASSETS_PATH + '/formdata.css'},
           controller: 'PassCtrl',
           resolve: lazyLoadProvider.resolve('passpartout')
+        })
+        .state('prenotation', {
+          url: 'prenotation',
+          parent: 'platform',
+          templateUrl: FRONT_PATH + 'prenotation.html',
+          data: {css: ASSETS_PATH + '/formdata.css'},
+          controller: 'PrenotationCtrl',
+          resolve: lazyLoadProvider.resolve('prenotation')
         });
   }]);
   app.run(['$rootScope', 'lazyLoad', '$state', function($rootScope, lazyLoadProvider, $state){

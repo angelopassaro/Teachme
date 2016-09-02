@@ -1,0 +1,14 @@
+<div ng-init="prenotations = getPrenotations()">
+    <div ng-repeat="prenotation in prenotations">
+        <fieldset class="fieldset">
+            <legend class="legend">Prenotation</legend>
+            <p class="paragraph">tutor:<span class="span" ng-bind="prenotation.tutor"></span></p>
+            <p class="paragraph">course:<span class="span" ng-bind="prenotation.course"></span></p>
+            <p class="paragraph">teacher:<span class="span" ng-bind="prenotation.teacher"></span></p>
+            <p class="paragraph">date:<span class="span" ng-bind="prenotation.date"></span></p>
+            <p class="paragraph">duration:<span class="span" ng-bind="prenotation.duration"></span></p>
+            <p class="paragraph">price:<span class="span" ng-bind="prenotation.price"></span></p>
+            <p class="paragraph">total:<span class="span" ng-bind="prenotation.total"></span></p>
+        </fieldset>
+    </div>
+</div>
