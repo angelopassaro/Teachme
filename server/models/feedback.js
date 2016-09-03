@@ -2,6 +2,8 @@ module.exports = function(Feedback) {
 
 
     Feedback.validatesLengthOf('text', {max: 255,  message: {max: ' Enter max 255 characters  '}});
+    Feedback.validatesNumericalityOf('preparation', {int: true});
+     Feedback.validatesNumericalityOf('capacityToExplain', {int: true});
 
 
     /* Per non far inviare un altro feedback alla stessa lezione eliminare il valore in requrie*/
@@ -11,7 +13,6 @@ module.exports = function(Feedback) {
         var error = new Error();
         error.status = 401;
 
-        var requirebool;
 
         if (ctx.isNewInstance) {
 
@@ -32,7 +33,10 @@ module.exports = function(Feedback) {
                                         { text : "Have a new feedback from " + lesson.username +"for the lesson ",
                                                     "creation":  new Date()}
                                      );
+
                                     ctx.instance.belongId = lesson.studentId
+                                    ctx.instance.average =(ctx.instance.capacityToExplain + ctx.instance.preparation) / 2
+
                                     next();
                                 } else {
                                     next(error.message = "Can't add a Feedback");
@@ -51,20 +55,6 @@ module.exports = function(Feedback) {
         }
 
     })
-
-
-    //
-    // function required (id, lesson, cb) {
-    //
-    //     Feedback.app.models.Student.findById(id, function(err , student) {
-    //
-    //         student.require.destroyAll({ lessonId: lesson }, function(err, count) {
-    //             return count
-    //         })
-    //     })
-    //
-    // }
-
 
 
 };
