@@ -2,14 +2,14 @@ define(['app'], function (app) {
   'use-strict';
   app.controller('PlatformCtrl', ['$scope', '$state', '$controller', 'Student', function ($scope, $state,
     $controller, Student) {
-    angular.extend(this, $controller('BaseController', { $scope: $scope, $state: $state }));
+    var parentController = $controller('BaseController', {$scope: $scope});
 
-    $scope.loadView = this.loadView;
+    $scope.loadView = parentController.loadView;
 
     $scope.logout = function () {
       Student.logout().$promise.then(function () {
-        this.loadView('home');
-      }, this.handleError);
+        parentController.loadView('home');
+      }, parentController.handleError);
     };
 
     $scope.showCommandMenu = function () {

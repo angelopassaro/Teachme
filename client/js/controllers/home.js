@@ -1,9 +1,9 @@
 define(['app'], function(app){
 'use-strict';
     app.controller('HomeCtrl', ['$scope', '$state', '$controller', function($scope, $state, $controller){
-        angular.extend(this, $controller('BaseController', {$scope: $scope, $state: $state}));
+        var parentController = $controller('BaseController', {$scope: $scope});
 
-        $scope.loadView = this.loadView;
+        $scope.loadView = parentController.loadView;
 
         $scope.showMenu = function(){
             var elem = angular.element(document.getElementById('menu'));

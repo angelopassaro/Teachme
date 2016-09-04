@@ -3,21 +3,21 @@ define(['app', 'services/date-services'], function(app){
   app.controller('SkillCtrl', ['$scope','$controller','$state', 'Student', 'Lesson', 'Course', 'University', 'Teacher', 'dateService',
     function($scope, $controller ,$state, Student, Lesson, Course, University, Teacher, dateService){
       /*Initialization of scope Variables*/
-      angular.extend(this, $controller('BaseController', {$scope: $scope, $state: $state}));
+      var parentController = $controller('BaseController', {$scope: $scope});
       $scope.Skill = $scope.Skill || {};
-      $scope.loadView = this.loadView;
+      $scope.loadView = parentController.loadView;
       University.find(function(universities){
         $scope.universities = universities.map(function(value){
           return value.id;
         });
-      }, this.handleError);
+      }, parentController.handleError);
 
       $scope.getCourses = function(){
         University.offers({id: $scope.Skill.university}, function(courses){
           $scope.courses = courses.map(function(value){
             return value.name;
           });
-        }, this.handleError);
+        }, parentController.handleError);
       };
 
       $scope.getTeachers = function(){
@@ -26,7 +26,7 @@ define(['app', 'services/date-services'], function(app){
             $scope.teachers = teacher.map(function(value){
               return value.name + ' ' + value.lastName;
             })
-          }, this.handleError);
+          }, parentController.handleError);
         });
       }
 
@@ -43,12 +43,12 @@ define(['app', 'services/date-services'], function(app){
                 json.teacher = teacher;
                 Student.university({id: Student.getCurrentId()}, function(university){
                   json.university = university;
-                }, this.handleError);
-              }, this.handleError);
-            }, this.handleError);
+                }, parentController.handleError);
+              }, parentController.handleError);
+            }, parentController.handleError);
             tutorSkills[index] = json;
           });
-        }, this.handleError);
+        }, parentController.handleError);
         return tutorSkills;
       };
 
@@ -64,7 +64,7 @@ define(['app', 'services/date-services'], function(app){
           $scope.skills[left].visible = true;
           left--;
         }
-        this.loadView('editskill');
+        parentController.loadView('editskill');
         $scope.Skill.university = $scope.skills[index].university.id;
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
@@ -85,9 +85,9 @@ define(['app', 'services/date-services'], function(app){
           console.log(lesson.dateLesson);
           Lesson.prototype$updateAttributes({id: lesson.id}, lesson).$promise
             .then(function(success){
-              this.loadView('skill', true);
-            }, this.handleError);
-        }, this.handleError);
+              parentController.loadView('skill', true);
+            }, parentController.handleError);
+        }, parentController.handleError);
       };
 
       $scope.createSkill = function(){
@@ -95,14 +95,14 @@ define(['app', 'services/date-services'], function(app){
           Lesson.create({studentId: Student.getCurrentId(), courseId: course[0].id,
             dateLesson: new Date(), startLesson: new Date(), duration: 0, totalPrice: $scope.Skill.price}, function(lesson){
               $state.go('skill');
-            }, this.handleError);
-        }, this.handleError);
+            }, parentController.handleError);
+        }, parentController.handleError);
       };
 
       $scope.deleteLesson = function(index){
         Lesson.deleteById({id: $scope.skills[index].lesson.id}, function(result){
           $state.reload();
-        }, this.handleError);
+        }, parentController.handleError);
       };
   }]);
 });

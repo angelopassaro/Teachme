@@ -3,7 +3,7 @@ define(['app', 'services/date-services'], function (app) {
   app.controller('SignupCtrl', ['$scope', '$controller', 'Student', '$state', 'dateService',
     function ($scope, $controller, Student, $state, dateService, cssInjector) {
       /*Constants and Validators*/
-			angular.extend(this, $controller('BaseController', { $scope: $scope, $state: $state }));
+			var parentController = $controller('BaseController', {$scope: $scope});
       $scope.months = dateService.createMonths();
       $scope.years = dateService.range(1970, 2016);
       $scope.days = dateService.range(1, 31);
@@ -40,8 +40,8 @@ define(['app', 'services/date-services'], function (app) {
         $scope.Form.contacts.push(baseContact);
         $scope.Form.created = Date(Date.UTC);
 				Student.create($scope.Form).$promise.then(function (success) {
-					this.loadView('signup-success');
-				}, this.handleError);
+					parentController.loadView('signup-success');
+				}, parentController.handleError);
 			};
 		}]);
 });

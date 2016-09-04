@@ -2,7 +2,7 @@ define(['app'], function (app) {
     'use-strict';
     app.controller('SigninCtrl', ['$scope', 'Student', '$state', '$controller', function ($scope, Student,
         $state, $controller) {
-        angular.extend(this, $controller('BaseController', { $scope: $scope, $state: $state }));
+        var parentController = $controller('BaseController', {$scope: $scope});
         /*Student API*/
 
         $scope.log = function () {
@@ -14,9 +14,9 @@ define(['app'], function (app) {
             } else {
                 $scope.formLogin.email = logType;
             }
-            Student.login($scope.formLogin).$promise.then(function success() {
-                this.loadView('platform');
-            }, this.handleError);
+            Student.login($scope.formLogin).$promise.then(function(success) {
+                parentController.loadView('platform', false);
+            }, parentController.handleError);
         };
     }]);
 });

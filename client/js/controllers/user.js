@@ -3,11 +3,11 @@ define(['app', 'services/date-services'], function(app){
   app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', '$controller', function($scope, 
   $state, Student, dateService, $controller){
     /*Variable and function inheritance*/
-    angular.extend(this, $controller('BaseController', {$scope: $scope, $state: $state}));
+    var parentController = $controller('BaseController', {$scope: $scope});
     $scope.Student = $scope.Student || {};
     $scope.Contact = $scope.Contact || {};
     $scope.Date = $scope.Date || {};
-    $scope.loadView = this.loadView;
+    $scope.loadView = parentController.loadView;
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
     $scope.days = dateService.range(1, 31);
@@ -24,15 +24,15 @@ define(['app', 'services/date-services'], function(app){
           $scope.Date.year = jsonDate.year;
           $scope.Date.month = $scope.months[jsonDate.month - 1];
           $scope.Date.day = $scope.days[jsonDate.day - 1];
-      }, this.handleError);
+      }, parentController.handleError);
 
     $scope.updateUser = function(){
       $scope.Student.birthday = new Date(Date.UTC($scope.Date.year, $scope.months.indexOf($scope.Date.month), 
         $scope.Date.day));
       Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise
         .then(function(success){
-          this.loadView('user', true);
-        }, this.handleError(error));
+          parentController.loadView('user', true);
+        }, parentController.handleError(error));
     };
     /*Manage Contacts*/
     $scope.addContact = function(){
