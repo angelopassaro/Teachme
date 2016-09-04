@@ -32,7 +32,7 @@ define(['app', 'services/date-services'], function(app){
       Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise
         .then(function(success){
           parentController.loadView('user', true);
-        }, parentController.handleError(error));
+        }, parentController.handleError);
     };
     /*Manage Contacts*/
     $scope.addContact = function(){

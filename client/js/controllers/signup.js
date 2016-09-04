@@ -14,10 +14,10 @@ define(['app', 'services/date-services'], function (app) {
       $scope.passwordValidator = app.PASSWD_PATTERN;
 			$scope.createDays = dateService.manageDays;
       /*Functions*/
-      /*$scope.createDays = function () {
+      $scope.createDays = function () {
 				switch ($scope.Form.month) {
 					case 'February':
-						$scope.days = ($scope.Form.year % 4 === 0) ? tutorService.range(1, 29) : tutorService.range(1, 28);
+						$scope.days = ($scope.Form.year % 4 === 0) ? dateService.range(1, 29) : dateService.range(1, 28);
 						break;
 					case 'November': case 'April': case 'June': case 'September':
 						$scope.days = dateService.range(1, 30);
@@ -25,7 +25,7 @@ define(['app', 'services/date-services'], function (app) {
 					default:
 						$scope.days = dateService.range(1, 31);
 				}
-			};*/
+			};
 
 			$scope.registration = function () {
 				birth = new Date(Date.UTC($scope.Form.year, $scope.months.indexOf($scope.Form.month), $scope.Form.day));

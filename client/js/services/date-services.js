@@ -55,17 +55,9 @@ define(['app'], function (app) {
         'September', 'October', 'November', 'December'];
     };
 
-    this.manageDays = function(month, year, days){
-      switch (month) {
-					case 'February':
-						days = (year % 4 === 0) ? this.range(1, 29) : this.range(1, 28);
-						break;
-					case 'November': case 'April': case 'June': case 'September':
-						days = this.range(1, 30);
-						break;
-					default:
-						days = this.range(1, 31);
-				}
+    this.goIntoFuture = function (date, days) {
+      var newDate = new Date(date.setTime(date.getTime() + days * 86400000));
+      return newDate;
     };
   });
 });
