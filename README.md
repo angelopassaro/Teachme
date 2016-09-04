@@ -39,8 +39,7 @@ effetuare il login , poi il logout(vedere che succede alla pagina principale) ef
 * Email when a studen ask for tutor (OK)
 * tutor don't know who is reserved a lesson (find in studentlesson the lesson's id)
 * add notify in student (embeddsmany)(OK)
-* No delete a user with lesson ?
-* Student can tutor himself
+* Test serach
 *  Security Json https://docs.angularjs.org/api/ng/service/$http
 * Redirect signin add auto username/email and password
 * hidden/disable path after verification (redirect in page with log in ?)

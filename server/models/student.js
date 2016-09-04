@@ -136,6 +136,7 @@ module.exports = function(Student) {
                      for(var i = 0; i < lessons.length; i++){
                          //console.log(lessons[i].id);
                          linkModel.destroyAll({ lessonId : lessons[i].id});
+                         lessons[i].destroy();
                      }
                  }
              })
@@ -204,7 +205,7 @@ module.exports = function(Student) {
                 from: 'tutor4you6@gmail.com',
                 user: user,
                 template: path.resolve(__dirname, '../../server/views/verify.ejs'),
-                redirect: '/#/signin',
+                redirect: '/signin',
                 title: "<h3> Welcome in Tutor4You </h3>"
             };
 

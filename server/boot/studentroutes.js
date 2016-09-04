@@ -45,6 +45,9 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/signin', function(req, res) {
+       res.redirect('/#/signin');
+    });
 
     //add form reset password  test with password-reset.ejs
     app.get('/reset-password', function(req, res, next) {

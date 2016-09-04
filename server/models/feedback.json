@@ -1,37 +1,41 @@
 {
-  "name": "feedback",
-  "plural": "feedbacks",
-  "base": "PersistedModel",
-  "idInjection": false,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "capacityToExplain": {
-      "type": "number",
-      "required": true
+    "name": "feedback",
+    "plural": "feedbacks",
+    "base": "PersistedModel",
+    "idInjection": false,
+    "options": {
+        "validateUpsert": true
     },
-    "preparation": {
-      "type": "number",
-      "required": true
+    "properties": {
+        "capacityToExplain": {
+            "type": "number",
+            "required": true
+        },
+        "preparation": {
+            "type": "number",
+            "required": true
+        },
+        "text": {
+            "type": "string"
+        },
+        "average": {
+            "type": "number"
+        }
     },
-    "text": {
-      "type": "string"
-    }
-  },
-  "validations": [],
-  "relations": {
-    "relative": {
-      "type": "belongsTo",
-      "model": "lesson",
-      "foreignKey": ""
+    "validations": [],
+    "relations": {
+        "relative": {
+            "type": "belongsTo",
+            "model": "lesson",
+            "foreignKey": ""
+        },
+        "belong": {
+            "type": "belongsTo",
+            "model": "student",
+            "foreignKey": ""
+        }
     },
-    "belong": {
-      "type": "belongsTo",
-      "model": "student",
-      "foreignKey": ""
-    }
-  },
-  "acls": [],
-  "methods": {}
+    "acls": [],
+    "hidden": ["belongId"],
+    "methods": {}
 }
