@@ -33,11 +33,11 @@
     </p>
     <p class="paragraph">
       <div class="userbirth">
-      <label class="label">Year:<select class="select" ng-model="Form.year" ng-init="Form.year = years[0]" ng-change="createDays()" ng-options="year for year in years">
+      <label class="label">Year:<select class="select" ng-model="Form.year" ng-init="Form.year = years[0]" ng-change="createDays('Form.month', 'Form.year', 'days')" ng-options="year for year in years">
       </select>
       </label>
       <label class="label">Month:
-      <select class="select" ng-model="Form.month" ng-change="createDays()" ng-init="Form.month = months[0]" ng-options="month for month in months">
+      <select class="select" ng-model="Form.month" ng-change="createDays('Form.month', 'Form.year', 'days')" ng-init="Form.month = months[0]" ng-options="month for month in months">
         </select>
       </label>
       <label class="label">Day:

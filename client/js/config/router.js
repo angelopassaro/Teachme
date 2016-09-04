@@ -93,9 +93,9 @@ define(['app', 'providers/lazyload'], function(app){
           resolve: lazyLoadProvider.resolve('passpartout')
         })
         .state('prenotation', {
-          url: 'prenotation',
+          url: '/prenotation',
           parent: 'platform',
-          templateUrl: FRONT_PATH + 'prenotation.html',
+          templateUrl: FRONT_PATH + '/prenotation.html',
           data: {css: ASSETS_PATH + '/formdata.css'},
           controller: 'PrenotationCtrl',
           resolve: lazyLoadProvider.resolve('prenotation')

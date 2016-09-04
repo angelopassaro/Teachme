@@ -1,21 +1,23 @@
 define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('SkillCtrl', ['$scope', '$state', 'Student', 'Lesson', 'Course', 'University', 'Teacher', 'dateService',
-    function($scope, $state, Student, Lesson, Course, University, Teacher, dateService){
+  app.controller('SkillCtrl', ['$scope','$controller','$state', 'Student', 'Lesson', 'Course', 'University', 'Teacher', 'dateService',
+    function($scope, $controller ,$state, Student, Lesson, Course, University, Teacher, dateService){
       /*Initialization of scope Variables*/
+      angular.extend(this, $controller('BaseController', {$scope: $scope, $state: $state}));
       $scope.Skill = $scope.Skill || {};
+      $scope.loadView = this.loadView;
       University.find(function(universities){
         $scope.universities = universities.map(function(value){
           return value.id;
         });
-      }, function(error){ console.log(error);});
+      }, this.handleError);
 
       $scope.getCourses = function(){
         University.offers({id: $scope.Skill.university}, function(courses){
           $scope.courses = courses.map(function(value){
             return value.name;
           });
-        }, function(error){ console.log(error); });
+        }, this.handleError);
       };
 
       $scope.getTeachers = function(){
@@ -24,7 +26,7 @@ define(['app', 'services/date-services'], function(app){
             $scope.teachers = teacher.map(function(value){
               return value.name + ' ' + value.lastName;
             })
-          }, function(error){ console.log(error); });
+          }, this.handleError);
         });
       }
 
@@ -37,16 +39,16 @@ define(['app', 'services/date-services'], function(app){
             json.lesson = value;
             Course.findById({id: json.lesson.courseId},function(course){
               json.course = course;
-              Course.toughtBy({id: json.course.id}, function(teacher){
+              Teacher.findById({id: json.lesson.belongstoId}, function(teacher){
                 json.teacher = teacher;
                 Student.university({id: Student.getCurrentId()}, function(university){
                   json.university = university;
-                }, function(error){console.log(error);});
-              }, function(error){ console.log(error)});
-            }, function(error){console.log(error);});
+                }, this.handleError);
+              }, this.handleError);
+            }, this.handleError);
             tutorSkills[index] = json;
           });
-        }, function(error){console.log(error);});
+        }, this.handleError);
         return tutorSkills;
       };
 
@@ -62,7 +64,7 @@ define(['app', 'services/date-services'], function(app){
           $scope.skills[left].visible = true;
           left--;
         }
-        $state.go('editskill');
+        this.loadView('editskill');
         $scope.Skill.university = $scope.skills[index].university.id;
         $scope.Skill.course = $scope.skills[index].course.name;
         $scope.Skill.teacher = $scope.skills[index].teacher[0].name + ' ' + $scope.skills[index].teacher[0].lastName;
@@ -83,15 +85,9 @@ define(['app', 'services/date-services'], function(app){
           console.log(lesson.dateLesson);
           Lesson.prototype$updateAttributes({id: lesson.id}, lesson).$promise
             .then(function(success){
-              $state.go('skill', {}, {reload: true});
-            }, function(error){
-              console.log(error);
-            });
-        }, function(error){ console.log(error);});
-      };
-
-      $scope.createForm = function(){
-        $state.go('newskill');
+              this.loadView('skill', true);
+            }, this.handleError);
+        }, this.handleError);
       };
 
       $scope.createSkill = function(){
@@ -99,14 +95,14 @@ define(['app', 'services/date-services'], function(app){
           Lesson.create({studentId: Student.getCurrentId(), courseId: course[0].id,
             dateLesson: new Date(), startLesson: new Date(), duration: 0, totalPrice: $scope.Skill.price}, function(lesson){
               $state.go('skill');
-            }, function(error){ console.log(error);});
-        }, function(error){ console.log(error);});
+            }, this.handleError);
+        }, this.handleError);
       };
 
       $scope.deleteLesson = function(index){
         Lesson.deleteById({id: $scope.skills[index].lesson.id}, function(result){
           $state.reload();
-        }, function(error){ console.log(error);});
+        }, this.handleError);
       };
   }]);
 });
