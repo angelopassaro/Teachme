@@ -47,7 +47,7 @@ module.exports = function(Student) {
     /*triggered for verification email*/
     Student.afterRemote('create', function(context, user, next) {
         console.log('> user.afterRemote triggered');                                                                                   //DEBUG
-        Email(user);
+        sendEmail(user);
         next();
     });
 
@@ -62,7 +62,7 @@ module.exports = function(Student) {
 
 
         var texts = ["Password reset", html];
-        Email(user.user, texts);
+        sendEmail(user.user, texts);
 
     });
 
@@ -71,25 +71,34 @@ module.exports = function(Student) {
 
     // send a emai when a student require a lesson
     Student.afterRemote('*.__link__require', function(context, instance, next) {
-       Student.app.models.Lesson.findById(instance.lessonId, function(err, lesson){
-           if(lesson){
 
-               lesson.updateAttribute('available', false, function(err,update) {
-               });
-               Student.findById(lesson.studentId, function(err, student) {
-                   if(student) {
-                       student.notification.create(
-                           { text : context.instance.name + " require a lesson for " +
-                               lesson.courseId, "creation":  new Date()}
-                        );
-                       var options = ["News: Request lesson", " Have request for lesson check your account"];
-                       Email(student, options);
-                   }
-               })
-           }
-       }
-   )
-   next();
+        Student.app.models.Lesson.findById(instance.lessonId, function(err, lesson){
+            if(lesson) {
+
+                if(lesson.dateLesson < Date.now()) {
+                    next(new Error("Can't require this lesson."));
+
+                } else {
+                    lesson.updateAttribute('available', false, function(err,update) {
+                    });
+
+                    Student.findById(lesson.studentId, function(err, student) {
+                        if(student) {
+                            student.notification.create(
+                                { text : context.instance.name + " require a lesson for " +
+                                lesson.courseId, "creation":  new Date()}
+                            );
+                            var options = ["News: Request lesson", " Have request for lesson check your account"];
+                            sendEmail(student, options);
+                        }
+
+                    })
+
+                    next();
+                }
+            }
+        }
+    )
 });
 
 
@@ -195,7 +204,7 @@ module.exports = function(Student) {
 // send a email a specific user
 //@param user the user that recive the email
 //@param texts an array contatin subject and body email
-    function Email(user, texts) {
+    function sendEmail(user, texts) {
 
         var texts = texts || null;
 
@@ -283,6 +292,7 @@ module.exports = function(Student) {
 
         var error = new Error();
         error.status = 401;
+        error.message = "Student don't exist";
 
         Student.findOne({
             where: {
@@ -290,8 +300,8 @@ module.exports = function(Student) {
                 emailVerified: {neq: true}
             }
         }, function (err, user) {
-            if(!user) return cb(error, "Student don't exist");
-            Email(user);
+            if(!user) return cb(error);
+            sendEmail(user);
             cb(null, "Check your email");
         })
     }
