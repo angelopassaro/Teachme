@@ -222,9 +222,11 @@ module.exports = function(Student) {
                 return;
             }
 
-
+                console.log("options",options)
+                console.log("user",user)
                 user.verify(options, function(err, response) {
                     //if (err) return next(err);
+                    console.log("errore",err);
                     console.log('> email sent:', response);                                                                                    //DEBUG
                 });
         }
