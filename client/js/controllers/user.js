@@ -1,16 +1,21 @@
 define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', function($scope, $state, Student, dateService){
+  app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', '$controller', function($scope, 
+  $state, Student, dateService, $controller){
+    /*Variable and function inheritance*/
+    var parentController = $controller('BaseController', {$scope: $scope});
     $scope.Student = $scope.Student || {};
     $scope.Contact = $scope.Contact || {};
     $scope.Date = $scope.Date || {};
+    $scope.loadView = parentController.loadView;
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
     $scope.days = dateService.range(1, 31);
 
-      Student.findById({id: Student.getCurrentId()})
-        .$promise.then(function(student){
-          jsonDate = dateService.parseDate(student.birthday);
+    /*Student API call*/
+    
+      Student.findById({id: Student.getCurrentId()}, function(student){
+        jsonDate = dateService.parseDate(student.birthday);
           $scope.Student.name = student.name;
           $scope.Student.lastName = student.lastName;
           $scope.Student.birthday = dateService.isoDate(student.birthday, 0);
@@ -19,22 +24,17 @@ define(['app', 'services/date-services'], function(app){
           $scope.Date.year = jsonDate.year;
           $scope.Date.month = $scope.months[jsonDate.month - 1];
           $scope.Date.day = $scope.days[jsonDate.day - 1];
-        }, function(error){console.log(error);});
-
-    $scope.editUser = function(){
-      $state.go('edituser');
-    };
+      }, parentController.handleError);
 
     $scope.updateUser = function(){
-      $scope.Student.birthday = new Date(Date.UTC($scope.Date.year, $scope.months.indexOf($scope.Date.month), $scope.Date.day));
+      $scope.Student.birthday = new Date(Date.UTC($scope.Date.year, $scope.months.indexOf($scope.Date.month), 
+        $scope.Date.day));
       Student.prototype$updateAttributes({id: Student.getCurrentId()}, $scope.Student).$promise
         .then(function(success){
-          $state.go('user')
-        }, function(error){
-          console.log(error);
-        });
+          parentController.loadView('user', true);
+        }, parentController.handleError);
     };
-
+    /*Manage Contacts*/
     $scope.addContact = function(){
       var newObject = {}
       newObject[$scope.Contact.type] = $scope.Contact.name;
@@ -44,6 +44,7 @@ define(['app', 'services/date-services'], function(app){
     $scope.removeContact = function(index){
       console.log(index);
       delete $scope.Student.contacts[index];
-    }
+    };
+
   }]);
 });

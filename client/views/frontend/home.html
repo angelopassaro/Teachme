@@ -13,8 +13,8 @@
  <div class="mainimage" id="mainimage">
         <h2 class="mainimage__h2 h2">The <strong class="strong">perfect</strong> Tutor for You</h2>
         <div class="container">
-        <button ng-click="logRef('signin')" class="button button--active">Sign-In</button>
-        <button ng-click="logRef('signup')" class="button button--active">Sign-Up</button>
+        <button ng-click="loadView('signin')" class="button button--active">Sign-In</button>
+        <button ng-click="loadView('signup')" class="button button--active">Sign-Up</button>
       </div>
  </div>
  <div class="features" id="features">
@@ -57,7 +57,7 @@
     <div class="wrapper">
         <h3 class="h3 cta__h3">Heard Enough?</h3>
         <p class="paragraph">Sign up to our service and you life as a student will become more easy</p>
-        <button class="button button--active">Sign-Up</button>
+        <button class="button button--active" ng-click="loadView('signup')">Sign-Up</button>
     </div>
  </div>
  <footer class="footer" id="about">

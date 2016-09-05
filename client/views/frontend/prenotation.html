@@ -1,4 +1,5 @@
 <div ng-init="prenotations = getPrenotations()">
+    <h2 ng-hide="prenotations.length">You dont' have prenotations</h2>
     <div ng-repeat="prenotation in prenotations">
         <fieldset class="fieldset">
             <legend class="legend">Prenotation</legend>

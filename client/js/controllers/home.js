@@ -1,10 +1,9 @@
 define(['app'], function(app){
 'use-strict';
-    app.controller('HomeCtrl', ['$scope', '$state', function($scope, $state){
+    app.controller('HomeCtrl', ['$scope', '$state', '$controller', function($scope, $state, $controller){
+        var parentController = $controller('BaseController', {$scope: $scope});
 
-        $scope.logRef = function(state){
-            $state.go(state);
-        };
+        $scope.loadView = parentController.loadView;
 
         $scope.showMenu = function(){
             var elem = angular.element(document.getElementById('menu'));
