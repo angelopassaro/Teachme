@@ -48,6 +48,7 @@ module.exports = function(Student) {
     Student.afterRemote('create', function(context, user, next) {
         console.log('> user.afterRemote triggered');                                                                                   //DEBUG
         Email(user);
+        next();
     });
 
 
@@ -226,7 +227,6 @@ module.exports = function(Student) {
                 user.verify(options, function(err, response) {
                     console.log("errore",err);
                     console.log('> email sent:', response);   
-                    if (err) return next(err);
                 });
         }
 
