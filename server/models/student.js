@@ -224,8 +224,8 @@ module.exports = function(Student) {
 
 
                 user.verify(options, function(err, response) {
-                    if (err) return next(err);
-                    //console.log('> email sent:', response);                                                                                    //DEBUG
+                    //if (err) return next(err);
+                    console.log('> email sent:', response);                                                                                    //DEBUG
                 });
         }
 
