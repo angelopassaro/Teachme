@@ -1,3 +1,3 @@
 module.exports = {
-  host: process.env."testtutor4youtest.azurewebsites.net"
+  host: process.env.testtutor4youtest.azurewebsites.net
 };
