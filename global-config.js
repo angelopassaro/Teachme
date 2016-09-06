@@ -11,7 +11,7 @@
 var url = require('url');
 
 var conf = {
-  hostname: 'http://testtutor4youtest.azurewebsites.net',
+  hostname: 'testtutor4youtest.azurewebsites.net',
   port: 80,
   restApiRoot: '/api', // The path where to mount the REST API app
   legacyExplorer: false
