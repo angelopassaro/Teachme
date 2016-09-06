@@ -28,4 +28,6 @@ conf.restApiUrl = url.format({
   pathname: conf.restApiRoot
 });
 
+console.log(conf);
+
 module.exports = conf;
