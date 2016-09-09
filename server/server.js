@@ -26,6 +26,8 @@ app.use(loopback.token());
 // }, null, true);
 
 var port = process.env.port;
+console.log(process);
+console.log(process.env);
 console.log(port);
 
 app.start = function() {
