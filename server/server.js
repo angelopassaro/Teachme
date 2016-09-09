@@ -25,9 +25,7 @@ app.use(loopback.token());
 //     deleteOldToken();
 // }, null, true);
 
-<<<<<<< HEAD
 // prova
-
 var port = process.env.port;
 
 app.start = function() {
