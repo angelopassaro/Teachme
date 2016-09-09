@@ -231,11 +231,9 @@ module.exports = function(Student) {
                 return;
             }
 
-                console.log("options",options)
-                console.log("user",user)
+
                 user.verify(options, function(err, response) {
-                    //console.log("errore",err);
-                    //console.log('> email sent:', response);   
+                    //console.log('> email sent:', response);
                 });
         }
 

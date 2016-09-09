@@ -15,7 +15,9 @@ module.exports = function(Lesson) {
                     course.toughtBy.count({teacherId: ctx.instance.belongsId},function(err,count) {
                         if (count == 1) {
                             Lesson.app.models.Student.findById(ctx.instance.studentId, function(err, student) {
-                                student.isTutor && ctx.instance.dateLesson > Date.now() ?  next() : next(error.message = "Can't create this lesson(check the data of lesson). You need to be tutor. ");
+                                student.isTutor &&
+                                ctx.instance.dateLesson > Date.now()  &&
+                                ctx.instance.startLesson > ctx.instance.dateLesson ?  next() : next(error.message = "Can't create this lesson(check the data of lesson). You need to be tutor. ");
                             })
                         } else {
                             next(error.message = "Don't exist a course with this teacher");
@@ -27,7 +29,6 @@ module.exports = function(Lesson) {
             })
         } else {
             if(ctx.data) {
-                // if the lesson is require can't change price pure per la data ???
                 ctx.currentInstance.available == false && ctx.data.hasOwnProperty('totalPrice') ? next(error.message = "Can't change che price now") : next ();
             }
         }
@@ -40,16 +41,14 @@ module.exports = function(Lesson) {
         var error = new Error();
         error.status = 401;
 
-        if(ctx.where.id) {
-            Lesson.findById(ctx.where.id , function(err, lesson) {
-                console.log(lesson)
+            Lesson.findById(ctx.where.id || ctx.where.studentId , function(err, lesson) {
                 if (lesson.available == false) {
                     next(error.message = "Can't delete this lesson now. You must finish it.");
                 } else {
                     next();
                 }
             })
-        }
+
     })
 
 
@@ -81,6 +80,8 @@ module.exports = function(Lesson) {
                                     student find ->lesson[i].studentId  feed  find -> lesson[i].studentid , lesson[i].courseId TODO chiedi privacy
                                     JSON {lessonid :{ username : valore ,name:valore , cognome:valore , contact: valore, prezzo: valore, data:valore, durata:valore,  feed: valore} }
 
+
+                                        devo trovare il corso di una lezione
                                     mydata = {}
                                     mydata[username] = valore
                                     ...
@@ -110,11 +111,8 @@ module.exports = function(Lesson) {
                                             }
                                         });
                                     }
-
-
                                 }
-
-
+                                
                             } else {
                                 cb(error.message = "Student don't exist");
                             }
@@ -142,7 +140,9 @@ module.exports = function(Lesson) {
         var data = {};
 
         Lesson.app.models.Student.findById(lesson.studentId, function(err,tutor) {
+
             if(lesson.available == true && tutor.email != student) {
+
                 if(bool || (tutor.hasOwnProperty('mypasspartout') && tutor.mypasspartout.hasOwnProperty('expiredDate')
                 && tutor.mypasspartout.expiredDate > Date.now())) {
 
@@ -151,6 +151,7 @@ module.exports = function(Lesson) {
                     data["lastName"] = tutor.lastName;
                     data["contacs"] = tutor.contacts;
                 }
+
                 data['idLesson'] = lesson.id;
                 data["price"] = lesson.totalPrice;
                 data["dataLesson"] = lesson.dateLesson;
@@ -159,9 +160,10 @@ module.exports = function(Lesson) {
                 Lesson.app.models.Feedback.find({
                     where :{
                         studentId: tutor.id,
-                        relativeId: lesson.courseId
+                        //relativeId: lesson.courseId
                     }
                 },function(err,feeds) {
+                    console.log(feeds)
                     var length = feeds.length;
 
                     if(length == 0) {

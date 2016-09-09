@@ -18,6 +18,7 @@ module.exports = function(Feedback) {
 
             Feedback.app.models.Lesson.findById(ctx.instance.relativeId, function (err, lesson) {
 
+
                 if (lesson) {
 
                     var lessontime = new Date(lesson.dateLesson);
@@ -30,7 +31,7 @@ module.exports = function(Feedback) {
                             student.require.destroyAll({ lessonId: ctx.instance.relativeId }, function(err, count) {
                                 if(count['count'] == 1) {
                                     student.notification.create(
-                                        { text : "Have a new feedback from " + lesson.username +"for the lesson ",
+                                        { text : "Have a new feedback for you lesson ",
                                                     "creation":  new Date()}
                                      );
 

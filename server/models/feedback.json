@@ -36,6 +36,6 @@
         }
     },
     "acls": [],
-    "hidden": ["belongId"],
+    "hidden": ["belongId", "average"],
     "methods": {}
 }
