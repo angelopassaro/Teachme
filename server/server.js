@@ -25,7 +25,7 @@ app.use(loopback.token());
 //     deleteOldToken();
 // }, null, true);
 
-var port = process.env.port;
+var port = process.env.port || 80;
 
 app.start = function() {
     // start the web server
