@@ -25,11 +25,10 @@ app.use(loopback.token());
 //     deleteOldToken();
 // }, null, true);
 
-var port = process.env.port || 80;
+var port = process.env.port;
 
 app.start = function() {
-    // start the web server
-    return app.listen(port)
+    app.listen(port)
     });
 };
 
