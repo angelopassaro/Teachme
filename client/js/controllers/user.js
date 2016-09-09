@@ -11,6 +11,7 @@ define(['app', 'services/date-services'], function(app){
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
     $scope.days = dateService.range(1, 31);
+    $scope.verify = ($scope.Contact.type === 'Mail') ? app.MAIL_PATTERN : app.PHONE_PATTERN;
 
     /*Student API call*/
     

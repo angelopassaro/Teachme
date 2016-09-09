@@ -1,51 +1,52 @@
 <div class="wrapper">
   <h1 class="h1">Sign Up</h1>
-  <form class="form" ng-submit="registration()" novalidate="true">
+  <form class="form" ng-submit="registration()" name="Form" novalidate>
     <div class="radio_div">
-      <input type="radio" id="stype" class="input_radio input_radio--checked" ng-model="Form.isTutor" value="false" checked="checked"/>
+      <input type="radio" id="stype" class="input_radio input_radio--checked" ng-model="isTutor" value="false" checked="checked"/>
       <label class="input_radio__label label" for="stype">Student</label>
-      <input type="radio" id="ttype" class="input_radio input_radio--checked" ng-model="Form.isTutor" value="true"/>
+      <input type="radio" id="ttype" class="input_radio input_radio--checked" ng-model="isTutor" value="true"/>
       <label class="input_radio__label label" for="ttype">Tutor</label>
       </div>
     <p class="paragraph">
-       <input type="text" class="input_text input_text--focused" placeholder="Insert Username"  required ng-model="Form.username" ng-pattern="nickValidator"/>
-       <span class="mark" ng-show="Form.username">&#x2714</span>
+       <input type="text" class="input_text input_text--focused" placeholder="Insert username" name="username" required ng-model="username" ng-pattern="nickValidator" ng-minlength="3" ng-maxlength="8"/>
+        <div ng-include="'/views/frontend/error.html'">
+        </div>
     </p>
     <p class="paragraph">
-      <input type="text" class="input_text input_text--focused" required placeholder="Your Name" ng-model="Form.name" ng-pattern="nameValidator"/>
-      <span class="mark" ng-show="Form.name">&#x2714</span>
+      <input type="text" class="input_text input_text--focused" required placeholder="Your Name" ng-model="name" ng-pattern="nameValidator"/>
+      <span class="mark" ng-show="name"></span>
     </p>
     <p class="paragraph">
-      <input type="text" class="input_text input_text--focused" placeholder="Your Surname" required ng-model="Form.lastName" ng-pattern="lastnameValidator"/>
-      <span class="mark" ng-show="Form.lastName">&#x2714</span>
+      <input type="text" class="input_text input_text--focused" placeholder="Your Surname" required ng-model="lastName" ng-pattern="lastnameValidator"/>
+      <span class="mark" ng-show="lastName"></span>
     </p>
     <p class="paragraph">
-      <input type="email" class="input_email input_email--focused" placeholder="Your E-Mail" required ng-model="Form.email" ng-pattern="emailValidator"/>
-      <span class="mark" ng-show="Form.email">&#x2714</span>
+      <input type="email" class="input_email input_email--focused" placeholder="Your E-Mail" required ng-model="email" ng-pattern="emailValidator"/>
+      <span class="mark" ng-show="email"></span>
     </p>
     <p class="paragraph">
-      <input type="password" class="input_password input_password--focused" placeholder="Insert Password" required ng-model="Form.password" ng-pattern="passwordValidator"/>
-      <span class="mark" ng-show="Form.password">&#x2714</span>
+      <input type="password" class="input_password input_password--focused" placeholder="Insert Password" required ng-model="password" ng-pattern="passwordValidator"/>
+      <span class="mark" ng-show="password"></span>
     </p>
     <p class="paragraph">
-      <input type="password" class="input_password input_password--focused" placeholder="Repeat Password" required ng-model="Form.passwordrpt"/>
-      <span class="mark" ng-show="Form.password === Form.passwordrpt">&#x2714</span>
+      <input type="password" class="input_password input_password--focused" placeholder="Repeat Password" required ng-model="passwordrpt"/>
+      <span class="mark" ng-show="password === passwordrpt"></span>
     </p>
     <p class="paragraph">
       <div class="userbirth">
-      <label class="label">Year:<select class="select" ng-model="Form.year" ng-init="Form.year = years[0]" ng-change="createDays()" ng-options="year for year in years">
+      <label class="label">Year:<select class="select" ng-model="year" ng-init="year = years[0]" ng-change="createDays()" ng-options="year for year in years">
       </select>
       </label>
       <label class="label">Month:
-      <select class="select" ng-model="Form.month" ng-change="createDays()" ng-init="Form.month = months[0]" ng-options="month for month in months">
+      <select class="select" ng-model="month" ng-change="createDays()" ng-init="month = months[0]" ng-options="month for month in months">
         </select>
       </label>
       <label class="label">Day:
-      <select class="select" ng-model="Form.day" ng-init="Form.day = days[0]" ng-options="day for day in days">
+      <select class="select" ng-model="day" ng-init="day = days[0]" ng-options="day for day in days">
         </select>
       </label>
       </div>
     </p>
-      <input type="submit" class="input_submit input_submit--focused" value="Get Started!"/>
+      <input type="submit" class="input_submit input_submit--focused" value="Get Started!" ng-disabled="Form.$invalid"/>
   </form>
 </div>

@@ -72,12 +72,9 @@
   display: table-row;
 }
 
-.mark {
-  color: #21bd5a;
-  font-size: 20px;
-  font-family: inherit;
+.message {
+  color: red;
 }
-
 .mark.ng-hide-add, .mark.ng-hide-remove{
   transition: all linear 0.5s;
   -moz-trannsition: all linear 0.5s;
@@ -111,8 +108,7 @@
   }
 
   .mark {
-    font-size: 15px;
-    display: inline;
+    
   }
   .select {
     width: 50%;
