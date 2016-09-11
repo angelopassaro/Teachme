@@ -42,9 +42,9 @@ define(['app', 'services/date-services'], function (app) {
         baseContact["Mail"] = $scope.Form.email;
         $scope.Form.contacts.push(baseContact);
         $scope.Form.created = Date(Date.UTC);
-				Student.create($scope.Form).$promise.then(function (success) {
+			     /*	Student.create($scope.Form).$promise.then(function (success) {
 					parentController.loadView('signup-success');
-				}, parentController.handleError);
+				}, parentController.handleError);*/
 			};
 		}]);
 });
