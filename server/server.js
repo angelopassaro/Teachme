@@ -26,7 +26,7 @@ app.use(loopback.token());
 // }, null, true);
 
 // prova
-var port = process.env.port;
+var port = process.env.port || 3000;
 
 app.start = function() {
     // start the web server
