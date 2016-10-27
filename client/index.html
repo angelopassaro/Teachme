@@ -9,17 +9,19 @@
         <meta name="keywords" content="Tutor, tutoring, tutor4you">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link rel='stylesheet' href='vendor/angular-loading-bar/build/loading-bar.min.css' type='text/css' media='all'/>
-        <link rel="stylesheet" href="css/elements/button.css"/>
-        <link rel="stylesheet" href="css/elements/inputs.css"/>
-        <link rel="stylesheet" href="css/elements/select.css"/>
-        <link rel="stylesheet" href="css/elements/text.css"/>
-        <link rel="stylesheet" href="css/elements/wrapper.css"/>
-        <link rel="stylesheet" href="css/components/menu.css"/>
-        <link rel="stylesheet" href="css/components/box.css"/>
+        <link rel="stylesheet" href="vendor/pure/pure-min.css " type="text/css"/>
+        <link rel="stylesheet" href="./css/components/text.css" type="text/css"/>
+        <link rel="stylesheet" href="./css/components/inputs.css" type="text/css"/>
+        <!--[if lte IE 8]>
+        <link rel="stylesheet" href="vendor/pure/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="vendor/pure/grids-responsive-min.css" type="text/css"/>
+        <!--<![endif]-->
         <script src="vendor/requirejs/require.js" data-main="js/main.js"></script>
         <title>Tutor4you</title>
     </head>
-        <body class="body">
+        <body style="font-family: Georgia, 'Times New Roman', Times, serif;">
            <div ui-view></div>
         </body>
 </html>

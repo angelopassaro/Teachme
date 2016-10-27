@@ -1,50 +1,51 @@
-.span {
+.pure-span {
   font-weight: 300;
 }
 
-.h1 {
-  font-weight: 300;
-  font-size: 55px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.h2 {
+.pure-h1 {
   font-weight: 300;
   font-size: 55px;
   text-transform: uppercase;
-  text-align: center;
 }
 
-.h3 {
+.pure-h2 {
+  font-weight: 300;
+  font-size: 48px;
+  text-transform: uppercase;
+}
+
+.pure-h3 {
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
-  text-align: center;
 }
 
-.h4 {
+.pure-h4 {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
-  text-align: center;
 }
 
-.h5 {
+.pure-h5 {
   font-size: 15px;
   font-weight: bold;
-  text-transform: uppercase;
 }
 
-.anchor {
-  text-decoration: none;
+.pure-h6 {
+    font-size: 10px;
+    font-weight: bold;
 }
 
-.strong {
+.pure-anchor {
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.pure-strong {
   font-weight: bold;
 }
 
-.paragraph {
+.pure-paragraph {
   line-height: 20px;
   margin-bottom: 20px;
 }
