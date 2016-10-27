@@ -1,23 +1,26 @@
 module.exports = function(Lesson) {
 
+'use strict'
 
-
-    // check the student for tutoring
+    // check the creation of lesson
     Lesson.observe('before save', function(ctx, next) {
 
         var error = new Error();
         error.status = 401;
 
+        /*
+        Create a new lesson
+        Search the specific cours with specific teacher and create the lesson
+        */
         if(ctx.isNewInstance) {
-
             Lesson.app.models.Course.findById(ctx.instance.courseId, function(err, course) {
                 if(course) {
                     course.toughtBy.count({teacherId: ctx.instance.belongsId},function(err,count) {
                         if (count == 1) {
                             Lesson.app.models.Student.findById(ctx.instance.studentId, function(err, student) {
-                                student.isTutor &&
-                                ctx.instance.dateLesson > Date.now()  &&
-                                ctx.instance.startLesson > ctx.instance.dateLesson ?  next() : next(error.message = "Can't create this lesson(check the data of lesson). You need to be tutor. ");
+                                //TODO rivedere
+                                student !== null && student.isTutor && ctx.instance.dateLesson > Date.now() && ctx.instance.startLesson > ctx.instance.dateLesson ?  next() : next(error.message = "Can't create this lesson(check the data of lesson). You need to be tutor. ");
+
                             })
                         } else {
                             next(error.message = "Don't exist a course with this teacher");
@@ -28,6 +31,9 @@ module.exports = function(Lesson) {
                 }
             })
         } else {
+            /*
+            update a lesson
+            */
             if(ctx.data) {
                 ctx.currentInstance.available == false && ctx.data.hasOwnProperty('totalPrice') ? next(error.message = "Can't change che price now") : next ();
             }
@@ -53,12 +59,13 @@ module.exports = function(Lesson) {
 
 
 
+/*
+
+*/
     Lesson.search = function (token, course, teacher, cb) {
 
         var error = new Error();
         error.status = 401;
-
-        var list = [];
 
         Lesson.find({
             where:{
@@ -75,9 +82,9 @@ module.exports = function(Lesson) {
                                 var response = [];
                                 if(student.hasOwnProperty('mypasspartout') && student.mypasspartout.hasOwnProperty('expiredDate')
                                 && student.mypasspartout.expiredDate > Date.now()) {
-
-                                    /* Deve tornare tutte le lezioni con course e teacher lo studente di quella lezione più una media dei Feedback
-                                    student find ->lesson[i].studentId  feed  find -> lesson[i].studentid , lesson[i].courseId TODO chiedi privacy
+                                    /*
+                                    Deve tornare tutte le lezioni con course e teacher lo studente di quella lezione più una media dei Feedback
+                                    student find ->lesson[i].studentId  feed  find -> lesson[i].studentid , lesson[i].courseId
                                     JSON {lessonid :{ username : valore ,name:valore , cognome:valore , contact: valore, prezzo: valore, data:valore, durata:valore,  feed: valore} }
 
 
@@ -90,16 +97,17 @@ module.exports = function(Lesson) {
 
                                     provare una funzione (lessons, bool, cb)  richiamata function (lessons, true,function (result){  cb(result) })
                                     */
+                                    var dec = 0;
 
-
+                                    //TODO riscrivere
                                     for( var i = 0; i < length; i++) {
                                         makeLesson(lessons[i], true, student.email,function (mylesson) {
-                                            response.push(mylesson);
-                                            if(response.length === length) {
-                                                cb(null,response);
-                                            }
-                                        });
-                                    }
+                                        response.push(mylesson);
+                                        if(response.length === length) {
+                                            cb(null,response);
+                                        }
+                                    });
+                                }
 
                                 } else {
 
@@ -112,7 +120,7 @@ module.exports = function(Lesson) {
                                         });
                                     }
                                 }
-                                
+
                             } else {
                                 cb(error.message = "Student don't exist");
                             }
@@ -134,14 +142,14 @@ module.exports = function(Lesson) {
     }
 
 
-
-    function makeLesson(lesson, bool, student, cb) {
+    function makeLesson(lesson, bool, studentMail, cb) {
 
         var data = {};
 
         Lesson.app.models.Student.findById(lesson.studentId, function(err,tutor) {
 
-            if(lesson.available == true && tutor.email != student) {
+            // TODO aggingere controllo sulla data della lezione, se la data è passata non deve essere disponibile
+            if(lesson.available == true && tutor.email != studentMail) {
 
                 if(bool || (tutor.hasOwnProperty('mypasspartout') && tutor.mypasspartout.hasOwnProperty('expiredDate')
                 && tutor.mypasspartout.expiredDate > Date.now())) {
@@ -157,9 +165,13 @@ module.exports = function(Lesson) {
                 data["dataLesson"] = lesson.dateLesson;
                 data["duration"] = lesson.duration;
 
+                console.log(tutor.id)
+
+
+                // TODO mostra tutti i feedback del tutor non quelli relativi al corso + specifico professore
                 Lesson.app.models.Feedback.find({
                     where :{
-                        studentId: tutor.id,
+                        belongId: tutor.id,
                         //relativeId: lesson.courseId
                     }
                 },function(err,feeds) {
@@ -182,13 +194,15 @@ module.exports = function(Lesson) {
                 })
 
             } else {
-                cb("No available lesson found");
+                cb("No available lesson");
             }
         })
     }
 
 
-
+/*
+API for search a specific lesson
+*/
     Lesson.remoteMethod(
         'search',
         {
