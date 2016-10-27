@@ -4,6 +4,8 @@ define(['app'], function(app){
         var parentController = $controller('BaseController', {$scope: $scope});
 
         $scope.loadView = parentController.loadView;
+        $scope.mobile = (document.documentElement.clientWidth <= 568) ? '../../images/mobilemain1.jpg' : '../../images/main.gif';
         /*Aggiungere toogle*/
+        
 }]);
 });

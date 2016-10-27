@@ -18,9 +18,56 @@
 .btn-container {
     background-color: #0091b4; 
     text-align: center;
-    margin: 0 auto;
+    margin-top: -3px;
 }
 
 .pure-flat-button{
     width: 25%;
+    height: 50px;
+}
+
+.features-list {
+    list-style-type: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.features-list .pure-img {
+    margin: 0 auto;
+}
+
+.pure-h2 {
+    border-bottom: 1px solid #0091b4;
+}
+
+.ability {
+    text-align: center;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    height: 200px;
+    background-color: #0091b4;
+}
+
+.news, .cta {
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 35.5em){
+    .footer{
+        height: 100%;
+    }
+
+    .pure-flat-button {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 48em){
+    .footer{
+        height: 100%;
+    }
 }
