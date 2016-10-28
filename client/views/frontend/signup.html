@@ -1,52 +1,46 @@
-<div class="wrapper">
-  <h1 class="h1">Sign Up</h1>
-  <form class="form" ng-submit="registration()" name="Form" novalidate>
-    <div class="radio_div">
-      <input type="radio" id="stype" class="input_radio input_radio--checked" ng-model="isTutor" value="false" checked="checked"/>
-      <label class="input_radio__label label" for="stype">Student</label>
-      <input type="radio" id="ttype" class="input_radio input_radio--checked" ng-model="isTutor" value="true"/>
-      <label class="input_radio__label label" for="ttype">Tutor</label>
+<div class="form-container pure-g">
+  <h1 class="pure-h1 pure-u-1">Sign-up</h1>
+  <form name="Form" class="pure-form pure-form-aligned pure-u-1" novalidate>
+    <fieldset>
+      <div class="pure-control-group">
+        <label class="pure-label pure-radio" for="stype">Student-Account</label>
+        <input type="radio" data-ng-model="isTutor" data-ng-value="false" id="stype" checked/>
+        <label class="pure-label pure-radio" for="ttype">Tutor Account</label>
+        <input type="radio" data-ng-model="isTutor" data-ng-value="true" id="ttype"/>
       </div>
-    <p class="paragraph">
-       <input type="text" class="input_text input_text--focused" placeholder="Insert username" name="username" required ng-model="username" ng-pattern="nickValidator" ng-minlength="3" ng-maxlength="8"/>
-        <div ng-include="'/views/frontend/error.html'">
-        </div>
-    </p>
-    <p class="paragraph">
-      <input type="text" class="input_text input_text--focused" required placeholder="Your Name" ng-model="name" ng-pattern="nameValidator"/>
-      <span class="mark" ng-show="name"></span>
-    </p>
-    <p class="paragraph">
-      <input type="text" class="input_text input_text--focused" placeholder="Your Surname" required ng-model="lastName" ng-pattern="lastnameValidator"/>
-      <span class="mark" ng-show="lastName"></span>
-    </p>
-    <p class="paragraph">
-      <input type="email" class="input_email input_email--focused" placeholder="Your E-Mail" required ng-model="email" ng-pattern="emailValidator"/>
-      <span class="mark" ng-show="email"></span>
-    </p>
-    <p class="paragraph">
-      <input type="password" class="input_password input_password--focused" placeholder="Insert Password" required ng-model="password" ng-pattern="passwordValidator"/>
-      <span class="mark" ng-show="password"></span>
-    </p>
-    <p class="paragraph">
-      <input type="password" class="input_password input_password--focused" placeholder="Repeat Password" required ng-model="passwordrpt"/>
-      <span class="mark" ng-show="password === passwordrpt"></span>
-    </p>
-    <p class="paragraph">
-      <div class="userbirth">
-      <label class="label">Year:<select class="select" ng-model="year" ng-init="year = years[0]" ng-change="createDays()" ng-options="year for year in years">
-      </select>
-      </label>
-      <label class="label">Month:
-      <select class="select" ng-model="month" ng-change="createDays()" ng-init="month = months[0]" ng-options="month for month in months">
-        </select>
-      </label>
-      <label class="label">Day:
-      <select class="select" ng-model="day" ng-init="day = days[0]" ng-options="day for day in days">
-        </select>
-      </label>
+      <div class="pure-control-group">
+        <label class="pure-label" for="username">Username:</label>
+        <input type="text" class="pure-input-1-3" data-ng-model="username" id="username" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Username"/>
       </div>
-    </p>
-      <input type="submit" class="input_submit input_submit--focused" value="Get Started!" ng-disabled="Form.$invalid"/>
+      <div class="pure-control-group">
+        <label class="pure-label" for="name">Name:</label>
+        <input type="text" class="pure-input-1-3" data-ng-model="name" id="name" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Name"/>
+      </div>
+      <div class="pure-control-group">
+        <label class="pure-label" for="lastName">Surname:</label>
+        <input type="text" class="pure-input-1-3" data-ng-model="lastName" id="lastName" data-ng-minlength="3" data-ng-maxlength="15" placeholder="Insert Surname"/>
+      </div>
+      <div class="pure-control-group">
+        <label class="pure-label" for="email">Email:</label>
+        <input type="email" class="pure-input-1-3" data-ng-model="email" id="email" data-ng-pattern="" placeholder="Insert Email"/>
+      </div>
+      <div class="pure-control-group">
+        <label class="pure-label" for="passwd">Password:</label>
+        <input type="password" class="pure-input-1-3" id="password" data-ng-model="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
+      </div>
+      <div class="pure-control-group">
+        <label class="pure-label" for="passwdrpt">Repeat Password:</label>
+        <input type="password" class="pure-input-1-3" id="passwdrpt" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Repeat Password"/> 
+      </div>
+      <div class="pure-control-group">
+        <label for="dayList">Day:</label>
+        <select id="dayList" data-ng-model="day" data-ng-init="day = days[0]" data-ng-options="day for day in days"></select>
+        <label for="monthList">Month:</label>
+        <select id="monthList" data-ng-model="month" data-ng-init="month = months[0]" data-ng-options="month for month in months"></select>
+        <label for="yearList">Year:</label>
+        <select id="yearList" data-ng-model="year" data-ng-init="year = years[0]" data-ng-options="year for year in years"></select>
+      </div>
+      <input type="submit" class="pure-input-1-3 pure-flat-button pure-button" value="Get Started!"/>
+    </fieldset>
   </form>
 </div>

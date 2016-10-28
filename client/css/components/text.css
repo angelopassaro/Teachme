@@ -49,3 +49,8 @@
   line-height: 20px;
   margin-bottom: 20px;
 }
+
+.pure-label {
+  letter-spacing: 0;
+  font-size: 20px;
+}

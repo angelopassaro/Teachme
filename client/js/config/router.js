@@ -1,20 +1,36 @@
 define(['app', 'providers/lazyload'], function(app){
   'use-strict';
-  var FRONT_PATH = "views/frontend";
-  var ASSETS_PATH = "css/templates";
+  var FRONT_PATH = "views/frontend/";
+  var ASSETS_PATH = "css/templates/";
+  var ROUTES = {
+    "home": null,
+    "signin": null,
+    "signup": null 
+  };
   app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function($stateProvider,
                 $urlRouterProvider, $locationProvider, lazyLoadProvider){
     $locationProvider.html5Mode(false);
-    $urlRouterProvider.otherwise('/');
-      $stateProvider
+    $urlRouterProvider.otherwise('/home');
+    angular.forEach(ROUTES, function(value, key){
+      $stateProvider.state(key, {
+        url: '/' + key,
+        templateUrl: FRONT_PATH + key + '.html',
+        controller: key + 'Ctrl',
+        data: {css: ASSETS_PATH + key + '.css'},
+        resolve: lazyLoadProvider.resolve(key),
+        parent: value
+      });
+    });
+
+    /*  $stateProvider
         .state('home', {
           url: '/',
           templateUrl: FRONT_PATH + '/home.html',
           controller: 'HomeCtrl',
           data: {css: ASSETS_PATH + '/home.css'},
           resolve: lazyLoadProvider.resolve('home')
-      })
-        .state('signin', {
+      });*/
+     /*   .state('signin', {
           url: '/signin',
           templateUrl: FRONT_PATH + '/signin.html',
           controller: 'SigninCtrl',
@@ -99,7 +115,7 @@ define(['app', 'providers/lazyload'], function(app){
           data: {css: ASSETS_PATH + '/formdata.css'},
           controller: 'PrenotationCtrl',
           resolve: lazyLoadProvider.resolve('prenotation')
-        });
+        });*/
   }]);
   app.run(['$rootScope', 'lazyLoad', '$state', function($rootScope, lazyLoadProvider, $state){
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){

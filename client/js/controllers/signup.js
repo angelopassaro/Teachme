@@ -1,6 +1,6 @@
 define(['app', 'services/date-services'], function (app) {
   'use-strict';
-  app.controller('SignupCtrl', ['$scope', '$controller', 'PATTERNS', 'Student', '$state', 'dateService',
+  app.controller('signupCtrl', ['$scope', '$controller', 'PATTERNS', 'Student', '$state', 'dateService',
     function ($scope, $controller, PATTERNS, Student, $state, dateService, cssInjector) {
       /*Constants and Validators*/
 			var parentController = $controller('BaseController', {$scope: $scope});
