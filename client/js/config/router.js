@@ -5,7 +5,8 @@ define(['app', 'providers/lazyload'], function(app){
   var ROUTES = {
     "home": null,
     "signin": null,
-    "signup": null 
+    "signup": null,
+    "verify": null
   };
   app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function($stateProvider,
                 $urlRouterProvider, $locationProvider, lazyLoadProvider){
