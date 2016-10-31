@@ -3,44 +3,48 @@
   <form name="Form" class="pure-form pure-form-aligned pure-u-1" novalidate>
     <fieldset>
       <div class="pure-control-group">
-        <label class="pure-label pure-radio" for="stype">Student-Account</label>
-        <input type="radio" data-ng-model="isTutor" data-ng-value="false" id="stype" checked/>
-        <label class="pure-label pure-radio" for="ttype">Tutor Account</label>
-        <input type="radio" data-ng-model="isTutor" data-ng-value="true" id="ttype"/>
-      </div>
-      <div class="pure-control-group">
         <label class="pure-label" for="username">Username:</label>
-        <input type="text" class="pure-input-1-3" data-ng-model="username" id="username" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Username"/>
+        <input type="text" data-ng-model="username" id="username" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Username"/>
       </div>
       <div class="pure-control-group">
         <label class="pure-label" for="name">Name:</label>
-        <input type="text" class="pure-input-1-3" data-ng-model="name" id="name" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Name"/>
+        <input type="text" data-ng-model="name" id="name" data-ng-minlength="3" data-ng-maxlength="10" placeholder="Insert Name"/>
       </div>
       <div class="pure-control-group">
         <label class="pure-label" for="lastName">Surname:</label>
-        <input type="text" class="pure-input-1-3" data-ng-model="lastName" id="lastName" data-ng-minlength="3" data-ng-maxlength="15" placeholder="Insert Surname"/>
+        <input type="text" data-ng-model="lastName" id="lastName" data-ng-minlength="3" data-ng-maxlength="15" placeholder="Insert Surname"/>
       </div>
       <div class="pure-control-group">
         <label class="pure-label" for="email">Email:</label>
-        <input type="email" class="pure-input-1-3" data-ng-model="email" id="email" data-ng-pattern="" placeholder="Insert Email"/>
+        <input type="email" data-ng-model="email" id="email" data-ng-pattern="" placeholder="Insert Email"/>
       </div>
       <div class="pure-control-group">
         <label class="pure-label" for="passwd">Password:</label>
-        <input type="password" class="pure-input-1-3" id="password" data-ng-model="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
+        <input type="password" id="password" data-ng-model="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
       </div>
       <div class="pure-control-group">
         <label class="pure-label" for="passwdrpt">Repeat Password:</label>
-        <input type="password" class="pure-input-1-3" id="passwdrpt" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Repeat Password"/> 
+        <input type="password" id="passwdrpt" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Repeat Password"/> 
       </div>
-      <div class="pure-control-group">
-        <label for="dayList">Day:</label>
-        <select id="dayList" data-ng-model="day" data-ng-init="day = days[0]" data-ng-options="day for day in days"></select>
-        <label for="monthList">Month:</label>
-        <select id="monthList" data-ng-model="month" data-ng-init="month = months[0]" data-ng-options="month for month in months"></select>
-        <label for="yearList">Year:</label>
+      <div class="pure-controls">
+        <label for="yearList" class="pure-label">Year:</label>
         <select id="yearList" data-ng-model="year" data-ng-init="year = years[0]" data-ng-options="year for year in years"></select>
+         <label for="monthList" class="pure-label">Month:</label>
+        <select id="monthList" data-ng-model="month" data-ng-init="month = months[0]" data-ng-options="month for month in months"></select>
+         <label for="dayList" class="pure-label">Day:</label>
+        <select id="dayList" data-ng-model="day" data-ng-init="day = days[0]" data-ng-options="day for day in days"></select>
       </div>
-      <input type="submit" class="pure-input-1-3 pure-flat-button pure-button" value="Get Started!"/>
+       <div class="pure-controls">
+        <label class="pure-label pure-radio" for="stype">
+          <input type="radio" data-ng-model="isTutor" data-ng-value="false" id="stype" checked/>
+          Student-Account
+        </label>
+        <label class="pure-label pure-radio" for="ttype">
+          <input type="radio" data-ng-model="isTutor" data-ng-value="true" id="ttype"/>
+          Tutor Account
+        </label>
+      </div>
+      <input type="submit" class="pure-input-2-5 pure-flat-button pure-button" value="Get Started!"/>
     </fieldset>
   </form>
 </div>

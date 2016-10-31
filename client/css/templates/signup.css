@@ -1,3 +1,11 @@
 .form-container {
     text-align: center;
 }
+
+.pure-label {
+    font-size: 18px;
+}
+
+.pure-flat-button {
+    margin-top: 10px;
+}

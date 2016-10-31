@@ -56,6 +56,10 @@
     text-align: center;
 }
 
+.pure-anchor {
+  font-size: 18px;
+}
+
 @media only screen and (max-width: 35.5em){
     .footer{
         height: 100%;
