@@ -34,22 +34,7 @@ define(['app'], function(app){
       }
     };
 
-    this.cssHandler = function(fromState, toState, stateService) {
-      /*switch(fromState.name){
-        case toState.parent:
-          if(fromState.data.css !== toState.data.css){this.injectCSS(toState.data.css);}
-          break;
-        case "":
-          this.injectCSS(toState.data.css);
-          var tmp = toState.parent;
-          while(tmp !== undefined){
-            this.injectCSS(stateService.get(tmp).data.css); tmp = tmp.parent;}
-          break;
-        default:
-          if(fromState.data !== undefined) { this.removeCSS(fromState.data.css);}
-          this.injectCSS(toState.data.css);
-      }*/
-      /*this.removeCSS(fromState.data.css);*/
+    this.cssHandler = function(fromState, toState) {
       this.injectCSS(toState.data.css);
     };
   });

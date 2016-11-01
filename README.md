@@ -13,12 +13,13 @@ Platform for tutoring.
 #TODO LIST
 
 ###Front End
-* Use better resized images for home page (NOT CRITICAL)
-* Create view, controllers and style for service page. (PARTIALS)
+* Resize responsive only vote image
+* Rewrite service's pages with pure
 * Add responsive platform.html (CRITICAL)
 * Need RegExp pattern for global validantion (PARTIALS)
 * Set filter limit to mySkill (!IMPORTANT)
 * Streaming Peer to Peer ? (NOT IMPORTANT)
+* Complete IFEE for controllers, services, provides
 
 ---------------------------
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
