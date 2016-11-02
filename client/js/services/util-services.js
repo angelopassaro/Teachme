@@ -1,10 +1,11 @@
 (function () {
+    'use-strict';
     define(['app'], function (app) {
-        'use-strict';
-        app.controller('BaseController', ['$state', function ($state) {
-
+        app.service('utilService', utilService);
+        utilService.$inject = ['$state'];
+        function utilService($state) {
             this.handleError = function (error) {
-                console.error("Error from Resource:", error);
+                console.error("error from Resource:", error);
             };
 
             this.loadView = function (toState, refresh) {
@@ -13,6 +14,6 @@
                 else
                     $state.go(toState);
             };
-        }]);
+        }
     });
 })();

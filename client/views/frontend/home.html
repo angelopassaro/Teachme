@@ -2,18 +2,18 @@
 	<img class="pure-img" alt="no image" src="./images/ico1.png" />
 	<nav class="pure-menu pure-menu-horizontal">
 		<ul class="pure-menu-list" id="menu">
-			<li class="pure-menu-item"><a href="#" data-ng-click="smoothScroll('mainimage')" class="pure-menu-link pure-anchor">Home</a></li>
-			<li class="pure-menu-item"><a href="#" data-ng-click="smoothScroll('features')" class="pure-menu-link pure-anchor">Features</a></li>
-			<li class="pure-menu-item"><a href="#" data-ng-click="smoothScroll('news')" class="pure-menu-link pure-anchor">News</a></li>
-			<li class="pure-menu-item"><a href="#" data-ng-click="smoothScroll('about')" class="pure-menu-link pure-anchor">About Us</a></li>
+			<li class="pure-menu-item"><a href="#" data-ng-click="" class="pure-menu-link pure-anchor">Home</a></li>
+			<li class="pure-menu-item"><a href="#" data-ng-click="" class="pure-menu-link pure-anchor">Features</a></li>
+			<li class="pure-menu-item"><a href="#" data-ng-click="" class="pure-menu-link pure-anchor">News</a></li>
+			<li class="pure-menu-item"><a href="#" data-ng-click="" class="pure-menu-link pure-anchor">About Us</a></li>
 		</ul>
 	</nav>
 </header>
 <div class="pure-g" id="main">
-	<img alt="no-image" class="pure-img pure-u-1" data-ng-src="{{mobile}}" id="change-1"/>
+	<img alt="no-image" class="pure-img pure-u-1" data-ng-src="{{home.mobile}}" id="change-1"/>
 	<div class="btn-container pure-u-1">
-		<button data-ng-click="loadView('signin')" class="pure-flat-button pure-button">Sign-In</button>
-		<button data-ng-click="loadView('signup')" class="pure-flat-button pure-button">Sign-Up</button>
+		<button data-ng-click="home.loadView('signin')" class="pure-flat-button pure-button">Sign-In</button>
+		<button data-ng-click="home.loadView('signup')" class="pure-flat-button pure-button">Sign-Up</button>
 	</div>
 </div>
 <div class="pure-g" id="features">

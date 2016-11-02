@@ -1,25 +1,27 @@
 (function () {
     define(['app'], function (app) {
         'use-strict';
-        app.controller('SigninCtrl', ['$scope', 'Student', '$state', '$controller', function ($scope, Student,
-            $state, $controller) {
-            var parentController = $controller('BaseController', { $scope: $scope });
-            /*Student API*/
+        app.controller('signinCtrl', signinCtrl);
 
-            $scope.log = function () {
-                $scope.formLogin.ttl = 60 * 60;
-                var logType = $scope.formLogin.user;
-                delete $scope.formLogin.user;
-                
-                if (logType.indexOf('@') === -1) 
-                    $scope.formLogin.username = logType;
-                else 
-                    $scope.formLogin.email = logType;
+        signinCtrl.$inject = ['$scope', 'Student', '$state'];
 
-                Student.login($scope.formLogin).$promise.then(function (success) {
-                    parentController.loadView('platform', false);
-                }, parentController.handleError);
+        function signinCtrl($scope, Student, $state) {
+            var signin = this;
+
+            signin.log = function () {
+                signin.UserForm.ttl = 60 * 60;
+                var text = signin.UserForm.logType;
+                delete signin.UserForm.logType;
+
+                if (text.indexOf('@') === -1)
+                    signin.UserForm.username = text;
+                else
+                    signin.UserForm.email = text;
+
+                Student.login(signin.UserForm).$promise.then(function (success) {
+                    $state.go('platform');
+                }, function (error) { });
             };
-        }]);
+        }
     });
 })();

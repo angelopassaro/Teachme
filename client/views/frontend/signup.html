@@ -1,6 +1,6 @@
 <div class="form-container pure-g">
   <h1 class="pure-h1 pure-u-1">Sign-up</h1>
-  <form name="Form" class="pure-form pure-form-aligned pure-u-1" novalidate>
+  <form name="UserForm" class="pure-form pure-form-aligned pure-u-1" novalidate>
     <fieldset>
       <div class="pure-control-group">
         <label class="pure-label" for="username">Username:</label>
@@ -28,9 +28,9 @@
       </div>
       <div class="pure-controls">
         <label for="yearList" class="pure-label">Year:</label>
-        <select id="yearList" data-ng-model="year" data-ng-init="year = years[0]" data-ng-options="year for year in years"></select>
+        <select id="yearList" data-ng-model="year" data-ng-change="signup.checkDays()" data-ng-init="year = years[0]" data-ng-options="year for year in years"></select>
          <label for="monthList" class="pure-label">Month:</label>
-        <select id="monthList" data-ng-model="month" data-ng-init="month = months[0]" data-ng-options="month for month in months"></select>
+        <select id="monthList" data-ng-model="month" data-ng-change="signup.checkDays()" data-ng-init="month = months[0]" data-ng-options="month for month in months"></select>
          <label for="dayList" class="pure-label">Day:</label>
         <select id="dayList" data-ng-model="day" data-ng-init="day = days[0]" data-ng-options="day for day in days"></select>
       </div>
@@ -44,7 +44,7 @@
           Tutor Account
         </label>
       </div>
-      <input type="submit" class="pure-input-2-5 pure-flat-button pure-button" value="Get Started!"/>
+      <input type="submit"  data-ng-click="signup.registration()" class="pure-input-2-5 pure-flat-button pure-button" value="Get Started!"/>
     </fieldset>
   </form>
 </div>

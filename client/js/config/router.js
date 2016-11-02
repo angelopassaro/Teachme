@@ -17,6 +17,7 @@ define(['app', 'providers/lazyload'], function (app) {
         url: '/' + key,
         templateUrl: FRONT_PATH + key + '.html',
         controller: key + 'Ctrl',
+        controllerAs: key,
         data: { css: ASSETS_PATH + key + '.css' },
         resolve: lazyLoadProvider.resolve(key),
         parent: value

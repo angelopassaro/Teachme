@@ -1,17 +1,17 @@
 <div class="pure-g signin-container">
   <img src="./images/ico2.png" class="pure-img" alt="no-image" id="ico"/>
-  <form class="pure-form pure-form-aligned pure-u-1" name="Form">
+  <form class="pure-form pure-form-aligned pure-u-1" name="UserForm">
     <fieldset>
       <legend class="pure-legend">Sign In</legend>
       <div class="pure-control-group">
         <label for="mail-name" class="pure-label">Username or Email:</label>
-        <input type="text" data-ng-model="username" data-ng-pattern="" id="mail-name" placeholder="Insert Email or Username"/>  
+        <input type="text" data-ng-model="signin.logType" data-ng-pattern="" id="mail-name" placeholder="Insert Email or Username"/>  
       </div>
       <div class="pure-control-group">
         <label for="password" class="pure-label">Password:</label>
-        <input type="password" data-ng-model="password" id="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
+        <input type="password" data-ng-model="signin.password" id="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
       </div>
-      <input type="submit" data-ng-submit="log()" class="pure-button pure-flat-button pure-input-1-3" value="Login"/>
+      <input type="submit" data-ng-submit="signin.log()" class="pure-button pure-flat-button pure-input-1-3" value="Login"/>
     </fieldset>
   </form>
 </div>

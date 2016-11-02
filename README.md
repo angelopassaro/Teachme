@@ -20,6 +20,8 @@ Platform for tutoring.
 * Set filter limit to mySkill (!IMPORTANT)
 * Streaming Peer to Peer ? (NOT IMPORTANT)
 * Complete IFEE for controllers, services, provides
+* Rewrite Css handler
+* Handle better routing
 
 ---------------------------
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK

@@ -1,7 +1,10 @@
 (function () {
     define(['app'], function (app) {
-        app.controller("verifyCtrl", ["$scope", "$controller", "$state", function ($scope, $controller, $state) {
-            var parentController = $controller("BaseController", { $scope: $scope });
-        }]);
+        app.controller("verifyCtrl", verifyCtrl);
+        verifyCtrl.$inject = ["$scope", "$state"];
+
+        function verifyCtrl($scope, $state){
+            var verify = this;
+        }
     });
 })();
