@@ -64,31 +64,21 @@
        * This method check if a date have a leap year
        * params: date => a date or a string formatted with format method
        */
-      this.isLeapYear = function(date){
-        if(date instanceof Date)
-          return ((date.getFullYear() % 4 == 0) && (date.getFullYear() % 100 != 0)) || (date.getFullYear() % 400 == 0);
-        else
-          for(var i=0; i < ACCEPTED_TOKENS.length; i++){
-            if(date.indexOf(ACCEPTED_TOKENS[i]) >= 0){
-              var year = parseInt(date.split(ACCEPTED_TOKENS[i])[0]);
-              return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
-            }
-          }
+      this.isLeapYear = function(year){ 
+        return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
       };
       
       this.checkDays = function(month, year){
         switch(month){
           case 'February':
-            if(isLeapYear(year))
-              range(1, 29);
+            if(this.isLeapYear(year))
+              return this.range(1, 29);
             else
-              range(1, 28);
-          break;
+              return this.range(1, 28);
           case 'November': case 'April': case 'June': case 'September':
-            range(1, 30);
-          break;
+            return this.range(1, 30);
           default:
-            range(1, 31);
+            return this.range(1, 31);
         }
       }
       
