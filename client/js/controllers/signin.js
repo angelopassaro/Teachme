@@ -9,18 +9,15 @@
             var signin = this;
 
             signin.log = function () {
-                signin.UserForm.ttl = 60 * 60;
-                var text = signin.UserForm.logType;
-                delete signin.UserForm.logType;
+                var request = {};
+                request['ttl'] = 60 * 60;
+                request['password'] = signin.password;
+                var text = signin.logType;
 
                 if (text.indexOf('@') === -1)
-                    signin.UserForm.username = text;
+                    request['username'] = text;
                 else
-                    signin.UserForm.email = text;
-
-                Student.login(signin.UserForm).$promise.then(function (success) {
-                    $state.go('platform');
-                }, function (error) { });
+                    request['email'] = text;
             };
         }
     });
