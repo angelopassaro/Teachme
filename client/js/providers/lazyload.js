@@ -38,7 +38,7 @@
       };
 
       this.cssHandler = function (fromState, toState) {
-        if (fromState.data == null)
+        if (fromState.data == null || toState.parent != null)
           this.injectCSS(toState.data.css);
         else
           this.removeCSS(fromState.data.css);

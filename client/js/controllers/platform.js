@@ -36,6 +36,15 @@
         toogleClass(menu, active);
         toogleClass(menuLink, active);
       }
+
+      platform.logout = function(){
+        console.log("Uscirò appena metto la funzione");
+        $state.go('home');
+      }
+
+      platform.loadSubview = function(subview){
+        $state.go(subview);
+      }
     }
   });
 })();
