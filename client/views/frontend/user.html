@@ -1,0 +1,36 @@
+<div class="pure-g main-container">
+  <form class="pure-form pure-form-aligned">
+    <fieldset>
+      <legend class="pure-legend">YourProfile</legend>
+      <div class="pure-control-group pure-u-1">
+        <label for="name" class="pure-label">Name:</label>
+        <input id="name" placeholder="your name"/>
+      </div>
+       <div class="pure-control-group pure-u-1">
+        <label for="lastName" class="pure-label">LastName:</label>
+        <input id="lastName" placeholder="your last name"/>
+      </div>
+       <div class="pure-control-group pure-u-1">
+        <label for="username" class="pure-label">Username:</label>
+        <input id="username" placeholder="your username"/>
+      </div>
+      <div class="pure-control-group pure-u-1 pure-menu">
+       <span class="pure-span pure-menu-heading">Contacts</span>
+       <ul class="pure-menu-list">
+         <li class="pure-menu-item">aContact<i>&#43</i><i>&#45</i></li>
+       </ul>
+      </div>
+      <div class="pure-controls pure-u-1">
+         <label for="yearList" class="pure-label">Year:</label>
+        <select id="yearList" data-ng-model="" data-ng-change="" data-ng-init="signup.year = signup.years[0]" data-ng-options="year for year in signup.years"></select>
+         <label for="monthList" class="pure-label">Month:</label>
+        <select id="monthList" data-ng-model="" data-ng-change="" data-ng-init="signup.month = signup.months[0]" data-ng-options="month for month in signup.months"></select>
+         <label for="dayList" class="pure-label">Day:</label>
+        <select id="dayList" data-ng-model="" data-ng-init="signup.day = signup.days[0]" data-ng-options="day for day in signup.days"></select>
+      </div>
+      <div class="pure-u-1">
+        <input type="submit" value="Update Data" data-ng-click="" class=" pure-button pure-flat-button"/>
+      </div>
+    </fieldset>
+  </form>
+</div>

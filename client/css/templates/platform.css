@@ -2,6 +2,10 @@ body {
     color: #777;
 }
 
+.main-container {
+    text-align: center;
+}
+
 #layout,#menu,.menu-link {
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;

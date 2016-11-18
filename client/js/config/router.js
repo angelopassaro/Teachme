@@ -48,7 +48,7 @@ define(['app', 'providers/lazyload'], function (app) {
     })
     .state('user', {
       url: '/user',
-      templateUrl: FRONT_PATH + 'user/read.html',
+      templateUrl: FRONT_PATH + 'user.html',
       parent: 'platform',
       controller: 'userCtrl',
       controllerAs: 'user',
