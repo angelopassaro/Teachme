@@ -1,13 +1,13 @@
 require.config({
   baseUrl : "./js",
   paths : {
-    'angular': '../vendor/angular/angular.min',
-    'angular-resource': '../vendor/angular-resource/angular-resource.min',
-    'angular-router': '../vendor/angular-ui-router/release/angular-ui-router.min',
+    'angular': '../vendor/node_modules/angular/angular.min',
+    'angular-resource': '../vendor/node_modules/angular-resource/angular-resource.min',
+    'angular-router': '../vendor/node_modules/angular-ui-router/release/angular-ui-router.min',
     'app-router': './config/router',
     'loopback': './services/lb-services',
-    'animation': '../vendor/angular-animate/angular-animate.min',
-    'loading-bar': '../vendor/angular-loading-bar/build/loading-bar.min'
+    'animation': '../vendor/node_modules/angular-animate/angular-animate.min',
+    'loading-bar': '../vendor/node_modules/angular-loading-bar/build/loading-bar.min'
   },
   shim : {
     'angular': {exports: 'angular'},
