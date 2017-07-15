@@ -27,7 +27,6 @@ Platform for tutoring.
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
 --------------------------
 
-rivedere durata token
 
 ###Back End
 * Autochange boolean value in lesson (check the datelesson and data now)
@@ -39,7 +38,6 @@ rivedere durata token
 * Add a function for  resetpassword (OK)
 * Delete an user not validated (OK)  (!check time schedule(is modified)!)
 * Delete old token (OK)
-* Aggiungere controlli email e lunghezza caratteri stringhe. (OK)
 *  Re-email (OK) (only check a new user registration)
 * Start delete cascade user(OK)
 * Email when a studen ask for tutor (OK)
@@ -50,13 +48,3 @@ rivedere durata token
 * Redirect signin add auto username/email and password
 * hidden/disable path after verification (redirect in page with log in ?)
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
-* provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
-
-* codice tutor student per controllo lezione
-____________________________________________________________________________________________________________
-* student post passpartout sovrascrive il vecchio pass inserire funzione in before save per aggioarnare la data
-* student passpartout come inviare la data di scadenza? (!important) (criptare richiesta?)(nascondere nel response passpartout)
-* embedds bug per mongo idInjection https://github.com/strongloop/loopback/issues/2302 (in attesa di soluzione)
-* embedds bug per hook https://github.com/strongloop/loopback-datasource-juggler/issues/480
-
-* aggiunto acl in university per  provare la get con student (rivedere gli acl alla fine)
