@@ -20,6 +20,12 @@
         },
         "average": {
             "type": "number"
+        },
+        "course": {
+            "type": "string"
+        },
+        "teacher": {
+            "type": "string"
         }
     },
     "validations": [],
@@ -36,6 +42,6 @@
         }
     },
     "acls": [],
-    "hidden": [ "average"],
+    "hidden": ["average", "course", "teacher", "belongId", "studentId"],
     "methods": {}
 }

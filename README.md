@@ -24,10 +24,12 @@ Platform for tutoring.
 * Clear user https://docs.strongloop.com/display/public/LB/AngularJS+JavaScript+SDK
 --------------------------
 
-effetuare il login , poi il logout(vedere che succede alla pagina principale) effettuare nuovamente il login (vedere che succede)
+rivedere durata token
 
 ###Back End
-* Feedback specifici +
+* Autochange boolean value in lesson (check the datelesson and data now)
+* Note  check data type
+* Specific feedback  (OK)
 * Test email verification   (OK)
 * Add login function (OK)
 * Add logout (OK)
@@ -46,6 +48,8 @@ effetuare il login , poi il logout(vedere che succede alla pagina principale) ef
 * hidden/disable path after verification (redirect in page with log in ?)
 * Delete a cascata {https://github.com/strongloop/loopback-datasource-juggler/issues/88}.
 * provare (vedi university student) hasMany  -> belongsTo) https://github.com/strongloop/loopback/issues/1229 query multi model
+
+* codice tutor student per controllo lezione
 ____________________________________________________________________________________________________________
 * student post passpartout sovrascrive il vecchio pass inserire funzione in before save per aggioarnare la data
 * student passpartout come inviare la data di scadenza? (!important) (criptare richiesta?)(nascondere nel response passpartout)
@@ -53,8 +57,3 @@ ________________________________________________________________________________
 * embedds bug per hook https://github.com/strongloop/loopback-datasource-juggler/issues/480
 
 * aggiunto acl in university per  provare la get con student (rivedere gli acl alla fine)
-
-+ aggiungere feedbacks di un tuor per un determinato corso con un determinato professore,
-    problemi:
-     - [ ] feeback si riferisce al corso quindi si perdono i dati del corso e del  professore nel momento in cui viene eliminata una lezione.
-     - [ ] I feedback sono generici
