@@ -1,109 +1,64 @@
-define(['app', 'providers/lazyload'], function(app){
+define(['app', 'providers/lazyload'], function (app) {
   'use-strict';
-  var FRONT_PATH = "views/frontend";
-  var ASSETS_PATH = "css/templates";
-  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function($stateProvider,
-                $urlRouterProvider, $locationProvider, lazyLoadProvider){
+  var FRONT_PATH = "views/frontend/";
+  var ASSETS_PATH = "css/templates/";
+  app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'lazyLoadProvider', function ($stateProvider,
+    $urlRouterProvider, $locationProvider, lazyLoadProvider) {
     $locationProvider.html5Mode(false);
-    $urlRouterProvider.otherwise('/');
-      $stateProvider
-        .state('home', {
-          url: '/',
-          templateUrl: FRONT_PATH + '/home.html',
-          controller: 'HomeCtrl',
-          data: {css: ASSETS_PATH + '/home.css'},
-          resolve: lazyLoadProvider.resolve('home')
-      })
-        .state('signin', {
-          url: '/signin',
-          templateUrl: FRONT_PATH + '/signin.html',
-          controller: 'SigninCtrl',
-          data: {css: ASSETS_PATH + '/signin.css'},
-          resolve: lazyLoadProvider.resolve('signin')
-      })
-        .state('signup', {
-         url: '/signup',
-         templateUrl: FRONT_PATH + '/signup.html',
-         controller: 'SignupCtrl',
-         data: {css: ASSETS_PATH + '/signup.css'},
-         resolve: lazyLoadProvider.resolve('signup')
-      })
-        .state('signup-success', {
-         url: '/verifyemail',
-         templateUrl: FRONT_PATH + '/verify.html',
-      })
-        .state('platform', {
-         url: '/platform',
-         templateUrl: FRONT_PATH + '/platform.html',
-         controller: 'PlatformCtrl',
-         data: {css: ASSETS_PATH + '/platform.css'},
-         resolve: lazyLoadProvider.resolve('platform')
-      })
-        .state('user', {
-         url: '/user',
-         parent: 'platform',
-         templateUrl: FRONT_PATH + '/user/read.html',
-         controller: 'UserCtrl',
-         data: {css: ASSETS_PATH + '/formdata.css'},
-         resolve: lazyLoadProvider.resolve('user')
-      })
-        .state('edituser', {
-         url: '/edit',
-         parent: 'user',
-         templateUrl: FRONT_PATH + '/user/update.html',
-         controller: 'UserCtrl',
-         resolve: lazyLoadProvider.resolve('user')
-      })
-        .state('skill', {
-          url: '/skills',
-          parent: 'platform',
-          templateUrl: FRONT_PATH + '/skill/read.html',
-          controller: 'SkillCtrl',
-          data: {css: ASSETS_PATH + '/formdata.css'},
-          resolve: lazyLoadProvider.resolve('skill')
-        })
-        .state('editskill', {
-          url: '/edit',
-          parent: 'skill',
-          templateUrl: FRONT_PATH + '/skill/update.html',
-          controller: 'SkillCtrl',
-          resolve: lazyLoadProvider.resolve('skill')
-        })
-        .state('newskill', {
-          url: '/new',
-          parent: 'skill',
-          templateUrl: FRONT_PATH + '/skill/create.html',
-          controller: 'SkillCtrl',
-          resolve: lazyLoadProvider.resolve('skill')
-        })
-        .state('tutors', {
-          url: '/tutors',
-          parent: 'platform',
-          templateUrl: FRONT_PATH + '/tutors.html',
-          data: {css: ASSETS_PATH + '/formdata.css'},
-          controller: 'TutorCtrl',
-          resolve: lazyLoadProvider.resolve('tutor')
-        })
-        .state('passpartout', {
-          url: '/passpartout',
-          parent: 'platform',
-          templateUrl: FRONT_PATH + '/passpartout.html',
-          data: {css: ASSETS_PATH + '/formdata.css'},
-          controller: 'PassCtrl',
-          resolve: lazyLoadProvider.resolve('passpartout')
-        })
-        .state('prenotation', {
-          url: '/prenotation',
-          parent: 'platform',
-          templateUrl: FRONT_PATH + '/prenotation.html',
-          data: {css: ASSETS_PATH + '/formdata.css'},
-          controller: 'PrenotationCtrl',
-          resolve: lazyLoadProvider.resolve('prenotation')
-        });
+    $urlRouterProvider.otherwise('/home');
+    $stateProvider.state('home', {
+      url: '/home',
+      templateUrl: FRONT_PATH + 'home.html',
+      data: {css: ASSETS_PATH + 'home.css'},
+      controller: 'homeCtrl',
+      controllerAs: 'home',
+      resolve: lazyLoadProvider.resolve('home')
+    })
+    .state('signin', {
+      url: '/signin',
+      templateUrl: FRONT_PATH + 'signin.html',
+      data: {css: ASSETS_PATH + 'signin.css'},
+      controller: 'signinCtrl',
+      controllerAs: 'signin',
+      resolve: lazyLoadProvider.resolve('signin')
+    })
+    .state('signup', {
+      url: '/signup',
+      templateUrl: FRONT_PATH + 'signup.html',
+      data: {css: ASSETS_PATH + 'signup.css'},
+      controller: 'signupCtrl',
+      controllerAs: 'signup',
+      resolve: lazyLoadProvider.resolve('signup')
+    })
+    .state('verify', {
+      url: '/verify',
+      templateUrl: FRONT_PATH + 'verify.html',
+      data: {css: ASSETS_PATH + 'verify.css'},
+      controller: 'verifyCtrl',
+      controllerAs: 'verify',
+      resolve: lazyLoadProvider.resolve('verify')
+    })
+    .state('platform', {
+      url: '/platform',
+      templateUrl: FRONT_PATH + 'platform.html',
+      data: {css: ASSETS_PATH + 'platform.css'},
+      controller: 'platformCtrl',
+      controllerAs: 'platform',
+      resolve: lazyLoadProvider.resolve('platform')
+    })
+    .state('user', {
+      url: '/user',
+      templateUrl: FRONT_PATH + 'user.html',
+      parent: 'platform',
+      controller: 'userCtrl',
+      controllerAs: 'user',
+      resolve: lazyLoadProvider.resolve('user')
+    })
   }]);
-  app.run(['$rootScope', 'lazyLoad', '$state', function($rootScope, lazyLoadProvider, $state){
-    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, options){
-      lazyLoadProvider.cssHandler(fromState, toState, $state);
+  app.run(['$rootScope', 'lazyLoad', '$state', function ($rootScope, lazyLoadProvider) {
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams, options) {
+      lazyLoadProvider.cssHandler(fromState, toState);
     });
   }]);
 });
+ /*Viste interne dovrebbero ereditare resolve e data dal padre. Verificare...*/ 

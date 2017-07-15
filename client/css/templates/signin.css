@@ -1,49 +1,11 @@
-.logo {
-  background: url(../../images/ico2.png) no-repeat center;
-  height: 92px;
-  background-size: contain;
+.signin-container{
+    text-align: center;
+} 
+
+.pure-label {
+    font-size: 18px;
 }
 
-.form {
-  width: 50%;
-  height: 50%;
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: block;
-}
-
-.paragraph {
-  font-size: 20px;
-  font-weight: 300;
-  color: #444;
-}
-
-.anchor--hover:hover{
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.input_submit{
-  width: 50%;
-  color: white;
-  background: #21bd5a;
-  border-bottom: 2px solid #15ab4e;
-  height: 60px;
-  font-size: 22px;
-}
-
-.input_text, .input_password{
-  width: 70%;
-  height: 40%;
-  margin-bottom: 20px;
-}
-
-@media only screen and (max-width: 600px){
-  .form {
-    width: 100%;
-  }
+#ico {
+    margin: 0 auto;
 }

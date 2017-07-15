@@ -1,336 +1,77 @@
-/*Desktop */
-.paragraph{
-  color: #444;
+.pure-header {
+    background-color: #0091b4;
 }
 
-.container {
-  position: absolute;
-  bottom: 0;
-  width: 100%
+.pure-anchor {
+    color: #ffffff;
+    font-weight: 600;
 }
 
-.button {
-  width: 25%;
-  height: 60px;
-  color: white;
-  background: #21bd5a;
-  border-bottom: 2px solid #15ab4e;
-  box-shadow: inset 0 -2px #12ab8d;
-  -moz-box-shadow: inset 0 -2px #12ab8d;
-  -webkit-box-shadow: inset 0 -2px #12ab8d;
-  vertical-align: top;
+.pure-anchor:hover{
+    background-color: #00a3cc;
 }
 
-.h1 {
-  color: #444;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #02b8dd;
+.pure-menu-list {
+    float: right;
 }
 
-.h2 {
-  color: #444;
+.btn-container {
+    background-color: #0091b4; 
+    text-align: center;
+    margin-top: -3px;
 }
 
-.h3 {
-  color: #444;
-  margin-bottom: 20px;
+.pure-flat-button{
+    width: 25%;
+    height: 50px;
 }
 
-.h4 {
- color: #444;
- margin-bottom: 20px;
+.features-list {
+    list-style-type: none;
+    text-align: center;
+    margin-top: 20px;
 }
 
-.h5 {
-  color: #444;
+.features-list .pure-img {
+    margin: 0 auto;
 }
 
-.menu {
-  float: right;
+.pure-h2 {
+    border-bottom: 1px solid #0091b4;
 }
 
-.mainimage__h2{
-  margin: 180px 0 0 0;
-  color: #e5e5e5;
-  text-shadow: 1px 0 #444, 0 1px #444, 1px 0 #444, 0 1px #444;
-}
-
-.menu__li__a{
-  margin-right: 20px;
-  font-size: 18px;
-  color: #e5e5e5
-}
-
-.title {
-  float: left;
-  display: inline-block;
-  vertical-align: middle;
-  width: 391px;
-  height: 92px;
-}
-
-.features__ul{
-  margin: 80px 0;
-  list-style: none;
-}
-
-.features__ul__li{
-  width: 300px;
-  padding-top: 140px;
-  float: left;
-  margin-right: 10px;
-  text-align: center;
-}
-
-.primarycontent{
-  padding: 60px 0;
-  text-align: center;
-}
-
-.primarycontent__h3 {
-  display: block;
-  margin: 0 auto 20px auto;
-  width: 50%;
-  border-bottom: 1px solid #02B8DD;
-  padding: 0 0 20px 0;
-}
-
-.secondarycontent{
-  padding: 60px 0;
-  text-align: center;
-}
-
-.secondarycontent__article{
-  width: 40%;
-	height: 370px;
-	background-color: #f5f5f5;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
-
-.secondarycontent__article__h3{
-  border-bottom: 1px solid #02b8dd;
-	padding-bottom: 20px;
-}
-
-.cta{
-  padding: 60px 0;
-}
-
-.cta__h3{
-  display: block;
-  margin: 0 auto 20px auto;
-  width: 400px;
-  border-bottom: 1px solid #02B8DD;
-  padding: 0 0 20px 0;
+.ability {
+    text-align: center;
 }
 
 .footer {
-  padding: 60px 0;
-  height: 100%;
-  margin: 0 auto;
-  width: 100%;
-  background-color: #0091b4;
-}
-
-.footer__platforminfo{
-  width: 380px;
-  float: left;
-}
-
-.footer__platforminfo__paragraph, .footer__companylinks__paragraph, .footer__contactinfo__paragraph{
-  color: #444;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.footer__companylinks{
-  width: 380px;
-  float: right;
-}
-
-.footer__contactinfo{
-  width: 380px;
-  margin: 0 auto;
-}
-
-.header {
-  height: 120px;
-  background-color: #0091b4;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.mainimage{
-  height: 580px;
-  padding-top: 1px;
-  text-align: center;
-  position: relative;
-}
-
-.footer__contactinfo__anchor{
-  color: #444;
-}
-
-.title{
-  background: url("../../images/ico1.png") no-repeat center;
-  background-size: 100% auto;
-}
-
-.features__ul__li--ft1{
-  background: url('../../images/search.png') no-repeat top center;
-}
-
-.features__ul__li--ft2{
-  background: url('../../images/notes.png') no-repeat top center;
-}
-
-.features__ul__li--ft3 {
-   background: url('../../images/streaming.png') no-repeat top center;
-}
-
-.features__ul__li--ft4{
-  background: url('../../images/feedback.png') no-repeat top center;
-}
-
-.mainimage{
-  background:url('../../images/main.gif') no-repeat center;
-  background-size: contain;
-  background-color: #0091b4;
-}
-
-.vote {
-  background: url('../../images/vote.jpg') no-repeat center;
-  background-size: contain;
-  height: 700px;
-}
-/*Smarthphone*/
-@media only screen and (max-width: 480px){
-
-  .mainimage{
-    background: url('../../images/mobilemain1.jpg') no-repeat center;
-    background-size: cover;
-    height: 338px;
-  }
-
-  .mainimage__h2 {
-    margin: auto;
-    font-size: 35px;
-  }
-
-  .title{
-    width: 70%;
-  }
-
-  .vote{
-    height: 325px;
-    background: url('../../images/votemobile.jpg') no-repeat center;
-    background-size: cover;
-  }
-
-  .primarycontent__h3{
-    width: 100%;
-  }
-
-  .mainimage__h2{
-    font-size: 40px;
-  }
-
-  .cta__h3{
-    width: 100%;
-  }
-
-  .button{
-    width: 40%;
-  }
-
-  .features__ul{
-  column-count: 1;
-  -webkit-column-count: 1;
-  -moz-column-count: 1;
-	padding-left: 0;
-	text-indent: 0;
-  }
-
-  .features__ul__li{
-    float: none;
-    margin: auto;
-    display: inline-block;
-  }
-
-.footer__contactinfo, .footer__companylinks, .footer__platforminfo{
-  width: 100%;
-  clear: both;
-  text-align: center;
-  }
-}
-/*Tablet and mini notebook*/
-@media screen and (min-width: 481px) and (max-width: 1280px){
-
-  .primarycontent, .secondarycontent {
-    padding: 0;
-  }
-
-  .features__ul{
-    column-count: 2;
-   -webkit-column-count: 2;
-   -moz-column-count: 2;
-   margin: 0 auto;
-   display: inline-block;
-  }
-
-  .features__ul__li{
-    clear: both;
-  }
-
-  .footer__contactinfo, .footer__companylinks, .footer__platforminfo{
-    width: 33%;
-		vertical-align: top;
-  }
-}
-/*Abilitate menu icon*/
-@media only screen and (max-width: 810px){
-  #menu-icon{
-    display: inline-block;
-    vertical-align: middle;
-    float: right;
-  }
-
-  .menu__ul{
-    display: none;
-		position: absolute;
-		padding: 20px;
-		background: #0091b4;
-		border: 5px solid #444;
-		right: 20px;
-		top: 60px;
-		width: 70%;
-		border-radius: 4px 0 4px 4px;
-    z-index: 1;
-  }
-
-  .menu__li{
+    margin-top: 20px;
     text-align: center;
-		width: 100%;
-		padding: 10px 0;
-		margin: 0;
-  }
-
-  .features__ul__li{
-    width: 100%;
-  }
+    height: 200px;
+    background-color: #0091b4;
 }
-/*Bigger screen*/
-@media only screen and (min-width: 1281px){
-	.features__ul__li{
-		width: 25%;
-		display: inline-block;
-		margin: 0;
-	}
 
-  .vote{
-    height: 900px;
-  }
+.news, .cta {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pure-anchor {
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 35.5em){
+    .footer{
+        height: 100%;
+    }
+
+    .pure-flat-button {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 48em){
+    .footer{
+        height: 100%;
+    }
 }

@@ -1,15 +1,8 @@
-.h3, .h5 {
-  color: #444;
+.verify-container {
+    text-align: center;
 }
 
-.anchor {
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-@media only screen and (max-width: 275px){
-  .h3 {
-    font-size: 25px;
-  }
+.pure-anchor {
+    cursor: pointer;
+    color: red;
 }

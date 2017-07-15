@@ -1,19 +1,21 @@
+(function(){
 define(['app', 'services/date-services'], function(app){
   'use-strict';
-  app.controller('UserCtrl', ['$scope', '$state', 'Student', 'dateService', '$controller', function($scope, 
-  $state, Student, dateService, $controller){
-    /*Variable and function inheritance*/
-    var parentController = $controller('BaseController', {$scope: $scope});
-    $scope.Student = $scope.Student || {};
-    $scope.Contact = $scope.Contact || {};
-    $scope.Date = $scope.Date || {};
+  app.controller('userCtrl', userCtrl); 
+  userCtrl.$inject = ['$scope', '$state', 'Student', '$date']; 
+  function userCtrl($scope, $state, Student, $date){
+    var user = this;
+    
+  }
+
+   /* $scope.Date = $scope.Date || {};
     $scope.loadView = parentController.loadView;
     $scope.years = dateService.range(1970, 2016);
     $scope.months = dateService.createMonths();
     $scope.days = dateService.range(1, 31);
     $scope.verify = ($scope.Contact.type === 'Mail') ? app.MAIL_PATTERN : app.PHONE_PATTERN;
 
-    /*Student API call*/
+
     
       Student.findById({id: Student.getCurrentId()}, function(student){
         jsonDate = dateService.parseDate(student.birthday);
@@ -35,7 +37,7 @@ define(['app', 'services/date-services'], function(app){
           parentController.loadView('user', true);
         }, parentController.handleError);
     };
-    /*Manage Contacts*/
+
     $scope.addContact = function(){
       var newObject = {}
       newObject[$scope.Contact.type] = $scope.Contact.name;
@@ -45,7 +47,7 @@ define(['app', 'services/date-services'], function(app){
     $scope.removeContact = function(index){
       console.log(index);
       delete $scope.Student.contacts[index];
-    };
+    };*/
 
-  }]);
 });
+})();

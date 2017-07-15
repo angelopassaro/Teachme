@@ -1,17 +1,17 @@
-define(['app'], function(app){
-'use-strict';
-    app.controller('HomeCtrl', ['$scope', '$state', '$controller', function($scope, $state, $controller){
-        var parentController = $controller('BaseController', {$scope: $scope});
+(function () {
+    define(['app'], function (app) {
+        'use-strict';
+        app.controller('homeCtrl', homeCtrl);
 
-        $scope.loadView = parentController.loadView;
+        homeCtrl.$inject = ['$scope', '$state'];
 
-        $scope.showMenu = function(){
-            var elem = angular.element(document.getElementById('menu'));
-            if(elem.css('display') === 'none'){
-              elem.css('display', 'block');
-            }else {
-              elem.css('display', 'none');
+        function homeCtrl($scope, $state){
+            var home = this;
+            home.mobile = (document.documentElement.clientWidth <= 568) ? '../../images/mobilemain1.jpg' : '../../images/main.gif';
+            
+            home.loadView = function(toState){
+                $state.go(toState);
             }
-        };
-}]);
-});
+        }
+    });
+})();

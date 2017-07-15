@@ -1,13 +1,17 @@
-<div class="logo">
-  </div>
-<div class="wrapper">
-  <form class="form" ng-submit="log()">
-    <fieldset class="fieldset">
-      <p class="paragraph">Sign in to Tutor4You</p>
-      <input type="text" class="input_text input_text--focused" ng-model="formLogin.user" required placeholder="Your E-Mail or Username"/>
-      <input type="password" class="input_password input_password--focused" ng-model="formLogin.password" required placeholder="Your Password"/>
-      <p class="paragraph"><a class="anchor anchor--hover" href="/request-password-reset ">Forgot your password?</a></p>
-      <input type="submit" class="input_submit input_submit--focused" value="Login"/>
-      </fieldset>
+<div class="pure-g signin-container">
+  <img src="./images/ico2.png" class="pure-img" alt="no-image" id="ico"/>
+  <form class="pure-form pure-form-aligned pure-u-1" name="signin.UserForm" novalidate>
+    <fieldset>
+      <legend class="pure-legend">Sign In</legend>
+      <div class="pure-control-group">
+        <label for="mail-name" class="pure-label">Username or Email:</label>
+        <input type="text" data-ng-model="signin.logType" data-ng-pattern="" id="mail-name" placeholder="Insert Email or Username"/>  
+      </div>
+      <div class="pure-control-group">
+        <label for="password" class="pure-label">Password:</label>
+        <input type="password" data-ng-model="signin.password" id="password" data-ng-minlength="8" data-ng-maxlength="15" placeholder="Insert Password"/>
+      </div>
+      <input type="submit" data-ng-submit="signin.log()" class="pure-button pure-flat-button pure-input-1-3" value="Login"/>
+    </fieldset>
   </form>
 </div>

@@ -1,25 +1,50 @@
-define(['app'], function (app) {
-  'use-strict';
-  app.controller('PlatformCtrl', ['$scope', '$state', '$controller', 'Student', function ($scope, $state,
-    $controller, Student) {
-    var parentController = $controller('BaseController', {$scope: $scope});
+(function () {
+  define(['app'], function (app) {
+    'use-strict';
+    app.controller('platformCtrl', platformCtrl);
 
-    $scope.loadView = parentController.loadView;
+    platformCtrl.$inject = ['$scope', '$state', 'Student'];
 
-    $scope.logout = function () {
-      Student.logout().$promise.then(function () {
-        parentController.loadView('home');
-      }, parentController.handleError);
-    };
+    function platformCtrl($scope, $state, Student) {
+      var platform = this;
+      var layout = document.getElementById('layout');
+      var menu = document.getElementById('menu');
+      var menuLink = document.getElementById('menu-link');
+      
+      function toogleClass(element, className){
+        var classes = element.className.split(/\s+/),
+            length = classes.length,
+            i = 0;
+            for(; i < length; i++) {
+              if (classes[i] === className) {
+                classes.splice(i, 1);
+                break;
+              }
+            }
+        // The className is not found
+        if (length === classes.length) {
+            classes.push(className);
+        }
 
-    $scope.showCommandMenu = function () {
-      var menu = angular.element(document.getElementsByClassName('menu__ul')[0]);
-      if (menu.css('display') === 'none') {
-        menu.css('display', 'block');
-      } else {
-        menu.css('display', 'none');
+        element.className = classes.join(' ');
       }
-    };
 
-  }]);
-});
+      platform.showMenu = function($event){
+        var active = 'active';
+        $event.preventDefault();
+        toogleClass(layout, active);
+        toogleClass(menu, active);
+        toogleClass(menuLink, active);
+      }
+
+      platform.logout = function(){
+        console.log("Uscirò appena metto la funzione");
+        $state.go('home');
+      }
+
+      platform.loadSubview = function(subview){
+        $state.go(subview);
+      }
+    }
+  });
+})();
