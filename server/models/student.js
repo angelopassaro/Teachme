@@ -41,7 +41,7 @@ module.exports = function(Student) {
 			/*
 			 * Edit a student
 			 */
-			// aggingere modifica per il passpartotut
+			// TODO edit for passpartout
 			if(ctx.data)
 				if(ctx.data.mypasspartout)
 					updatePasspartout(ctx);
@@ -148,7 +148,6 @@ module.exports = function(Student) {
 			Student.app.models.Feedback.destroyAll({
 				belongId: ctx.where.email
 			}, function(err,feedback) {
-				//console.log("feedback cancellati", feedback);
 			});
 
 			Student.app.models.Lesson.find({
@@ -157,7 +156,6 @@ module.exports = function(Student) {
 				}
 			}, function(err, lessons) {
 				if(lessons){
-					//console.log(lessons);
 					/*
                      Delete all data in studentlesson from db
                      and all lesson of student
@@ -186,7 +184,6 @@ module.exports = function(Student) {
 			Student.app.models.AccessToken.destroyAll({
 				userId: ctx.where.email
 			},function(err, token) {
-				//console.log("token cancellati", token);
 			})
 		}
 
@@ -196,7 +193,7 @@ module.exports = function(Student) {
 
 
 
-	// rifare
+	// TODO remake
 	function updatePasspartout(ctx){
 		Student.findOne({
 			"where" : { username : ctx.currentInstance.username}
@@ -234,7 +231,7 @@ module.exports = function(Student) {
 		var options = {
 				type: 'email',
 				to: user.email,
-				from: 'tutor4you6@gmail.com',
+				from: 'email@email.com',
 				user: user,
 				template: path.resolve(__dirname, '../../server/views/verify.ejs'),
 				redirect: '/signin',
@@ -302,7 +299,6 @@ module.exports = function(Student) {
 	function checkDomain(email) {
 		var x = email.replace(/.*@/, " ");
 		x = x.split('.');
-		//console.log("DEBUG    dominio",x[1]); 
 		return x[1];
 	}
 

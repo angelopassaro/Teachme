@@ -20,7 +20,6 @@ module.exports = function(Lesson) {
 					course.toughtBy.count({teacherId: ctx.instance.belongsId},function(err,count) {
 						if (count == 1) {
 							Lesson.app.models.Student.findById(ctx.instance.studentId, function(err, student) {
-								//TODO rivedere/rendere leggibile
 								/*
 								 * Check the student and lesson date for creat a lesson
 								 */
@@ -127,7 +126,7 @@ module.exports = function(Lesson) {
 								  if(student.hasOwnProperty('mypasspartout') && student.mypasspartout.hasOwnProperty('expiredDate')
 										  && student.mypasspartout.expiredDate > Date.now()) {
 
-									  //TODO riscrivere
+									  //TODO 
 									  /*
 									   * Create a json for every lesson founded
 									   */

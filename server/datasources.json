@@ -1,9 +1,9 @@
 {
   "db": {
-    "url": "mongodb://niko:ferdinando@ds019123.mlab.com:19123/teachdb",
-    "database": "teachdb",
-    "username": "niko",
-    "password": "ferdinando",
+    "url": "mongo",
+    "database": "",
+    "username": "",
+    "password": "",
     "name": "db",
     "connector": "mongodb",
     "debug": true
@@ -31,8 +31,8 @@
           "rejectUnauthorized": false
         },
         "auth": {
-          "user": "tutor4you6@gmail.com",
-          "pass": "provaemail"
+          "user": "",
+          "pass": ""
         }
       }
     ]
