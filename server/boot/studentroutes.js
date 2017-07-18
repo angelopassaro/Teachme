@@ -19,7 +19,7 @@ module.exports = function(app) {
     */
     app.get('/bla', function(req,res) {
         app.models.Lesson.find({
-            where: {studentId: "a.passaro14@studenti.unisa.it"}
+            where: {studentId: } 
         }, function(err, lessons) {
             console.log(lessons[0].teach)
         });
